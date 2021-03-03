@@ -10,7 +10,10 @@ Vue.use(ElementUI);
 import "./assets/scss/reset.scss";
 // 引入axios
 import axios from "axios";
-axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
+// 服务器https
+// axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
+// 本地http
+axios.defaults.baseURL = 'http://localhost:3000/'
 Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false;

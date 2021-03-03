@@ -68,19 +68,22 @@ export default {
           this.$axios
             .post("/api/user/login", this.loginForm)
             .then((res) => {
-              this.loading = false;
               if (res.data.code === 0) {
-                this.$message({
-                  message: "登录成功",
-                  showClose: true,
-                  type: "success",
-                });
+                setTimeout(()=>{
+                  this.loading = false;
+                  this.$message({
+                    message: "登录成功",
+                    showClose: true,
+                    type: "success",
+                  });
+                },500)
                 setTimeout(() => {
                   this.$store.state.username = this.loginForm.username;
                   this.$router.push({ path: "/" });
                 }, 1500);
               } else {
                 setTimeout(() => {
+                  this.loading = false;
                   this.$message({
                     message: "账号或密码错误",
                     showClose: true,
