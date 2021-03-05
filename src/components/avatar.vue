@@ -5,6 +5,10 @@
         <img :src="require('../assets/imgs/head_img.jpeg')" alt="">
       </div>
     </div>
+    <div class="head_name">
+      <div class="username">倾倾倾风</div>
+      <div class="introduction">一个爱鼓捣前端的产品汪！</div>
+    </div>
   </div>
 </template>
 
@@ -23,12 +27,13 @@ export default {
 
 <style lang='scss' scoped>
 .avatar{
-  height:25vh;
-  min-height: 150px;
-  max-height: 210px;
+  height:30vw;
+  min-height: 260px;
+  max-height: 400px;
+  border:1px solid red;
   .head_back{
-    width:100%;
-    height:100%;
+    width:28.5vw;
+    height:17.67vw;
     background:url('../assets/imgs/blog_xiamu.jpeg') center/cover;
     .head_img{
       position: relative;
@@ -49,6 +54,24 @@ export default {
         width:100%;
         height:100%;
       }
+    }
+  }
+  .head_name{
+    margin-top:6vw;
+    text-align: center;
+    .username{
+      color:#333;
+      text-shadow: 5px 5px #ddd;
+      font-size:1.4em;
+      font-weight:lighter;
+      font-family: 'Times New Roman','Microsoft yahei',
+    }
+    .introduction{
+      margin-top:10px;
+      color: lightseagreen;
+      font-weight: lighter;
+      font-size: 12px;
+      font-family: 'Times New Roman','Microsoft yahei',
     }
   }
 }

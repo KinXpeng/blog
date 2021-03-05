@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-container>
-      <el-aside width="28.5%">
+      <el-aside width="28.5%"> 
         <avatar></avatar>
       </el-aside>
       <el-container class="content">
@@ -30,7 +30,7 @@ export default {
     position: relative;
     width:71.5%;
     height:100vh;
-    background:url('../assets/imgs/timer.jpeg') center/cover;
+    background:url('../assets/imgs/timer.jpeg') fixed center/cover;
     .el-footer{
       position:absolute;
       right:0;
