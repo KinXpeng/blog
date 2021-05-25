@@ -9,9 +9,9 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta:{
-      requireAuth:true
-    }
+    // meta:{
+    //   requireAuth:true
+    // }
   },
   // 后台页面路由
   {
