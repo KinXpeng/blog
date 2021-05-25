@@ -34,10 +34,10 @@
           </el-input>
         </el-form-item>
         <el-form-item class="login_submit">
-          <el-button type="primary" @click="submitForm('ruleForm')"
+          <el-button type="primary" size="mini" @click="submitForm('ruleForm')"
             >登录</el-button
           >
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button size="mini" @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
       <div v-loading.fullscreen.lock="loading"></div>
@@ -66,7 +66,7 @@ export default {
         if (valid) {
           this.loading = true;
           this.$axios
-            .post("/api/user/login", this.loginForm)
+            .post("/blog-api/user/login", this.loginForm)
             .then((res) => {
               if (res.data.code === 0) {
                 setTimeout(()=>{
