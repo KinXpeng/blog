@@ -5,8 +5,7 @@
       <header-com></header-com>
     </el-row>
     <el-row>
-      <el-col :span="12"><div class="grid-content"></div></el-col>
-      <el-col :span="12"><div class="grid-content"></div></el-col>
+      <router-view></router-view>
     </el-row>
     <el-row class="footer">
       <el-col :span="8" class="location">首页 ><div class="grid-content"></div></el-col>
@@ -53,9 +52,9 @@ export default {
   .author{
     text-align: right;
     padding-right: 40px;
-    &:hover{
-      color:deepskyblue;
-    }
+    // &:hover{
+    //   color:deepskyblue;
+    // }
   }
 }
 </style>

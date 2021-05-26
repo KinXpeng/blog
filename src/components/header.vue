@@ -1,13 +1,16 @@
 <template>
   <div class="header-group">
     <el-col :span="8">
-      <div class="header-title">倾倾倾风博客管理系统</div>
+      <div class="header-title">
+        <img class="header-logo" src="../assets/images/logo.png" alt="">
+        <p>倾倾倾风博客管理系统</p>
+      </div>
     </el-col>
     <el-col :span="8">
       <div class="header-navbar">
         <ul>
           <li class="active">首页</li>
-          <li>写文章</li>
+          <li><i class="el-icon-edit"></i> 写文章</li>
           <li>333</li>
           <li>444</li>
         </ul>
@@ -35,16 +38,24 @@ export default {
 
 <style lang="scss" scoped>
 .header-group{
+  // 标题
   .header-title{
+    display: flex;
     line-height:50px;
     text-align: center;
     font-size: 20px;
+    .header-logo{
+      height:40px;
+      margin:5px;
+    }
   }
+  // 头部导航
   .header-navbar{
     ul{
       display: flex;
       justify-content: space-around;
       line-height: 50px;
+      height:50px;
       li{
         flex:1;
         text-align: center;
@@ -59,6 +70,7 @@ export default {
       }
     }
   }
+  // 头像
   .header-avator{
     .header-img{
       float:right;
