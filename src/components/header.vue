@@ -1,23 +1,25 @@
 <template>
   <div class="header-group">
-    <el-col :span="8">
+    <el-col :span="3">
       <div class="header-title">
-        <img v-if="false" class="header-logo" src="../assets/images/logo.png" alt="">
-        <p>倾倾倾风博客管理系统</p>
+        <p>倾倾倾风</p>
       </div>
     </el-col>
-    <el-col :span="8">
+    <el-col :span="14">
       <div class="header-navbar">
-        <ul ref="tabList">
-          <li :class="item.class" v-for="(item,index) in tabList" :key="index" @click="toggleTab(item,index)">{{item.title}}</li>
+        <ul>
+          <li :class="item.class" v-for="(item,index) in tabList" :key="index" @click="toggleTab(item,index)">
+            <svg class="icon-svg">
+              <use :xlink:href="item.icon"></use>
+            </svg>
+            <span class="bar-text">{{item.title}}</span>
+          </li>
         </ul>
       </div>
     </el-col>
-    <el-col :span="8">
-      <div class="header-avator">
-        <div class="header-img">
-          <img src="../assets/images/head.jpg" alt="">
-        </div>
+    <el-col :span="7">
+      <div class="header-search">
+        <i class="el-icon-search"></i>
       </div>
     </el-col>
   </div>
@@ -31,22 +33,33 @@ export default {
         {
           title:'首页',
           class:'active',
-          path:'/'
+          path:'/',
+          icon:'#icon-shouyexuanzhong'
+        },
+        
+        {
+          title:'归档',
+          class:'',
+          path:'/writeArticle',
+          icon:'#icon-liucheng'
         },
         {
-          title:'写文章',
+          title:'创作',
           class:'',
-          path:'/writeArticle'
+          path:'/login',
+          icon:'#icon-xingxing'
         },
         {
-          title:'333',
+          title:'友情链接',
           class:'',
-          path:'/writeArticle'
+          path:'/writeArticle',
+          icon:'#icon-lianjie1'
         },
         {
-          title:'444',
+          title:'关于我',
           class:'',
-          path:'/writeArticle'
+          path:'/writeArticle',
+          icon:'#icon-zhuti'
         },
       ],
       actIndex:0,
@@ -76,64 +89,57 @@ export default {
 
 <style lang="scss" scoped>
 .header-group{
+  width:92%;
+  margin:0 auto;
+  line-height: 40px;
   // 标题
   .header-title{
-    display: flex;
-    line-height:50px;
-    text-align: right;
+    line-height:40px;
+    text-align: center;
     font-size: 20px;
-    .header-logo{
-      height:40px;
-      margin:5px;
-    }
     p{
       width: 100%;
-      text-align: center;
+      font-weight: 600;
+      font-family:   Georgia, Times, 'Times New Roman', serif;
+      letter-spacing:2px;
     }
   }
   // 头部导航
   .header-navbar{
     ul{
       display: flex;
-      justify-content: space-around;
-      line-height: 50px;
-      height:50px;
+      height:40px;
       li{
-        flex:1;
+        display: flex;
+        // width:auto;
+        padding:0 10px;
+        font-size: 14px;
         text-align: center;
         cursor: pointer;
         &:hover{
-          background-color: #4b367e;
+          background-color: #f4f4f4;
+        }
+        .iconfont{
+          margin-right:2px;
+        }
+        .icon-svg{
+          width:16px;
+          height:16px;
+          margin:12px 2px;
         }
       }
       .active{
-        background-color: #3837a6;
-        font-weight: bold;
+        background-color: #f7f7f7;
         &:hover{
-          background-color: #3837a6;
+          background-color: #f7f7f7;
         }
       }
     }
   }
-  // 头像
-  .header-avator{
-    .header-img{
-      float:right;
-      overflow: hidden;
-      width:40px;
-      height:40px;
-      border:2px solid #ccc;
-      border-radius: 50%;
-      margin:5px 40px 0 0;
-      cursor: pointer;
-      &:hover{
-        border-color:greenyellow;
-      }
-      img{
-        width:100%;
-        height:100%;
-      }
-    }
+  // 搜索
+  .header-search{
+    text-align: center;
+    border:1px solid red;
   }
 }
 </style>

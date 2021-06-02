@@ -4,10 +4,11 @@
     <el-row class="header">
       <header-com></header-com>
     </el-row>
+    <!-- 中间内容 -->
     <el-row>
       <router-view></router-view>
     </el-row>
-    <el-row class="footer">
+    <el-row class="footer" v-if="false">
       <el-col :span="8" class="location">首页 ><div class="grid-content"></div></el-col>
       <el-col :span="8">1.0.0</el-col>
       <el-col :span="8" class="author">Designed by 倾倾倾风</el-col>
@@ -33,9 +34,10 @@ export default {
 <style lang='scss' scoped>
 .header{
   width:100%;
-  height:50px;
-  color:#fff;
-  background-image:linear-gradient(to right,#905fd5,#6c4cc5 ,#513eb8,#2f2ca7);
+  height:40px;
+  // color:#fff;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 #ddd;
 }
 .footer{
   position: fixed;

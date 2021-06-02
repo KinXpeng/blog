@@ -2,7 +2,7 @@
   <div class="writeArticle">
 
     <div class="articleEdit">
-      <mavon-editor v-model="articleInfo" @change="handleArticle" style="min-height:600px;"></mavon-editor>
+      <mavon-editor ref="md" v-model="articleInfo" @change="handleArticle" style="min-height:600px;"></mavon-editor>
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ export default {
     },
   },
   created(){
+    // this.$router.push({path:'/'});
   },
 };
 </script>
