@@ -1,37 +1,45 @@
 <template>
   <div class="writeArticle">
-
+    <br />
     <div class="articleEdit">
-      <mavon-editor ref="md" v-model="articleInfo" @change="handleArticle" style="min-height:600px;"></mavon-editor>
+      <mavon-editor
+        ref="md"
+        v-model="articleInfo"
+        @change="handleArticle"
+        style="min-height:600px;"
+        :subfield="false"
+        :boxShadow="false"
+        defaultOpen="preview"
+      ></mavon-editor>
     </div>
   </div>
 </template>
 
 <script>
-import {mavonEditor} from "mavon-editor";
+import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 export default {
-  components: {mavonEditor}, 
+  components: { mavonEditor },
   data() {
     return {
-      articleInfo:'',
+      articleInfo: "",
     };
   },
-  methods:{
-    handleArticle(){
+  methods: {
+    handleArticle() {
       console.log(this.articleInfo);
     },
   },
-  created(){
+  created() {
     // this.$router.push({path:'/'});
   },
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 // 编辑器
-.articleEdit{
-  width:80%;
-  margin:0 auto;
+.articleEdit {
+  width: 80%;
+  margin: 0 auto;
 }
 </style>

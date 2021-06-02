@@ -20,15 +20,33 @@ const routes = [
     children:[
       // 文章列表
       {
-        path: '',
+        path: '/',
         name: 'articleList',
         component: () => import( '@/views/articleList.vue')
       },
-      // 写文章
+      // 归档
+      {
+        path: '/placeFile',
+        name: 'placeFile',
+        component: () => import( '@/views/placeFile.vue')
+      },
+      // 创作
       {
         path: '/writeArticle',
-        // name: 'writeArticle',
+        name: 'writeArticle',
         component: () => import( '@/views/writeArticle.vue')
+      },
+      // 友情链接
+      {
+        path: '/friendlyLink',
+        name: 'friendlyLink',
+        component: () => import( '@/views/friendlyLink.vue')
+      },
+      // 关于我
+      {
+        path: '/mine',
+        name: 'mine',
+        component: () => import( '@/views/mine.vue')
       },
     ]
   },

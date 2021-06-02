@@ -19,7 +19,8 @@
     </el-col>
     <el-col :span="7">
       <div class="header-search">
-        <i class="el-icon-search"></i>
+        <el-input ref="searchInput" v-model="searchValue" clearable :class="crtlInput"></el-input>
+        <div class="search-icon" :class="crtlInput"><i class="el-icon-search" @click="handleSearch"></i></div>
       </div>
     </el-col>
   </div>
@@ -40,30 +41,34 @@ export default {
         {
           title:'归档',
           class:'',
-          path:'/writeArticle',
+          path:'/placeFile',
           icon:'#icon-liucheng'
         },
         {
           title:'创作',
           class:'',
-          path:'/login',
+          path:'/writeArticle', // '/login',
           icon:'#icon-xingxing'
         },
         {
           title:'友情链接',
           class:'',
-          path:'/writeArticle',
+          path:'/friendlyLink',
           icon:'#icon-lianjie1'
         },
         {
           title:'关于我',
           class:'',
-          path:'/writeArticle',
+          path:'/mine',
           icon:'#icon-zhuti'
         },
       ],
       actIndex:0,
+      searchValue:'',
+      crtlInput:'crtlInput',
     };
+  },
+  watch:{
   },
   methods: {
     // 导航栏点击切换
@@ -71,15 +76,54 @@ export default {
       if(index != this.actIndex){
         this.tabList.forEach((ele)=>{
           ele.class = '';
-        })
+        });
         item.class = 'active';
-        this.actIndex = index;
-        this.$router.push({path:item.path});
+      }
+      this.actIndex = index;
+      sessionStorage.setItem('curIndex',index);
+      this.$router.push({path:item.path});
+    },
+    // 刷新页面路由切换
+    handleRouter(path){
+      switch(path){
+        case '/':
+          this.changeActive(0);
+          break;
+        case '/placeFile':
+          this.changeActive(1);
+          break;
+        case '/writeArticle':
+          this.changeActive(2);
+          break;
+        case '/friendlyLink':
+          this.changeActive(3);
+          break;
+        case '/mine':
+          this.changeActive(4);
+          break;
+      };
+    },
+    // active状态
+    changeActive(index){
+      this.tabList.forEach((ele)=>{
+        ele.class = '';
+      });
+      this.tabList[index].class = 'active';
+    },
+    // 控制搜索框
+    handleSearch(){
+      if(this.searchValue){
+        console.log(this.searchValue);
+      }else{
+        this.crtlInput = this.crtlInput =='crtlInput'?'':'crtlInput';
       }
     },
   },
   created() {
-
+    this.handleRouter(this.$route.path); // active状态切换
+    if(sessionStorage.getItem('curIndex') ){
+      this.actIndex = sessionStorage.getItem('curIndex');
+    }
   },
   mounted(){
     
@@ -138,8 +182,29 @@ export default {
   }
   // 搜索
   .header-search{
-    text-align: center;
-    border:1px solid red;
+    display: flex;
+    .crtlInput{
+      width: 0;
+    }
+    .el-input{
+      overflow: hidden;
+      transition: .5s;
+      /deep/.el-input__inner{
+        width:100%;
+        height:30px;
+      }
+    }
+    .search-icon{
+      width:15%;
+      text-align: center;
+      cursor: pointer;
+      .el-icon-search{
+        color:#666;
+        &:hover{
+          color:#000;
+        }
+      }
+    }
   }
 }
 </style>
