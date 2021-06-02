@@ -1,7 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+//  router push出错
+const originalPush = VueRouter.prototype.push
 
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+};
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,7 +16,21 @@ const routes = [
     component: Home,
     // meta:{
     //   requireAuth:true
-    // }
+    // },
+    children:[
+      // 文章列表
+      {
+        path: '',
+        name: 'articleList',
+        component: () => import( '@/views/articleList.vue')
+      },
+      // 写文章
+      {
+        path: '/writeArticle',
+        // name: 'writeArticle',
+        component: () => import( '@/views/writeArticle.vue')
+      },
+    ]
   },
   // 后台页面路由
   {
@@ -21,11 +40,6 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/login.vue')
-  },
-  {
-    path: '/articleList',
-    name: 'articleList',
-    component: () => import( '../components/articleList.vue')
   },
 ]
 

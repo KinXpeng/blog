@@ -2,17 +2,14 @@
   <div class="header-group">
     <el-col :span="8">
       <div class="header-title">
-        <img class="header-logo" src="../assets/images/logo.png" alt="">
+        <img v-if="false" class="header-logo" src="../assets/images/logo.png" alt="">
         <p>倾倾倾风博客管理系统</p>
       </div>
     </el-col>
     <el-col :span="8">
       <div class="header-navbar">
-        <ul>
-          <li class="active">首页</li>
-          <li><i class="el-icon-edit"></i> 写文章</li>
-          <li>333</li>
-          <li>444</li>
+        <ul ref="tabList">
+          <li :class="item.class" v-for="(item,index) in tabList" :key="index" @click="toggleTab(item,index)">{{item.title}}</li>
         </ul>
       </div>
     </el-col>
@@ -29,10 +26,51 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      tabList:[
+        {
+          title:'首页',
+          class:'active',
+          path:'/'
+        },
+        {
+          title:'写文章',
+          class:'',
+          path:'/writeArticle'
+        },
+        {
+          title:'333',
+          class:'',
+          path:'/writeArticle'
+        },
+        {
+          title:'444',
+          class:'',
+          path:'/writeArticle'
+        },
+      ],
+      actIndex:0,
+    };
   },
-  methods: {},
-  created() {},
+  methods: {
+    // 导航栏点击切换
+    toggleTab(item,index){
+      if(index != this.actIndex){
+        this.tabList.forEach((ele)=>{
+          ele.class = '';
+        })
+        item.class = 'active';
+        this.actIndex = index;
+        this.$router.push({path:item.path});
+      }
+    },
+  },
+  created() {
+
+  },
+  mounted(){
+    
+  },
 };
 </script>
 
@@ -42,11 +80,15 @@ export default {
   .header-title{
     display: flex;
     line-height:50px;
-    text-align: center;
+    text-align: right;
     font-size: 20px;
     .header-logo{
       height:40px;
       margin:5px;
+    }
+    p{
+      width: 100%;
+      text-align: center;
     }
   }
   // 头部导航
@@ -61,12 +103,15 @@ export default {
         text-align: center;
         cursor: pointer;
         &:hover{
-          background-color: #3837a6;
+          background-color: #4b367e;
         }
       }
       .active{
-        background-color: #4f45b2;
+        background-color: #3837a6;
         font-weight: bold;
+        &:hover{
+          background-color: #3837a6;
+        }
       }
     }
   }
