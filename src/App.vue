@@ -4,11 +4,11 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
 body{
-  background-color: #f4f5f7;
+  background-color: #f9f9f9;
 }
- #app{
+#app{
   min-width: 800px;
- }
+}
 </style>

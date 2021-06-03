@@ -1,13 +1,25 @@
 <template>
   <div class="home">
-    <!-- 头部导航栏 -->
+    <!-- header -->
     <el-row class="header">
       <header-com></header-com>
     </el-row>
-    <!-- 中间内容 -->
-    <el-row>
-      <router-view></router-view>
+    <!-- container -->
+    <el-row class="container">
+      <!-- left -->
+      <el-col :span="5">
+        <container-left></container-left>
+      </el-col> 
+      <!-- main -->
+      <el-col :span="14">
+        <router-view></router-view>
+      </el-col>
+      <!-- right -->
+      <el-col :span="5">
+        <container-right></container-right>
+      </el-col>
     </el-row>
+    <!-- footer -->
     <el-row class="footer" v-if="false">
       <el-col :span="8" class="location">首页 ><div class="grid-content"></div></el-col>
       <el-col :span="8">1.0.0</el-col>
@@ -17,9 +29,11 @@
 </template>
 
 <script>
-import headerCom from '../components/header'
+import headerCom from '../components/header';
+import ContainerLeft from '../components/left/containerLeft.vue';
+import ContainerRight from '../components/right/containerRight.vue';
 export default {
-  components: { headerCom },
+  components: { headerCom,ContainerLeft, ContainerRight },
   data() {
     return {
     };
@@ -32,13 +46,27 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+// header
 .header{
+  position: fixed;
+  top:0;
+  left:0;
   width:100%;
   height:40px;
-  // color:#fff;
   background-color: #fff;
   box-shadow: 0 2px 12px 0 #ddd;
+  box-shadow: 0 1px 3px 0 #ddd; //0 1px 3px rgb(26 26 26 / 10%);
 }
+// container
+.container{
+  padding-top:55px;
+  width:92%;
+  margin:0 auto;
+  // .el-col{
+  //   height:100px;
+  // }
+}
+// footer
 .footer{
   position: fixed;
   left:0;

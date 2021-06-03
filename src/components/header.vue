@@ -1,10 +1,12 @@
 <template>
   <div class="header-group">
+    <!-- title -->
     <el-col :span="3">
       <div class="header-title">
         <p>倾倾倾风</p>
       </div>
     </el-col>
+    <!-- navbar -->
     <el-col :span="14">
       <div class="header-navbar">
         <ul>
@@ -17,6 +19,7 @@
         </ul>
       </div>
     </el-col>
+    <!-- search -->
     <el-col :span="7">
       <div class="header-search">
         <el-input ref="searchInput" v-model="searchValue" clearable :class="crtlInput"></el-input>
@@ -136,7 +139,7 @@ export default {
   width:92%;
   margin:0 auto;
   line-height: 40px;
-  // 标题
+  // title
   .header-title{
     line-height:40px;
     text-align: center;
@@ -144,11 +147,11 @@ export default {
     p{
       width: 100%;
       font-weight: 600;
-      font-family:   Georgia, Times, 'Times New Roman', serif;
+      font-family: Georgia, Times, 'Times New Roman', serif;
       letter-spacing:2px;
     }
   }
-  // 头部导航
+  // navbar
   .header-navbar{
     ul{
       display: flex;
@@ -161,7 +164,7 @@ export default {
         text-align: center;
         cursor: pointer;
         &:hover{
-          background-color: #f4f4f4;
+          background-color: #e6e6e6;
         }
         .iconfont{
           margin-right:2px;
@@ -180,7 +183,7 @@ export default {
       }
     }
   }
-  // 搜索
+  // search
   .header-search{
     display: flex;
     .crtlInput{

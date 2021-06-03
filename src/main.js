@@ -8,6 +8,7 @@ import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
 // 引入scss样式文件
 import "./assets/scss/reset.scss";
+import "./assets/scss/index.css";
 // 矢量图
 import "./assets/iconfont/iconfont.css"
 import "./assets/iconfont/iconfont"
