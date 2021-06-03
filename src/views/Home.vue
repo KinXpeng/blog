@@ -29,11 +29,15 @@
 </template>
 
 <script>
-import headerCom from '../components/header';
+import headerCom from '../components/header.vue';
 import ContainerLeft from '../components/left/containerLeft.vue';
 import ContainerRight from '../components/right/containerRight.vue';
 export default {
-  components: { headerCom,ContainerLeft, ContainerRight },
+  components: { 
+    headerCom,
+    ContainerLeft,
+    ContainerRight 
+  },
   data() {
     return {
     };
@@ -52,10 +56,12 @@ export default {
   top:0;
   left:0;
   width:100%;
+  min-width: 800px;
   height:40px;
   background-color: #fff;
   box-shadow: 0 2px 12px 0 #ddd;
   box-shadow: 0 1px 3px 0 #ddd; //0 1px 3px rgb(26 26 26 / 10%);
+  z-index: 999;
 }
 // container
 .container{

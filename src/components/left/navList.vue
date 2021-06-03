@@ -1,5 +1,9 @@
 <template>
-  <div class="container-right">right</div>
+  <div class="nav-list">
+    <el-card>
+      123
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -16,8 +20,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.container-right{
-  max-width: 260px;
-  min-width: 200px;
+.nav-list{
+  margin-bottom: 6px;
 }
 </style>

@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "8682250",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "14818424",
+      "name": "棒棒糖",
+      "font_class": "bangbangtang",
+      "unicode": "e6eb",
+      "unicode_decimal": 59115
+    },
+    {
+      "icon_id": "14818457",
+      "name": "爱心",
+      "font_class": "aixin",
+      "unicode": "e6ec",
+      "unicode_decimal": 59116
+    },
+    {
+      "icon_id": "14818735",
+      "name": "茶杯",
+      "font_class": "chabei",
+      "unicode": "e6ee",
+      "unicode_decimal": 59118
+    },
+    {
+      "icon_id": "14819866",
+      "name": "读书",
+      "font_class": "dushu",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    },
+    {
+      "icon_id": "14819897",
+      "name": "会员",
+      "font_class": "huiyuan",
+      "unicode": "e6f4",
+      "unicode_decimal": 59124
+    },
+    {
       "icon_id": "15634352",
       "name": "链接",
       "font_class": "lianjie1",

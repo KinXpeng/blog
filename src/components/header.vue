@@ -163,11 +163,9 @@ export default {
         font-size: 14px;
         text-align: center;
         cursor: pointer;
+        // background-color: #666;
         &:hover{
           background-color: #e6e6e6;
-        }
-        .iconfont{
-          margin-right:2px;
         }
         .icon-svg{
           width:16px;
