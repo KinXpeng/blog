@@ -20,11 +20,15 @@
       </div>
     </el-col>
     <!-- search -->
-    <el-col :span="7">
+    <el-col :span="6">
       <div class="header-search">
         <el-input ref="searchInput" v-model="searchValue" clearable :class="crtlInput"></el-input>
         <div class="search-icon" :class="crtlInput"><i class="el-icon-search" @click="handleSearch"></i></div>
       </div>
+    </el-col>
+    <!-- night -->
+    <el-col class="header-night" :span="1">
+      <i :class="nightModeFlag?'el-icon-moon-night':'el-icon-moon'" @click="changeNight"></i>
     </el-col>
   </div>
 </template>
@@ -69,6 +73,7 @@ export default {
       actIndex:0,
       searchValue:'',
       crtlInput:'crtlInput',
+      nightModeFlag:false,
     };
   },
   watch:{
@@ -120,6 +125,10 @@ export default {
       }else{
         this.crtlInput = this.crtlInput =='crtlInput'?'':'crtlInput';
       }
+    },
+    // 切换夜间模式
+    changeNight(){
+      this.nightModeFlag = !this.nightModeFlag;
     },
   },
   created() {
@@ -205,6 +214,13 @@ export default {
           color:#000;
         }
       }
+    }
+  }
+  // night
+  .header-night{
+    color:#666;
+    &:hover{
+      color:#000;
     }
   }
 }

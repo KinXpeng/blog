@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3824021",
+      "name": "时间",
+      "font_class": "shijian",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "20025489",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "20025668",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
       "icon_id": "8682261",
       "name": "标签",
       "font_class": "biaoqian",

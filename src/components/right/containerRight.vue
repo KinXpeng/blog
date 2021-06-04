@@ -1,9 +1,14 @@
 <template>
-  <div class="container-right">right</div>
+  <div class="container-right">
+    <!-- duration-time -->
+    <duration-time></duration-time>
+  </div>
 </template>
 
 <script>
+import durationTime from './durationTime.vue';
 export default {
+  components: { durationTime },
   data() {
     return {
     };
