@@ -4,14 +4,18 @@
     <avatar-info></avatar-info>
     <!-- navList -->
     <nav-list></nav-list>
+    <!-- timeCount -->
+    <!-- tagsCloud -->
+    <tags-cloud></tags-cloud>
   </div>
 </template>
 
 <script>
 import avatarInfo from './avatarInfo.vue';
 import NavList from './navList.vue';
+import TagsCloud from './tagsCloud.vue';
 export default {
-  components: { avatarInfo, NavList },
+  components: { avatarInfo, NavList, TagsCloud },
   data() {
     return {
     };
