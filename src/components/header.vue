@@ -129,9 +129,16 @@ export default {
     // 切换夜间模式
     changeNight(){
       this.nightModeFlag = !this.nightModeFlag;
+      sessionStorage.setItem('nightFlag',this.nightModeFlag);
     },
   },
   created() {
+    // 夜间模式状态
+    if(sessionStorage.getItem('nightFlag') === "" || sessionStorage.getItem('nightFlag') == null){
+      sessionStorage.setItem('nightFlag',JSON.stringify(this.nightModeFlag));
+    }else{
+      this.nightModeFlag = JSON.parse(sessionStorage.getItem('nightFlag'));
+    }
     this.handleRouter(this.$route.path); // active状态切换
     if(sessionStorage.getItem('curIndex') ){
       this.actIndex = sessionStorage.getItem('curIndex');
@@ -148,6 +155,7 @@ export default {
   width:92%;
   margin:0 auto;
   line-height: 40px;
+  height:40px;
   // title
   .header-title{
     line-height:40px;
