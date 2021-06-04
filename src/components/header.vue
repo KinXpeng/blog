@@ -130,6 +130,11 @@ export default {
     changeNight(){
       this.nightModeFlag = !this.nightModeFlag;
       sessionStorage.setItem('nightFlag',this.nightModeFlag);
+      if(this.nightModeFlag){
+        window.document.documentElement.setAttribute( "data-theme", 'dark' );
+      }else{
+        window.document.documentElement.setAttribute( "data-theme", 'light' );
+      };
     },
   },
   created() {
@@ -139,7 +144,13 @@ export default {
     }else{
       this.nightModeFlag = JSON.parse(sessionStorage.getItem('nightFlag'));
     }
-    this.handleRouter(this.$route.path); // active状态切换
+    if(this.nightModeFlag){
+      window.document.documentElement.setAttribute( "data-theme", 'dark' );
+    }else{
+      window.document.documentElement.setAttribute( "data-theme", 'light' );
+    }
+     // active状态切换
+    this.handleRouter(this.$route.path);
     if(sessionStorage.getItem('curIndex') ){
       this.actIndex = sessionStorage.getItem('curIndex');
     }
@@ -151,6 +162,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/dark.scss';
 .header-group{
   width:92%;
   margin:0 auto;
@@ -180,9 +192,8 @@ export default {
         font-size: 14px;
         text-align: center;
         cursor: pointer;
-        // background-color: #666;
         &:hover{
-          background-color: #e6e6e6;
+          @include background_color("background_color2");
         }
         .icon-svg{
           width:16px;
@@ -191,9 +202,9 @@ export default {
         }
       }
       .active{
-        background-color: #f7f7f7;
+        @include background_color("background_color1");
         &:hover{
-          background-color: #f7f7f7;
+          @include background_color("background_color1");
         }
       }
     }
@@ -210,6 +221,7 @@ export default {
       /deep/.el-input__inner{
         width:100%;
         height:30px;
+        @include background_color("background_color1");
       }
     }
     .search-icon{

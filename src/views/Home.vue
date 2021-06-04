@@ -50,8 +50,13 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import '@/assets/scss/dark.scss';
 // header
 .header{
+  //在此使用了背景颜色变量
+  @include background_color("background_color");
+  //再次使用了文字颜色变量
+  @include font_color("text-color");
   position: fixed;
   top:0;
   left:0;
