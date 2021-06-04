@@ -193,7 +193,7 @@ export default {
         text-align: center;
         cursor: pointer;
         &:hover{
-          @include background_color("background_color2");
+          @include background_color("background_color3");
         }
         .icon-svg{
           width:16px;
@@ -202,9 +202,9 @@ export default {
         }
       }
       .active{
-        @include background_color("background_color1");
+        @include background_color("background_color2");
         &:hover{
-          @include background_color("background_color1");
+          @include background_color("background_color2");
         }
       }
     }
@@ -221,7 +221,7 @@ export default {
       /deep/.el-input__inner{
         width:100%;
         height:30px;
-        @include background_color("background_color1");
+        @include background_color("background_color");
       }
     }
     .search-icon{
@@ -231,7 +231,7 @@ export default {
       .el-icon-search{
         color:#666;
         &:hover{
-          color:#000;
+          @include font_color("text-color1");
         }
       }
     }
@@ -240,7 +240,7 @@ export default {
   .header-night{
     color:#666;
     &:hover{
-      color:#000;
+      @include font_color("text-color1");
     }
   }
 }

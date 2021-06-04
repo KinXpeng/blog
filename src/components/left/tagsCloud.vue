@@ -58,10 +58,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import '@/assets/scss/dark.scss';
 .tags-cloud{
   .cloud-title{
     font-size: 15px;
     border-bottom:1px solid #f2f2f2;
+    @include border_bottom_style("border_bottom_style");
     padding-bottom: 10px;
     margin-bottom: 10px;
     .icon-svg{
@@ -78,15 +80,17 @@ export default {
     .list-box{
       flex-wrap: wrap;
       li{
-        border:1px solid #ddd;
+        @include border_style("border_style1");
         padding:2px 3px;
         margin:3px 3px;
         font-size: 12px;
         color:#333;
+        @include font_color("text-color");
         cursor: default;
         transition: .5s;
         &:hover{
-          border:1px solid skyblue;
+          // border:1px solid skyblue;
+          @include border_style("border_style2");
         }
       }
     }

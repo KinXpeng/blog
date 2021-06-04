@@ -52,12 +52,13 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import '@/assets/scss/dark.scss';
 .duration-time{
   .el-card{
     cursor: s-resize;
   }
   .time-info{
-    border-bottom:1px solid #f2f2f2;
+    @include border_bottom_style("border_bottom_style");
     padding-bottom: 10px;
     .icon-svg{
       width:18px;

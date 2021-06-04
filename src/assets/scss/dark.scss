@@ -1,24 +1,34 @@
-// 白天色
-$bgColor-daily:#fff;
-$color-daily:#333;
-$color1-daily:#000;
-
-// 夜间色
-$bgColor-night:#333;
-$color-night:#fff;
-$color1-night:#ddd;
-
 // 模式切换
 $themes: (
   light: (
     background_color: #ffffff,//背景色
+    background_color1: #ffffff,//背景色
+    background_color2: #f7f7f7,//背景色
+    background_color3: #e9e9e9,//背景色
+    background_color4: #000000,//背景色
+    background_color5: #f7f7f7,//背景色
     text-color: rgba(0, 0, 0, 0.65), // 主文本色
+    text-color1: rgb(0, 0, 0), // 主文本色1
+    border_style: 1px solid #ebeef5, // 主边框色
+    border_style1: 1px solid #dddddd, // 主边框色1
+    border_style2: 1px solid skyblue, // 主边框色2
+    border_bottom_style: 1px solid #f4f4f4, // 下边框色
+    box_shadow: 0 1px 3px 0 #ddd, // 主阴影
   ),
   dark: (
     background_color: #181c27,//背景
-    background_color1: #1e1e1e,//背景
-    background_color2: #252526,//背景
-    text-color: rgba(255, 255, 255, 0.65), // 主文本色
+    background_color1: #1e1e1e,//背景1
+    background_color2: #1e1e1e,//背景2
+    background_color3: #252526,//背景3
+    background_color4: #f7f7f7,//背景4
+    background_color5: #333333,//背景5
+    text-color: rgba(255, 255, 255, 0.65), // 文本色
+    text-color1: rgba(255, 255, 255, 0.65), // 文本色1
+    border_style: none, // 边框色
+    border_style1: 1px solid #333333, // 边框色1
+    border_style2: 1px solid #666666, // 边框色2
+    border_bottom_style: 1px solid #252526, // 下边框色
+    box_shadow: 0 1px 3px 0 #181c27, // 主阴影
   )
 );
 
@@ -51,5 +61,24 @@ $themes: (
 @mixin font_color($color) {
   @include themeify {
     color: themed($color)!important;
+  }
+}
+
+// 获取边框样式
+@mixin border_style($color) {
+  @include themeify {
+    border: themed($color)!important;
+  }
+}
+@mixin border_bottom_style($color) {
+  @include themeify {
+    border-bottom: themed($color)!important;
+  }
+}
+
+// 获取盒阴影样式
+@mixin box_shadow($color) {
+  @include themeify {
+    box-shadow: themed($color)!important;
   }
 }

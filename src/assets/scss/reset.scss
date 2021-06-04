@@ -1,3 +1,4 @@
+@import '@/assets/scss/dark.scss';
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -80,4 +81,10 @@ html, body {
   transform: translateX(-42%);
 }
 
+// 夜间模式切换样式
+.el-card{
+  @include background_color("background_color");
+  @include font_color("text-color");
+  @include border_style("border_style");
+}
 

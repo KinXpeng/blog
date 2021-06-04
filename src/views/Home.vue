@@ -53,20 +53,16 @@ export default {
 @import '@/assets/scss/dark.scss';
 // header
 .header{
-  //在此使用了背景颜色变量
-  @include background_color("background_color");
-  //再次使用了文字颜色变量
-  @include font_color("text-color");
   position: fixed;
   top:0;
   left:0;
   width:100%;
   min-width: 800px;
   height:40px;
-  background-color: #fff;
-  box-shadow: 0 2px 12px 0 #ddd;
-  box-shadow: 0 1px 3px 0 #ddd; //0 1px 3px rgb(26 26 26 / 10%);
   z-index: 999;
+  @include font_color("text-color");
+  @include box_shadow("box_shadow");
+  @include background_color("background_color");
 }
 // container
 .container{

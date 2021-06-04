@@ -68,6 +68,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import '@/assets/scss/dark.scss';
 .nav-list{
   margin-bottom: 6px;
   .list-box{
@@ -77,14 +78,14 @@ export default {
       left:0;
       height:40px;
       line-height: 40px;
-      border-bottom:1px solid #f4f4f4;
+      @include border_bottom_style("border_bottom_style");
       transition: .5s;
       &:last-child{
-        border:none;
+        border:none !important;
       }
       &:hover{
         left:10px;
-        box-shadow: 3px 3px 10px #eee;
+        @include box_shadow("box_shadow");
       }
       .icon-svg{
         width:20px;

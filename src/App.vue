@@ -4,9 +4,10 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
+@import '@/assets/scss/dark.scss';
 body{
-  background-color: #f9f9f9;
+  @include background_color("background_color5");
 }
 #app{
   min-width: 800px;
