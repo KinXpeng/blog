@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 // 编辑器
 .articleEdit {
-  width: 80%;
+  padding:0 1%;
   margin: 0 auto;
 }
 </style>

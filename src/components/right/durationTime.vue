@@ -45,7 +45,7 @@ export default {
       activeTime:'加载中...',
       loveTime:'加载中...',
     };
-  },
+  }, 
   methods:{
     get_time_spent(timeArray){
       let time_start = new Date(...timeArray); //"2017","10","18"
@@ -124,6 +124,7 @@ export default {
         width:65px;
         height:65px;
         border-radius: 50%;
+        cursor: default;
         @include box_shadow("box_shadow");
         .el-image{
           border-radius: 50%;
@@ -145,6 +146,7 @@ export default {
     .love-time{
       font-size: 12px;
       text-align: center;
+      cursor: text;
     }
   }
 }

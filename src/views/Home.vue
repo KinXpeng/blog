@@ -11,7 +11,7 @@
         <container-left></container-left>
       </el-col> 
       <!-- main -->
-      <el-col :span="14">
+      <el-col class="main" :span="14">
         <router-view></router-view>
       </el-col>
       <!-- right -->
@@ -69,9 +69,15 @@ export default {
   padding-top:55px;
   width:92%;
   margin:0 auto;
-  // .el-col{
-  //   height:100px;
-  // }
+  .main{
+    margin:0 auto;
+    border:1px solid red;
+  }
+}
+@media screen and (max-width: 1040px) {
+  .container {
+    width:98%;
+  }
 }
 // footer
 .footer{

@@ -248,4 +248,10 @@ export default {
     }
   }
 }
+// 媒体查询
+@media screen and (max-width: 1040px) {
+  .header-group {
+    width:98%;
+  }
+}
 </style>
