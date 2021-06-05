@@ -168,6 +168,7 @@ export default {
   margin:0 auto;
   line-height: 40px;
   height:40px;
+  transition: .5s;
   // title
   .header-title{
     line-height:40px;

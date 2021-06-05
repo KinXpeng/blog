@@ -69,6 +69,7 @@ export default {
   padding-top:55px;
   width:92%;
   margin:0 auto;
+  transition: .5s;
   .main{
     margin:0 auto;
     border:1px solid red;

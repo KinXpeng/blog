@@ -1,40 +1,44 @@
 <template>
   <div class="duration-time">
     <!-- blog-duration-time -->
-    <el-card class="blog-card">
-      <div class="time-info flex">
-        <svg class="icon-svg">
-          <use xlink:href="#icon-shijian"></use>
-        </svg>
-        <span class="time-title">运行时间</span>
-      </div>
-      <div class="time-text" ref="timeDate">{{activeTime}}</div>
-    </el-card>
-    <!-- other-duration-time -->
-    <el-card class="love-card">
-      <div class="love-avatar flex">
-        <div class="avatar-info">
-          <el-image
-            style="width: 65px; height: 65px"
-            :src="require('../../assets/images/likp.jpg')"
-            fit="cover">
-          </el-image>
-        </div>
-        <span class="avatar-icon">
+    <div v-show="showFlag" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
+      <el-card class="blog-card">
+        <div class="time-info flex">
           <svg class="icon-svg">
-            <use xlink:href="#icon-aixin"></use>
+            <use xlink:href="#icon-shijian"></use>
           </svg>
-        </span>
-        <div class="avatar-info">
-          <el-image
-            style="width: 65px; height: 65px"
-            :src="require('../../assets/images/suna.jpg')"
-            fit="cover">
-          </el-image>
+          <span class="time-title">运行时间</span>
         </div>
-      </div>
-      <p class="love-time" ref="loveDate">{{loveTime}}</p>
-    </el-card>
+        <div class="time-text" ref="timeDate">{{activeTime}}</div>
+      </el-card>
+    </div>
+    <!-- other-duration-time -->
+    <div v-show="!showFlag" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
+      <el-card class="love-card">
+        <div class="love-avatar flex">
+          <div class="avatar-info">
+            <el-image
+              style="width: 65px; height: 65px"
+              :src="require('../../assets/images/likp.jpg')"
+              fit="cover">
+            </el-image>
+          </div>
+          <span class="avatar-icon">
+            <svg class="icon-svg">
+              <use xlink:href="#icon-aixin"></use>
+            </svg>
+          </span>
+          <div class="avatar-info">
+            <el-image
+              style="width: 65px; height: 65px"
+              :src="require('../../assets/images/suna.jpg')"
+              fit="cover">
+            </el-image>
+          </div>
+        </div>
+        <p class="love-time" ref="loveDate">{{loveTime}}</p>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -44,9 +48,12 @@ export default {
     return {
       activeTime:'加载中...',
       loveTime:'加载中...',
+      showFlag:true,
+      startClientY:'', // 鼠标开始按下的位置
     };
   }, 
   methods:{
+    // 计时
     get_time_spent(timeArray){
       let time_start = new Date(...timeArray); //"2017","10","18"
       let clock_start = time_start.getTime();
@@ -64,6 +71,17 @@ export default {
       let seconds = Math.round(leave3 / 1000);
       let sec = seconds<10?'0':'';
       return days + "&nbsp;天&nbsp;" + hours + "&nbsp;小时&nbsp;" + minutes + "&nbsp;分钟&nbsp;" + sec + seconds + "&nbsp;秒";
+    },
+    // 移动卡片
+    handleMouseDown(e){
+      this.startClientY = e.clientY;
+    },
+    handleMouseUp(e){
+      let moveClientY = e.clientY - this.startClientY;
+      if(moveClientY > 50){
+        console.log(moveClientY);
+        this.showFlag = !this.showFlag;
+      }
     },
   },
   created(){
@@ -85,6 +103,7 @@ export default {
 <style lang='scss' scoped>
 @import '@/assets/scss/dark.scss';
 .duration-time{
+  user-select: none;
   // blog-duration-time
   .blog-card{
     cursor: s-resize;
@@ -116,7 +135,7 @@ export default {
   }
   // other-duration-time
   .love-card{
-    cursor: n-resize;
+    cursor: s-resize;
     .love-avatar{
       justify-content: space-around;
       .avatar-info{
