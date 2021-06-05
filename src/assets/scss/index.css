@@ -1,7 +1,7 @@
 /* el-card */
 .el-card{
-  -webkit-box-shadow: 0 1px 3px rgb(26 26 26 / 10%) !important;
-  box-shadow: 0 1px 3px rgb(26 26 26 / 10%) !important;
+  -webkit-box-shadow: 0 0 4px rgb(26 26 26 / 10%) !important;
+  box-shadow: 0 0 4px rgb(26 26 26 / 10%) !important;
 }
 .el-card__body{
   padding:15px !important;
@@ -10,7 +10,7 @@
   padding:10px 15px !important;
 }
 .radius{
-  box-shadow: 3px 3px 2px #666;
+  box-shadow: 0 0 3px #333;
 }
 .shadow{
   box-shadow: 1px 1px 1px rgb(0 0 0 / 10%);

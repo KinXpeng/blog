@@ -1,6 +1,7 @@
 <template>
   <div class="duration-time">
-    <el-card>
+    <!-- blog-duration-time -->
+    <el-card class="blog-card">
       <div class="time-info flex">
         <svg class="icon-svg">
           <use xlink:href="#icon-shijian"></use>
@@ -9,6 +10,31 @@
       </div>
       <div class="time-text" ref="timeDate">{{activeTime}}</div>
     </el-card>
+    <!-- other-duration-time -->
+    <el-card class="love-card">
+      <div class="love-avatar flex">
+        <div class="avatar-info">
+          <el-image
+            style="width: 65px; height: 65px"
+            :src="require('../../assets/images/likp.jpg')"
+            fit="cover">
+          </el-image>
+        </div>
+        <span class="avatar-icon">
+          <svg class="icon-svg">
+            <use xlink:href="#icon-aixin"></use>
+          </svg>
+        </span>
+        <div class="avatar-info">
+          <el-image
+            style="width: 65px; height: 65px"
+            :src="require('../../assets/images/suna.jpg')"
+            fit="cover">
+          </el-image>
+        </div>
+      </div>
+      <p class="love-time" ref="loveDate">{{loveTime}}</p>
+    </el-card>
   </div>
 </template>
 
@@ -16,18 +42,19 @@
 export default {
   data() {
     return {
-      activeTime:'加载中...'
+      activeTime:'加载中...',
+      loveTime:'加载中...',
     };
   },
   methods:{
-    get_time_spent(){
-      let time_start = new Date("2017","10","18");
+    get_time_spent(timeArray){
+      let time_start = new Date(...timeArray); //"2017","10","18"
       let clock_start = time_start.getTime();
       let time_now = new Date();
       return ((time_now.getTime() - clock_start));
     },
-    get_times(){
-      let i_total_secs = Math.round(this.get_time_spent());
+    get_times(timeArray){
+      let i_total_secs = Math.round(this.get_time_spent(timeArray));
       let days = Math.floor(i_total_secs / (24 * 3600 * 1000));
       let leave1 = i_total_secs % (24 * 3600 * 1000);
       let hours = Math.floor(leave1 / (3600 * 1000));
@@ -40,12 +67,16 @@ export default {
     },
   },
   created(){
+    
   },
   mounted(){
     let dateTime = this.$refs.timeDate;
-    dateTime.innerHTML = this.get_times();
+    let loveTime = this.$refs.loveDate;
+    dateTime.innerHTML = this.get_times(["2017","10","18"]);
+    loveTime.innerHTML = this.get_times(["2020","10","16"]);
     setInterval(()=>{
-      dateTime.innerHTML = this.get_times();
+      dateTime.innerHTML = this.get_times(["2017","10","18"]);
+      loveTime.innerHTML = this.get_times(["2020","10","16"]);
     },1000);
   },
 };
@@ -54,8 +85,10 @@ export default {
 <style lang='scss' scoped>
 @import '@/assets/scss/dark.scss';
 .duration-time{
-  .el-card{
+  // blog-duration-time
+  .blog-card{
     cursor: s-resize;
+    margin-bottom:6px;
   }
   .time-info{
     @include border_bottom_style("border_bottom_style");
@@ -81,5 +114,42 @@ export default {
     margin-top:10px;
     cursor: text;
   }
+  // other-duration-time
+  .love-card{
+    cursor: n-resize;
+    .love-avatar{
+      justify-content: space-around;
+      .avatar-info{
+        width: 40%;
+        width:65px;
+        height:65px;
+        border-radius: 50%;
+        @include box_shadow("box_shadow");
+        .el-image{
+          border-radius: 50%;
+        }
+      }
+      .avatar-icon{
+        width: 20%;
+        line-height: 85px;
+        text-align: center;
+        .icon-svg{
+          width:18px;
+          height:18px;
+          cursor: default;
+          position: relative;
+          animation:face 1s infinite ease-in-out;
+        }
+      }
+    }
+    .love-time{
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+}
+@keyframes face{
+  from{top:0px;transform: scale(1);}
+  to{top:3px;transform: scale(1.2);}
 }
 </style>

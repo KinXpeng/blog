@@ -78,18 +78,16 @@ export default {
         margin-left: 15px;
         border-radius: 50%;
         background-color: #fff;
+        padding:2px;
         .img-info{
-          position: relative;
-          top:3px;
-          left: 2px;
           width:100%;
           height:100%;
           border-radius: 50%;
         }
         .icon-svg{
           position: absolute;
-          bottom:-14px;
-          right:-7px;
+          bottom:-10px;
+          right:-5px;
           width:16px;
           height:16px;
           margin:12px 2px;

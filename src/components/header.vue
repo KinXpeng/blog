@@ -222,6 +222,10 @@ export default {
         width:100%;
         height:30px;
         @include background_color("background_color");
+        @include border_style("border_style1");
+        &:focus{
+          border:1px solid #666 !important;
+        }
       }
     }
     .search-icon{
