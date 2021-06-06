@@ -2,13 +2,16 @@
   <div class="container-right">
     <!-- duration-time -->
     <duration-time></duration-time>
+    <!-- music -->
+    <music></music>
   </div>
 </template>
 
 <script>
 import durationTime from './durationTime.vue';
+import Music from './music.vue';
 export default {
-  components: { durationTime },
+  components: { durationTime, Music },
   data() {
     return {
     };

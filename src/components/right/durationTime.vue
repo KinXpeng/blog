@@ -79,7 +79,6 @@ export default {
     handleMouseUp(e){
       let moveClientY = e.clientY - this.startClientY;
       if(moveClientY > 50){
-        console.log(moveClientY);
         this.showFlag = !this.showFlag;
       }
     },
@@ -136,6 +135,7 @@ export default {
   // other-duration-time
   .love-card{
     cursor: s-resize;
+    margin-bottom:6px;
     .love-avatar{
       justify-content: space-around;
       .avatar-info{
