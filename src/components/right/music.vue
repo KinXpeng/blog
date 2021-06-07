@@ -114,7 +114,7 @@ export default {
     }
     // slider
     .music-slider{
-      .el-slider{
+      /deep/.el-slider{
 
       }
     }
