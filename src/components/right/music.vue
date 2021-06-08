@@ -1,12 +1,16 @@
 <template>
   <div class="music el-card flex">
     <div class="music-img">
-      <div class="music-play" @click="play()">播放
+      <div v-show="isPlay" class="music-play" @click="play()">
         <svg class="icon-svg">
           <use xlink:href="#icon-bofang"></use>
         </svg>
       </div>
-      <div class="music-pause" @click="pause()">暂停</div>
+      <div v-show="!isPlay" class="music-pause" @click="pause()">
+        <svg class="icon-svg">
+          <use xlink:href="#icon-zanting"></use>
+        </svg>
+      </div>
     </div>
     <div class="music-info">
       <audio
@@ -42,16 +46,19 @@ export default {
         },
       ],
       maxLength:0,
+      isPlay:true,
     };
   },
   methods: {
     // 暂停
     pause(){
       this.$refs.audio.pause();
+      this.isPlay = true;
     },
     // 播放
     play(){
       this.$refs.audio.play();
+      this.isPlay = false;
     },
     // 实时播放时间
     onTimeupdate(res){
@@ -85,17 +92,34 @@ export default {
     background: url('../../assets/images/38year-summer.jpeg') center/cover;
     .music-play{
       position: absolute;
+      top:50%;
+      left:50%;
+      width:20px;
+      height:20px;
       cursor: pointer;
-      text-align:center;
+      margin:-10px 0 0 -10px;
+      text-align: center;
+      border-radius: 50%;
+      box-shadow: 0 0 2px #fff;
       .icon-svg{
-        width:16px;
-        height:16px;
+        width:20px;
+        height:20px;
+        transition: .5s;
+        &:hover{
+          transform: scale(1.2);
+        }
       }
     }
     .music-pause{
       position: absolute;
+      right:5px;
       bottom:0;
       cursor: pointer;
+      border-radius: 50%;
+      .icon-svg{
+        width:16px;
+        height:16px;
+      }
     }
   }
   .music-info {
@@ -113,11 +137,11 @@ export default {
       }
     }
     // slider
-    .music-slider{
-      /deep/.el-slider{
+    // .music-slider{
+    //   /deep/.el-slider{
 
-      }
-    }
+    //   }
+    // }
   }
 }
 </style>
