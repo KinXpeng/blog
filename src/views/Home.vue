@@ -72,7 +72,6 @@ export default {
   transition: .5s;
   .main{
     margin:0 auto;
-    border:1px solid red;
   }
 }
 @media screen and (max-width: 1040px) {
