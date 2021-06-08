@@ -4,14 +4,17 @@
     <duration-time></duration-time>
     <!-- music -->
     <music></music>
+    <!-- hot-articles -->
+    <hot-articles></hot-articles>
   </div>
 </template>
 
 <script>
 import durationTime from './durationTime.vue';
+import HotArticles from './hotArticles.vue';
 import Music from './music.vue';
 export default {
-  components: { durationTime, Music },
+  components: { durationTime, Music, HotArticles },
   data() {
     return {
     };

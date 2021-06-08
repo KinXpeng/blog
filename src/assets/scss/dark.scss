@@ -13,6 +13,7 @@ $themes: (
     border_style1: 1px solid #dddddd, // 主边框色1
     border_style2: 1px solid skyblue, // 主边框色2
     border_bottom_style: 1px solid #f4f4f4, // 下边框色
+    border_bottom_style1: 1px solid #f6f6f6, // 下边框色1
     box_shadow: 0 1px 3px 0 #ddd, // 主阴影
   ),
   dark: (
@@ -28,6 +29,7 @@ $themes: (
     border_style1: 1px solid #333333, // 边框色1
     border_style2: 1px solid #666666, // 边框色2
     border_bottom_style: 1px solid #252526, // 下边框色
+    border_bottom_style1: 1px solid #1e1e1e, // 下边框色
     box_shadow: 0 1px 3px 0 #181c27, // 主阴影
   )
 );

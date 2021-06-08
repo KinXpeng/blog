@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2587165 */
-  src: url('iconfont.woff2?t=1622829605649') format('woff2'),
-       url('iconfont.woff?t=1622829605649') format('woff'),
-       url('iconfont.ttf?t=1622829605649') format('truetype');
+  src: url('iconfont.woff2?t=1623134315397') format('woff2'),
+       url('iconfont.woff?t=1623134315397') format('woff'),
+       url('iconfont.ttf?t=1623134315397') format('truetype');
 }
 
 .iconfont {
@@ -79,6 +79,10 @@
 
 .icon-aixin:before {
   content: "\e6ec";
+}
+
+.icon-dushu:before {
+  content: "\e6f2";
 }
 
 .icon-lianjie1:before {

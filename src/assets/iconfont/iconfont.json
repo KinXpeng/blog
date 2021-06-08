@@ -125,6 +125,13 @@
       "unicode_decimal": 59116
     },
     {
+      "icon_id": "14819866",
+      "name": "读书",
+      "font_class": "dushu",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    },
+    {
       "icon_id": "15634352",
       "name": "链接",
       "font_class": "lianjie1",

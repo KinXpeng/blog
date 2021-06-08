@@ -25,8 +25,9 @@
       <div class="music-desc">
         <span class="desc-title" title="第三十八年夏至河图">第三十八年夏至</span> - <span>河图</span>
       </div>
-      <div class="music-slider">
-        <el-slider v-model="value3" :max="maxLength" :show-tooltip="false" @input="handleProgress"></el-slider>
+      <div class="music-slider flex">
+        <el-slider v-model="sliderTime" :max="maxLength" :show-tooltip="false" @input="handleProgress"></el-slider>
+        <div class="silder-info">{{currentTime}} / {{durationTime}}</div>
       </div>
     </div>
   </div>
@@ -36,7 +37,6 @@
 export default {
   data() {
     return {
-      value3:0,
       songs: [
         {
           id: 1,
@@ -47,6 +47,9 @@ export default {
       ],
       maxLength:0,
       isPlay:true,
+      currentTime:'00:00',
+      durationTime:'04:30',
+      sliderTime:0,
     };
   },
   methods: {
@@ -62,16 +65,32 @@ export default {
     },
     // 实时播放时间
     onTimeupdate(res){
-      console.log(res.target.currentTime);
+      let nowTime = parseInt(res.target.currentTime);
+      let min = parseInt(nowTime / 60); // 分钟
+      min = min<10?'0'+min:min;
+      let second = parseInt(nowTime-min*60); // 秒
+      second = second<10?'0'+second:second;
+      this.currentTime = min + ':' + second; // 总时长，格式为 04:22
+      this.sliderTime = nowTime;
     },
     // 音乐总长
     onLoadedmetadata(res){
-      console.log(res.target.duration);
       this.maxLength = res.target.duration;
+      let min = parseInt(res.target.duration / 60); // 分钟
+      min = min<10?'0'+min:min;
+      let second = parseInt(res.target.duration-min*60); // 秒
+      second = second<10?'0'+second:second;
+      this.durationTime = min + ':' + second; // 总时长，格式为 04:22
     },
     // 进度条
     handleProgress(val){
-      console.log(val);
+      this.$refs.audio.currentTime = val;
+      this.sliderTime = val;
+      let min = parseInt(val / 60); // 分钟
+      min = min<10?'0'+min:min;
+      let second = parseInt(val-min*60); // 秒
+      second = second<10?'0'+second:second;
+      this.currentTime = min + ':' + second; // 总时长，格式为 04:22
     },
   },
   created() {},
@@ -84,7 +103,7 @@ export default {
   margin-bottom: 6px;
   font-size: 12px;
   height: 65px;
-  // img
+  // img以及按钮
   .music-img {
     position: relative;
     width:65px;
@@ -122,6 +141,7 @@ export default {
       }
     }
   }
+  // 右侧info
   .music-info {
     width: 75%;
     padding:10px;
@@ -137,11 +157,56 @@ export default {
       }
     }
     // slider
-    // .music-slider{
-    //   /deep/.el-slider{
-
-    //   }
-    // }
+    .music-slider{
+      justify-content: space-around;
+      // 滑块
+      /deep/.el-slider{
+        width:50%;
+        padding-right: 3px;
+        .el-slider__runway{
+          height:3px;
+          .el-slider__bar{
+            height:3px;
+          }
+          .el-slider__button-wrapper{
+            width:12px;
+            height:12px;
+            line-height: 12px;
+            top:-5px;
+            .el-slider__button{
+              width:7px;
+              height:7px;
+            }
+          }
+        }
+      }
+      // 音乐时间进度
+      .silder-info{
+        height: 35px;
+        font-size: 12px;
+        text-align: center;
+        line-height: 35px;
+      }
+    }
+  }
+}
+// 监听页面缩小时进度条的长度变化
+@media screen and (max-width:1300px) {
+  .music-info{
+    .music-slider{
+      /deep/ .el-slider{
+        width: 40% !important;
+      }
+    }
+  }
+}
+@media screen and (max-width:1130px) {
+  .music-info{
+    .music-slider{
+      /deep/ .el-slider{
+        width: 35% !important;
+      }
+    }
   }
 }
 </style>
