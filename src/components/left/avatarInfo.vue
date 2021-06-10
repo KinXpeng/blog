@@ -54,6 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/dark.scss";
 .avatar-info {
   margin-bottom: 6px;
   .avatar-back {
@@ -103,6 +104,7 @@ export default {
         top:30px;
         left:12px;
         width: 60%;
+        @include font_color("text-color1");
       }
     }
     // avatar-detail

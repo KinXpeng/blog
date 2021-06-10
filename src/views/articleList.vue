@@ -53,7 +53,7 @@ export default {
       @include font_color("text-color");
       font-size: 14px;
       padding:8px;
-      height:300px;
+      // height:300px;
     }
   }
 }

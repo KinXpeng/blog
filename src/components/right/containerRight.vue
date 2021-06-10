@@ -28,7 +28,8 @@ export default {
 
 <style lang='scss' scoped>
 .container-right{
-  max-width: 260px;
+  float: right;
+  max-width: 300px;
   min-width: 200px;
 }
 </style>

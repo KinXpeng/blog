@@ -29,7 +29,7 @@ export default {
 
 <style lang='scss' scoped>
 .container-left{
-  max-width: 260px;
+  max-width: 300px;
   min-width: 200px;
 }
 </style>
