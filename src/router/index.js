@@ -30,12 +30,6 @@ const routes = [
         name: 'placeFile',
         component: () => import( '@/views/placeFile.vue')
       },
-      // 创作
-      {
-        path: '/writeArticle',
-        name: 'writeArticle',
-        component: () => import( '@/views/writeArticle.vue')
-      },
       // 友情链接
       {
         path: '/friendlyLink',
@@ -48,16 +42,25 @@ const routes = [
         name: 'mine',
         component: () => import( '@/views/mine.vue')
       },
+      // 文章详情
+      {
+        path: '/articleItemInfo',
+        name: 'articleItemInfo',
+        component: () => import( '@/views/articleItemInfo.vue')
+      },
     ]
+  },
+  // 创作
+  {
+    path: '/writeArticle',
+    name: 'writeArticle',
+    component: () => import( '@/views/writeArticle.vue')
   },
   // 后台页面路由
   {
     path: '/login',
     name: 'login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/login.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/login.vue')
   },
 ]
 

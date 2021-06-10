@@ -32,6 +32,7 @@ export default {
 <style lang='scss' scoped>
 @import '@/assets/scss/dark.scss';
 .article-list{
+  margin:0 auto;
   padding-top: 1px;
   .el-tabs{
     /deep/ .el-tabs__header{
@@ -55,6 +56,16 @@ export default {
       padding:8px;
       // height:300px;
     }
+  }
+}
+@media screen and (max-width: 1100px) {
+  .article-list {
+    width:97%;
+  }
+}
+@media screen and (max-width: 1020px) {
+  .article-list {
+    width:96%;
   }
 }
 </style>

@@ -87,7 +87,7 @@ export default {
                   this.$message({
                     message: "账号或密码错误",
                     showClose: true,
-                    type: "warning",
+                    type: "error",
                   });
                 }, 1000);
               }
@@ -98,7 +98,7 @@ export default {
                 this.$message({
                   message: "服务器开小差了哦，请稍后再尝试登录。",
                   showClose: true,
-                  type: "warning",
+                  type: "error",
                 });
               },1000)
               console.log(err);

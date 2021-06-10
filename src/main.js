@@ -13,12 +13,17 @@ import "./assets/scss/index.css";
 // 矢量图
 import "./assets/iconfont/iconfont.css"
 import "./assets/iconfont/iconfont"
+// mavonEditor
+import  mavonEditor  from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+import "./assets/scss/markdown.min.css";
+Vue.use(mavonEditor);
 // 引入axios
 import axios from "axios";
 // 服务器https
-// axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
+axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
 // 本地http
-axios.defaults.baseURL = 'http://localhost:3000/'
+// axios.defaults.baseURL = 'http://localhost:3000/'
 Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false;

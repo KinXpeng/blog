@@ -1,5 +1,6 @@
 <template>
   <div class="article-item">
+    <!-- article-card -->
     <div class="article-card">
       <el-card v-for="(item, index) in articleList" :key="index">
         <!-- header -->
@@ -7,26 +8,27 @@
           <div class="header-img shadow">
             <el-image
               style="width: 46px; height: 46px"
-              :src="item.imgUrl"
+              :src="require('../../assets/images/head_img.jpeg')"
               fit="cover"
             ></el-image>
           </div>
           <!-- author -->
           <div class="header-desc">
-            <p class="desc-author">{{ item.author }}</p>
-            <p class="desc-date">{{ item.date }}</p>
+            <p class="desc-author">KinXpeng</p>
+            <p class="desc-date">{{ item.create_time }}</p>
           </div>
         </div>
-        <!-- article_desc -->
-        <div class="article-desc">{{ item.articleInfo }}</div>
+        <!-- article-title -->
+        <div class="article-title" @click="lookArticleInfo(item.article_id)">{{item.title}}</div>
         <!-- icon -->
         <div class="article-icon flex">
           <span><i class="el-icon-view"></i>123</span>
-          <span><i class="el-icon-time"></i>112</span>
-          <span><i class="el-icon-chat-dot-round"></i>32</span>
+          <span><i class="el-icon-price-tag"></i>{{item.tags}}</span>
+          <span><i class="el-icon-orange"></i>{{item.category}}</span>
         </div>
       </el-card>
     </div>
+    
   </div>
 </template>
 
@@ -34,26 +36,48 @@
 export default {
   data() {
     return {
-      articleList: [
-        {
-          title: "",
-          author: "Author",
-          imgUrl: require("../../assets/images/head_img.jpeg"),
-          articleInfo: "1231231231231231231你在a你aa速度我去e，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局。",
-          date: "1分钟前",
-        },
-        {
-          title: "",
-          author: "Author",
-          imgUrl: require("../../assets/images/head_img.jpeg"),
-          articleInfo: "1231231231231231231你在a你aa速度我去e，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局，测试文章内容布局。",
-          date: "1分钟前",
-        },
-      ],
+      articleId:'',
+      articleList: [], // 返回的文章列表
     };
   },
-  methods: {},
+  methods: {
+    // 数据初始化
+    async getInitArticleList(){
+      let queryData = {
+        article_id:this.articleId,
+        title:"",
+        tags:"", 
+        create_time:"",
+        category:""
+      };
+      await this.$axios.post('/blog-api/article/list',queryData)
+        .then((res)=>{
+          if(res.data.code == 0){
+            res.data.data.forEach((ele)=>{ // 返回时间处理
+              ele.create_time = ele.create_time.split('T')[0];
+            })
+            // console.log(res.data.data);
+            this.articleList = res.data.data;
+          }else{
+            this.$notify({
+              type:'error',
+              position:'top-right',
+              message:res.data.msg
+            })
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    },
+    // 查看文章明细
+    lookArticleInfo(articleId){
+      sessionStorage.setItem('articleId',articleId);
+      this.$router.push({path:'/articleItemInfo'});
+    },
+  },
   created() {
+    this.getInitArticleList(); // 数据初始化
   },
 };
 </script>
@@ -61,6 +85,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/dark.scss";
 .article-item {
+  // article-card
   .article-card {
     .el-card{
       margin-bottom:8px;
@@ -95,11 +120,12 @@ export default {
         }
       }
     }
-    // article-desc
-    .article-desc{
+    // article-title
+    .article-title{
       padding:10px 0;
-      font-size: 12px;
+      font-size: 14px;
       line-height:18px;
+      cursor: pointer;
     }
     // article-icon
     .article-icon{
@@ -114,4 +140,6 @@ export default {
     }
   }
 }
+
+
 </style>
