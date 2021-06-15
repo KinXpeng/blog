@@ -4,21 +4,23 @@
     <el-row class="header">
       <header-com></header-com>
     </el-row>
-    <!-- container -->
-    <el-row class="container">
-      <!-- left -->
-      <el-col :span="5">
-        <container-left></container-left>
-      </el-col> 
-      <!-- main -->
-      <el-col class="main" :span="14">
-        <router-view></router-view>
-      </el-col>
-      <!-- right -->
-      <el-col :span="5">
-        <container-right></container-right>
-      </el-col>
-    </el-row>
+    <div class="container">
+      <!-- container -->
+      <el-row :gutter="8">
+        <!-- left -->
+        <el-col :span="5">
+          <container-left></container-left>
+        </el-col> 
+        <!-- main -->
+        <el-col class="main" :span="14">
+          <router-view></router-view>
+        </el-col>
+        <!-- right -->
+        <el-col :span="5">
+          <container-right></container-right>
+        </el-col>
+      </el-row>
+    </div>
     <!-- footer -->
     <el-row class="footer" v-if="false">
       <el-col :span="8" class="location">首页 ><div class="grid-content"></div></el-col>
@@ -70,9 +72,9 @@ export default {
   width:92%;
   margin:0 auto;
   transition: .5s;
-  .main{
-    margin:0 auto;
-  }
+  // .main{
+  //   margin:0 auto;
+  // }
 }
 @media screen and (max-width: 1040px) {
   .container {

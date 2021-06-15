@@ -15,3 +15,14 @@
 .shadow{
   box-shadow: 1px 1px 1px rgb(0 0 0 / 10%);
 }
+.el-popover .el-popconfirm__action .el-button{
+  height:20px;
+  line-height: 20px;
+  padding:0px 5px;
+  font-size: 12px;
+  font-weight: normal;
+}
+.el-popover .el-popconfirm__main{
+  font-size: 12px;
+  margin-bottom:5px;
+}

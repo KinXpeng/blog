@@ -7,10 +7,10 @@
       </div>
     </el-col>
     <!-- navbar -->
-    <el-col :span="14">
+    <el-col :span="13">
       <div class="header-navbar">
         <ul>
-          <li :class="item.class" v-for="(item,index) in tabList" :key="index" @click="toggleTab(item,index)">
+          <li v-show="!((item.path=='/writeArticle')&&!isLoginFlag)" :class="item.class" v-for="(item,index) in tabList" :key="index" @click="toggleTab(item,index)">
             <svg class="icon-svg">
               <use :xlink:href="item.icon"></use>
             </svg>
@@ -29,6 +29,17 @@
     <!-- night -->
     <el-col class="header-night" :span="1">
       <i :class="nightModeFlag?'el-icon-moon-night':'el-icon-sunrise-1'" @click="changeNight"></i>
+    </el-col>
+    <!-- login -->
+    <el-col v-if="isLoginFlag" class="header-login" :span="1">
+      <el-popconfirm
+        title="是否退出登录？"
+        :hide-icon="true"
+        @confirm="exitLogin"
+        cancel-button-type="warning"
+      >
+        <el-avatar shape="square"  slot="reference" :size="34" fit="cover" title="用户已登录" :src="require('../assets/images/head_img.jpeg')"></el-avatar>
+      </el-popconfirm>
     </el-col>
   </div>
 </template>
@@ -77,6 +88,11 @@ export default {
     };
   },
   watch:{
+  },
+  computed:{
+    isLoginFlag(){
+      return sessionStorage.getItem('cookie')?true:false
+    },
   },
   methods: {
     // 导航栏点击切换
@@ -132,9 +148,16 @@ export default {
       sessionStorage.setItem('nightFlag',this.nightModeFlag);
       if(this.nightModeFlag){
         window.document.documentElement.setAttribute( "data-theme", 'dark' );
+        this.$store.state.nightModeFlag = true;
       }else{
         window.document.documentElement.setAttribute( "data-theme", 'light' );
+        this.$store.state.nightModeFlag = false;
       };
+    },
+    // 退出登录
+    exitLogin(){
+      sessionStorage.setItem('cookie','');
+      this.$router.push({path:'/'});
     },
   },
   created() {
@@ -146,8 +169,10 @@ export default {
     }
     if(this.nightModeFlag){
       window.document.documentElement.setAttribute( "data-theme", 'dark' );
+      this.$store.state.nightModeFlag = true;
     }else{
       window.document.documentElement.setAttribute( "data-theme", 'light' );
+      this.$store.state.nightModeFlag = false;
     }
      // active状态切换
     this.handleRouter(this.$route.path);
@@ -156,7 +181,6 @@ export default {
     }
   },
   mounted(){
-    
   },
 };
 </script>
@@ -165,6 +189,7 @@ export default {
 @import '@/assets/scss/dark.scss';
 .header-group{
   width:92%;
+  min-width: 980px;
   margin:0 auto;
   line-height: 40px;
   height:40px;
@@ -246,6 +271,21 @@ export default {
     color:#666;
     &:hover{
       @include font_color("text-color1");
+    }
+  }
+  // login
+  .header-login{
+    width:36px;
+    height:36px;
+    margin:2px;
+    text-align: center;
+    border-radius: 4px;
+    // border:1px solid red;
+    font-size: 12px;
+    @include box_shadow("box_shadow");
+    cursor: pointer;
+    .el-avatar{
+      margin-top:1px;
     }
   }
 }

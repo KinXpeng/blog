@@ -11,11 +11,13 @@
           ref="md"
           v-model="articleInfo"
           @save="handleArticle"
-          style="min-height:600px;"
+          style="min-height:700px;"
           :ishljs="true"
           :boxShadow="false"
           :toolbars="markdownOption"
           defaultOpen="edit"
+          :toolbarsBackground="codeStyle"
+          :previewBackground="codeStyle"
         ></mavon-editor>
       </el-col>
       <el-col :span="6" style="padding-left:8px">
@@ -37,6 +39,14 @@
               </el-form-item>
               <el-form-item label="分类" prop="category">
                 <el-input v-model="titleList.category" clearable size="mini"></el-input>
+                <!-- <el-select v-model="titleList.category" clearable filterable placeholder="" size="mini">
+                  <el-option
+                    v-for="(item,index) in categoryList"
+                    :key="index"
+                    :label="item.categoryName"
+                    :value="item.categoryCode">
+                  </el-option>
+                </el-select> -->
               </el-form-item>
             </el-form>
             <!-- submit-form -->
@@ -59,6 +69,16 @@ export default {
     return {
       articleInfo: "",
       articleHtml: "",
+      categoryList:[
+        {
+          categoryName:'文章',
+          categoryCode:'article',
+        },
+        {
+          categoryName:'说说',
+          categoryCode:'moment',
+        },
+      ],
       markdownOption: {
         bold: true, // 粗体
         italic: true, // 斜体
@@ -94,6 +114,7 @@ export default {
         subfield: false, // 单双栏模式
         preview: true, // 预览
       },
+      // codeStyle:'', // 工具栏背景色
       titleList:{
         title:'',
         tags:'',
@@ -102,12 +123,16 @@ export default {
       titleRules:{
         title:{required: true, message: '请输入文章标题', trigger: 'blur' },
         tags:{required: true, message: '请输入文章标签', trigger: 'blur' },
-        category:{required: true, message: '请输入文章分类', trigger: 'blur' },
+        category:{required: true, message: '请输入分类', trigger: 'blur' },
       },
       loadingFlag:false,
     };
   },
   computed: {
+    // 编辑器背景色
+    codeStyle(){
+      return this.$store.state.nightModeFlag?'#181c27':''
+    },
   },
   methods: {
     // 保存
@@ -162,10 +187,29 @@ export default {
     // 文章概要重置
     resetForm() {
       this.$refs.titleForm.resetFields();
-    }
+    },
+    // token验证
+    async checkToken(){
+      await this.$axios.post('/blog-api/user/checkLogin',{
+        cookie:sessionStorage.getItem('cookie')
+      })
+        .then((res)=>{
+          if(res.data.code == -1){
+            this.$message({
+              message: res.data.msg,
+              type: "error",
+            });
+            sessionStorage.setItem('cookie','');
+            this.$router.push({path:'/login'});
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    },
   },
   created() {
-    // this.$router.push({path:'/'});
+    this.checkToken(); // token验证
   },
   mounted(){
 
@@ -226,6 +270,17 @@ export default {
           }
         }
       }
+      // .el-select{
+      //   width:100%;
+      //   /deep/.el-input__inner{
+      //     width:100%;
+      //     @include background_color("background_color");
+      //     @include border_style("border_style1");
+      //     &:focus{
+      //       border:1px solid #666 !important;
+      //     }
+      //   }
+      // }
       .el-form-item{
         margin-bottom:0;
         /deep/ .el-form-item__label{
@@ -255,6 +310,7 @@ export default {
     }
   }
 }
+
 @media screen and (max-width: 1040px) {
   .article-edit {
     width: 98%;

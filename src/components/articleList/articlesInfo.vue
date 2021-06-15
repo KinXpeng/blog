@@ -1,5 +1,7 @@
 <template>
   <div class="article-item">
+    <!-- loading-area -->
+    <loading-area v-show="loadingFlag"></loading-area>
     <!-- article-card -->
     <div class="article-card">
       <el-card v-for="(item, index) in articleList" :key="index">
@@ -33,11 +35,14 @@
 </template>
 
 <script>
+import loadingArea from './loadingArea.vue';
 export default {
+  components: { loadingArea },
   data() {
     return {
       articleId:'',
       articleList: [], // 返回的文章列表
+      loadingFlag:false,
     };
   },
   methods: {
@@ -50,8 +55,10 @@ export default {
         create_time:"",
         category:""
       };
+      this.loadingFlag = true;
       await this.$axios.post('/blog-api/article/list',queryData)
         .then((res)=>{
+          this.loadingFlag = false;
           if(res.data.code == 0){
             res.data.data.forEach((ele)=>{ // 返回时间处理
               ele.create_time = ele.create_time.split('T')[0];
@@ -67,6 +74,7 @@ export default {
           }
         })
         .catch((err)=>{
+          this.loadingFlag = false;
           console.log(err);
         })
     },

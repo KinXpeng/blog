@@ -58,16 +58,6 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1100px) {
-  .article-list {
-    width:97%;
-  }
-}
-@media screen and (max-width: 1020px) {
-  .article-list {
-    width:96%;
-  }
-}
 </style>
 <style scoped>
 .el-tabs /deep/ .el-tabs__header{

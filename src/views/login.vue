@@ -77,9 +77,10 @@ export default {
                     type: "success",
                   });
                 },500)
+                sessionStorage.setItem('cookie',res.data.token); // 储存cookie
                 setTimeout(() => {
                   this.$store.state.username = this.loginForm.username;
-                  this.$router.push({ path: "/" });
+                  this.$router.push({ path: "/writeArticle" });
                 }, 1500);
               } else {
                 setTimeout(() => {

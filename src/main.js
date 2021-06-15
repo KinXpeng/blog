@@ -21,9 +21,11 @@ Vue.use(mavonEditor);
 // 引入axios
 import axios from "axios";
 // 服务器https
-axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
+// axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
 // 本地http
-// axios.defaults.baseURL = 'http://localhost:3000/'
+axios.defaults.baseURL = 'http://localhost:3000/'
+// 请求携带cookie
+// axios.defaults.withCredentials=true; 
 Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false;
@@ -31,7 +33,7 @@ Vue.config.productionTip = false;
 // 路由守卫
 router.beforeEach((to,from,next)=>{
   if(to.meta.requireAuth){
-    if(store.state.username){
+    if(sessionStorage.getItem('cookie')){
       next()
     }else{
       next({path:'/login'})
@@ -40,6 +42,22 @@ router.beforeEach((to,from,next)=>{
     next()
   }
 })
+// 定义设置cookie方法
+Vue.prototype.setCookie = function(name, value, day) {
+  if (day !== 0) {
+    //当设置的时间等于0时，不设置expires属性，cookie在浏览器关闭后删除
+    var curDate = new Date();
+    var curTamp = curDate.getTime();
+    var curWeeHours = new Date(curDate.toLocaleDateString()).getTime() - 1;
+    var passedTamp = curTamp - curWeeHours;
+    var leftTamp = 24 * 60 * 60 * 1000 - passedTamp;
+    var leftTime = new Date();
+    leftTime.setTime(leftTamp + curTamp);
+    document.cookie = name + "=" + escape(value) + ";expires=" + leftTime.toGMTString();
+  } else {
+    document.cookie = name + "=" + escape(value);
+  }
+};
 
 new Vue({
   router,

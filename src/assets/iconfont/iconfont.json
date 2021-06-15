@@ -6,11 +6,11 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "7197321",
-      "name": "icn_loading",
-      "font_class": "loading",
-      "unicode": "e64a",
-      "unicode_decimal": 58954
+      "icon_id": "11395460",
+      "name": "fsux_半圆环图",
+      "font_class": "fsux_banyuanhuantu",
+      "unicode": "e600",
+      "unicode_decimal": 58880
     },
     {
       "icon_id": "16328034",

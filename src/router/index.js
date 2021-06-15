@@ -14,9 +14,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    // meta:{
-    //   requireAuth:true
-    // },
     children:[
       // 文章列表
       {
@@ -54,7 +51,10 @@ const routes = [
   {
     path: '/writeArticle',
     name: 'writeArticle',
-    component: () => import( '@/views/writeArticle.vue')
+    component: () => import( '@/views/writeArticle.vue'),
+    meta:{
+      requireAuth:true, // 需要登录权限
+    },
   },
   // 后台页面路由
   {

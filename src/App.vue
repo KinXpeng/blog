@@ -10,6 +10,6 @@ body{
   @include background_color("background_color5");
 }
 #app{
-  min-width: 1020px;
+  min-width: 1000px;
 }
 </style>
