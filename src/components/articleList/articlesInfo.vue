@@ -181,8 +181,20 @@ export default {
   }
   // pagination
   .pagination{
-    border:1px solid red;
+    // border:1px solid red;
     text-align: center;
+    .el-pagination{
+      @include font_color("text-color");
+      /deep/ button{
+        @include font_color("text-color");
+        @include background_color("background_color8");
+      }
+      /deep/ .el-pager{
+        li{
+          @include background_color("background_color8");
+        }
+      }
+    }
   }
 }
 </style>

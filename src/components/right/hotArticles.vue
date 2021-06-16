@@ -130,6 +130,7 @@ export default {
       span{
         // flex:1;
         margin:0 3px;
+        transform: scale(0.9);
         i{
           margin-right: 2px;
         }

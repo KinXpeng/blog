@@ -9,7 +9,7 @@
       </div>
       <div class="cloud-list">
         <ul class="list-box flex">
-          <li v-for="(item,index) in cloudList" :key="index" @click="handleCloudItem(item)">{{item.cloudName}}</li>
+          <li v-for="(item,index) in cloudList" :key="index" @click="handleCloudItem(item)">{{item.tags}}</li>
         </ul>
       </div>
     </el-card>
@@ -20,39 +20,29 @@
 export default {
   data() {
     return {
-      cloudList:[
-        {cloudName:"Vue"},
-        {cloudName:"前端"},
-        {cloudName:"javascript"},
-        {cloudName:"html"},
-        {cloudName:"WordPress"},
-        {cloudName:"腾讯云"},
-        {cloudName:"小程序"},
-        {cloudName:"uni-app"},
-        {cloudName:"pc端rem"},
-        {cloudName:"移动端"},
-        {cloudName:"h5"},
-        {cloudName:"css3"},
-        {cloudName:"nodejs"},
-        {cloudName:"服务器"},
-        {cloudName:"elementui"},
-        {cloudName:"vant"},
-        {cloudName:"echarts"},
-        {cloudName:"swiper"},
-        {cloudName:"less"},
-        {cloudName:"scss"},
-        {cloudName:"github"},
-        {cloudName:"easyUI"},
-      ],
+      cloudList:[],
     };
   },
   methods:{
     // 单个标签点击
     handleCloudItem(item){
-      console.log(item.cloudName);
+      console.log(item.tags);
+    },
+    // tags列表
+    async initTagsList(){
+      await this.$axios.post("/blog-api/article/tagsInfo")
+        .then((res)=>{
+          if(res.data.code == 0){
+            this.cloudList = res.data.data;
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
     },
   },
   created(){
+    this.initTagsList(); // 初始化标签云
   },
 };
 </script>
