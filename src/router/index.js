@@ -66,6 +66,10 @@ const routes = [
       requireAuth:true, // 需要登录权限
     },
   },
+  // {
+  //   path:'*', // 404页面重定向
+  //   redirect:'/'
+  // },
   // 后台页面路由
   {
     path: '/login',
@@ -75,8 +79,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'history',
+  // base: process.env.BASE_URL,
   routes
 })
 

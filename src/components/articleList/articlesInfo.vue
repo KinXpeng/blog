@@ -83,7 +83,7 @@ export default {
     // 查看文章明细
     lookArticleInfo(articleId){
       sessionStorage.setItem('articleId',articleId);
-      this.$router.push({path:'/articleItemInfo'});
+      this.$router.push({name:'articleItemInfo'});
     },
   },
   created() {

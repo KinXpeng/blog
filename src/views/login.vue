@@ -1,46 +1,48 @@
 <template>
-  <div class="login">
-    <div class="login_title">
-      <el-image
-        style="width: 140px; height: 60px"
-        :src="require('../assets/images/logo.png')"
-        fit="fit"
-      ></el-image>
-    </div>
-    <div class="login_input">
-      <el-form
-        :model="loginForm"
-        :rules="rules"
-        ref="ruleForm"
-        label-width="100px"
-        class="demo-ruleForm"
-      >
-        <el-form-item label="账号" prop="username" label-width="70px">
-          <el-input type="text" v-model="loginForm.username"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password" label-width="70px">
-          <el-input
-            :type="flag ? 'text' : 'password'"
-            v-model="loginForm.password"
-            autocomplete="off"
-          >
-            <i
-              slot="suffix"
-              class="el-icon-view"
-              :style="flag ? 'color:#3b99fc;' : ''"
-              autocomplete="auto"
-              @click="flag = !flag"
-            />
-          </el-input>
-        </el-form-item>
-        <el-form-item class="login_submit">
-          <el-button type="primary" size="mini" @click="submitForm('ruleForm')"
-            >登录</el-button
-          >
-          <el-button size="mini" @click="resetForm('ruleForm')">重置</el-button>
-        </el-form-item>
-      </el-form>
-      <div v-loading.fullscreen.lock="loading"></div>
+  <div class="login-page">
+    <div class="login" ref="login" tabindex="-1">
+      <div class="login_title">
+        <el-image
+          style="width: 140px; height: 60px"
+          :src="require('../assets/images/logo.png')"
+          fit="fit"
+        ></el-image>
+      </div>
+      <div class="login_input">
+        <el-form
+          :model="loginForm"
+          :rules="rules"
+          ref="ruleForm"
+          label-width="100px"
+          class="demo-ruleForm"
+        >
+          <el-form-item label="账号" prop="username" label-width="70px">
+            <el-input type="text" ref="usernameInput" v-model="loginForm.username"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password" label-width="70px">
+            <el-input
+              :type="flag ? 'text' : 'password'"
+              v-model="loginForm.password"
+              autocomplete="off"
+            >
+              <i
+                slot="suffix"
+                class="el-icon-view"
+                :style="flag ? 'color:#3b99fc;' : ''"
+                autocomplete="auto"
+                @click="flag = !flag"
+              />
+            </el-input>
+          </el-form-item>
+          <el-form-item class="login_submit">
+            <el-button type="primary" size="mini" @click="submitForm('ruleForm')"
+              >登录</el-button
+            >
+            <el-button size="mini" @click="resetForm('ruleForm')">重置</el-button>
+          </el-form-item>
+        </el-form>
+        <div v-loading.fullscreen.lock="loading"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -113,9 +115,25 @@ export default {
       this.$refs[formName].resetFields();
     },
   },
+  mounted(){
+    let This = this;
+    this.$refs.usernameInput.focus();
+    this.$refs.login.onkeydown = function(){
+      let key = window.event.keyCode;
+      if(key == 13){
+        This.submitForm('ruleForm');
+      }
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
+.login-page{
+  width:100vw;
+  height:100vh;
+  border:1px solid transparent;
+  
+}
 .login {
   width: 400px;
   height: 300px;

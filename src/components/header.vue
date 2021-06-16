@@ -10,7 +10,7 @@
     <el-col :span="13">
       <div class="header-navbar">
         <ul>
-          <li v-show="!((item.path=='/writeArticle')&&!isLoginFlag)" :class="item.class" v-for="(item,index) in tabList" :key="index" @click="toggleTab(item,index)">
+          <li v-show="!((item.name=='writeArticle')&&!isLoginFlag)" :class="item.class" v-for="(item,index) in tabList" :key="index" @click="toggleTab(item,index)">
             <svg class="icon-svg">
               <use :xlink:href="item.icon"></use>
             </svg>
@@ -53,6 +53,7 @@ export default {
           title:'首页',
           class:'active',
           path:'/',
+          name:'articleList',
           icon:'#icon-shouyexuanzhong'
         },
         
@@ -60,30 +61,35 @@ export default {
           title:'归档',
           class:'',
           path:'/placeFile',
+          name:'placeFile',
           icon:'#icon-liucheng'
         },
         {
           title:'文章',
           class:'',
           path:'/writeArticle', // '/login',
+          name:'writeArticle', // '/login',
           icon:'#icon-sign-review'
         },
         {
           title:'创作',
           class:'',
           path:'/createCenter', 
+          name:'createCenter', 
           icon:'#icon-xingxing'
         },
         {
           title:'友情链接',
           class:'',
           path:'/friendlyLink',
+          name:'friendlyLink',
           icon:'#icon-lianjie1'
         },
         {
           title:'关于我',
           class:'',
           path:'/mine',
+          name:'mine',
           icon:'#icon-zhuti'
         },
       ],
@@ -111,27 +117,27 @@ export default {
       }
       this.actIndex = index;
       sessionStorage.setItem('curIndex',index);
-      this.$router.push({path:item.path});
+      this.$router.push({name:item.name});
     },
     // 刷新页面路由切换
-    handleRouter(path){
-      switch(path){
-        case '/':
+    handleRouter(name){
+      switch(name){
+        case 'articleList':
           this.changeActive(0);
           break;
-        case '/placeFile':
+        case 'placeFile':
           this.changeActive(1);
           break;
-        case '/writeArticle':
+        case 'writeArticle':
           this.changeActive(2);
           break;
-        case '/createCenter':
+        case 'createCenter':
           this.changeActive(3);
           break;
-        case '/friendlyLink':
+        case 'friendlyLink':
           this.changeActive(4);
           break;
-        case '/mine':
+        case 'mine':
           this.changeActive(5);
           break;
       };
@@ -162,6 +168,7 @@ export default {
         window.document.documentElement.setAttribute( "data-theme", 'light' );
         this.$store.state.nightModeFlag = false;
       };
+      location.reload();
     },
     // 退出登录
     exitLogin(){
@@ -185,7 +192,7 @@ export default {
       this.$store.state.nightModeFlag = false;
     }
      // active状态切换
-    this.handleRouter(this.$route.path);
+    this.handleRouter(this.$route.name);
     if(sessionStorage.getItem('curIndex') ){
       this.actIndex = sessionStorage.getItem('curIndex');
     }

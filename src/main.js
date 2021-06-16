@@ -36,7 +36,7 @@ router.beforeEach((to,from,next)=>{
     if(sessionStorage.getItem('cookie')){
       next()
     }else{
-      next({path:'/login'})
+      next({name:'login'})
     }
   }else{
     next()
