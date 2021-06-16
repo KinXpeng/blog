@@ -19,31 +19,41 @@ const routes = [
       {
         path: '/',
         name: 'articleList',
-        component: () => import( '@/views/articleList.vue')
+        component: () => import( '@/views/articleList.vue'),
       },
       // 归档
       {
         path: '/placeFile',
         name: 'placeFile',
-        component: () => import( '@/views/placeFile.vue')
+        component: () => import( '@/views/placeFile.vue'),
+      },
+      // 归档
+      {
+        path: '/createCenter',
+        name: 'createCenter',
+        component: () => import( '@/views/createCenter.vue'),
+        // redirect:''
       },
       // 友情链接
       {
         path: '/friendlyLink',
         name: 'friendlyLink',
-        component: () => import( '@/views/friendlyLink.vue')
+        component: () => import( '@/views/friendlyLink.vue'),
+        // redirect:''
       },
       // 关于我
       {
         path: '/mine',
         name: 'mine',
-        component: () => import( '@/views/mine.vue')
+        component: () => import( '@/views/mine.vue'),
+        // redirect:''
       },
       // 文章详情
       {
         path: '/articleItemInfo',
         name: 'articleItemInfo',
-        component: () => import( '@/views/articleItemInfo.vue')
+        component: () => import( '@/views/articleItemInfo.vue'),
+        // redirect:''
       },
     ]
   },

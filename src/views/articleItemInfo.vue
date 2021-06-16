@@ -2,7 +2,7 @@
   <div class="article-item-info">
     <loading-area  v-show="loadingFlag"></loading-area>
     <!-- article-info -->
-    <div class="article-info">
+    <div class="article-info" v-show="!loadingFlag">
       <el-card>
         <div class="info-back" @click="backArticleList">
           <i class="el-icon-arrow-left back"></i>
@@ -26,6 +26,7 @@
         </div>
       </el-card>
     </div>
+    
   </div>
 </template>
 

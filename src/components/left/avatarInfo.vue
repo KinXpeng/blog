@@ -6,7 +6,7 @@
         <!-- avatar-img -->
         <div class="avatar-img radius">
           <img class="img-info" src="../../assets/images/head_img.jpeg" alt="">
-          <svg class="icon-svg">
+          <svg class="icon-svg" @click="enterLoginPages">
             <use xlink:href="#icon-shoucang"></use>
           </svg>
         </div>
@@ -45,9 +45,37 @@ export default {
           totals:24,
         },
       ],
+      loginCount:0,
+      startTime:0,
+      lastTime:0,
     };
   },
-  methods: {},
+  methods: {
+    enterLoginPages(){
+      if(this.loginCount == 0){
+        this.startTime = new Date();
+        this.lastTime = this.startTime;
+      }else if(this.loginCount >= 1){
+        let nextTime = new Date();
+        if (nextTime - this.startTime >= 3000) {
+          // 超过3秒重置
+          this.startTime = nextTime;
+          this.lastTime = nextTime;
+          this.loginCount = 0;
+        } else {
+          this.lastTime = nextTime;
+        }
+        if (this.loginCount === 3) {
+          // 大于三次重置
+          this.$router.push({path:'/login'});
+          this.startTime = nextTime;
+          this.lastTime = nextTime;
+          this.loginCount = 0;
+        } 
+      }
+      this.loginCount++;
+    },
+  },
   created() {
   },
 };
@@ -64,6 +92,7 @@ export default {
     background: url("../../assets/images/blog_xiamu.jpeg") center/cover;
   }
   .avatar-desc {
+    user-select: none;
     width: 100%;
     height: 140px;
     .avatar-head {

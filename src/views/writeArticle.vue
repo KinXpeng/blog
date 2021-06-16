@@ -200,7 +200,7 @@ export default {
               type: "error",
             });
             sessionStorage.setItem('cookie','');
-            this.$router.push({path:'/login'});
+            this.$router.push({path:'/kx_login'});
           }
         })
         .catch((err)=>{

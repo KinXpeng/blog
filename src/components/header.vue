@@ -63,9 +63,15 @@ export default {
           icon:'#icon-liucheng'
         },
         {
-          title:'创作',
+          title:'文章',
           class:'',
           path:'/writeArticle', // '/login',
+          icon:'#icon-sign-review'
+        },
+        {
+          title:'创作',
+          class:'',
+          path:'/createCenter', 
           icon:'#icon-xingxing'
         },
         {
@@ -119,11 +125,14 @@ export default {
         case '/writeArticle':
           this.changeActive(2);
           break;
-        case '/friendlyLink':
+        case '/createCenter':
           this.changeActive(3);
           break;
-        case '/mine':
+        case '/friendlyLink':
           this.changeActive(4);
+          break;
+        case '/mine':
+          this.changeActive(5);
           break;
       };
     },
@@ -158,6 +167,7 @@ export default {
     exitLogin(){
       sessionStorage.setItem('cookie','');
       this.$router.push({path:'/'});
+      location.reload();
     },
   },
   created() {

@@ -22,6 +22,8 @@
         </div>
         <!-- article-title -->
         <div class="article-title" @click="lookArticleInfo(item.article_id)">{{item.title}}</div>
+        <!-- article-info -->
+        <div class="article-info" v-html="item.content"></div>
         <!-- icon -->
         <div class="article-icon flex">
           <span><i class="el-icon-view"></i>123</span>
@@ -130,10 +132,22 @@ export default {
     }
     // article-title
     .article-title{
-      padding:10px 0;
+      padding:10px 0 5px;
       font-size: 14px;
-      line-height:18px;
       cursor: pointer;
+      &:hover{
+        @include font_color("text-color1");
+      }
+    }
+    // article-info
+    .article-info{
+      overflow: hidden;
+      height:34px;
+      padding-bottom:4px;
+      margin-bottom:5px;
+      font-size: 12px;
+      color:#999aa9;
+      line-height:16px;
     }
     // article-icon
     .article-icon{
@@ -148,6 +162,4 @@ export default {
     }
   }
 }
-
-
 </style>

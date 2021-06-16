@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18165130",
+      "name": "签字审核,审批,编辑,书写",
+      "font_class": "sign-review",
+      "unicode": "e878",
+      "unicode_decimal": 59512
+    },
+    {
       "icon_id": "11395460",
       "name": "fsux_半圆环图",
       "font_class": "fsux_banyuanhuantu",

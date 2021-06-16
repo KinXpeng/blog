@@ -12,6 +12,7 @@ module.exports = {
     //     }
     //   }
     // }
+    historyApiFallback: true,
   },
   publicPath: './',
 }
