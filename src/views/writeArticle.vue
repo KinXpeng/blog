@@ -159,7 +159,9 @@ export default {
                     position:'top-right',
                     message:res.data.msg
                   })
-                  location.reload();
+                  setTimeout(()=>{
+                    location.reload();
+                  },1000)
                 }else{
                   this.loadingFlag = false;
                   this.$notify.error({

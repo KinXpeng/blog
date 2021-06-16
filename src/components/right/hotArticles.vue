@@ -9,11 +9,11 @@
       </div>
       <div class="articles-list">
         <ul>
-          <li class="list-item" v-for="(item,index) in 6" :key="index">
-            <p class="item-title">解决table中翻页序号连续递增的问题解决table中翻页序号连续递增的问题</p>
+          <li class="list-item" v-for="(item,index) in hotArticleList" :key="index" @click="hotArticleInfo(item.article_id)">
+            <p class="item-title">{{item.title}}</p>
             <div class="item-desc flex">
               <span><i class="el-icon-view"></i>123</span>
-              <span><i class="el-icon-time"></i>112</span>
+              <span><i class="el-icon-time"></i>{{item.create_time}}</span>
               <span><i class="el-icon-chat-dot-round"></i>32</span>
             </div>
           </li>
@@ -27,11 +27,50 @@
 export default {
   data() {
     return {
+      hotArticleList:[],
     };
   },
   methods:{
+    // 数据初始化
+    async getInitArticleList(){
+      let queryData = {
+        article_id:"",
+        title:"",
+        tags:"", 
+        create_time:"",
+        category:"",
+        page:1,
+        rows:10,
+      };
+      await this.$axios.post('/blog-api/article/list',queryData)
+        .then((res)=>{
+          if(res.data.code == 0){
+            res.data.data.data.forEach((ele)=>{ // 返回时间处理
+              ele.create_time = ele.create_time.split('T')[0];
+            })
+            // console.log(res.data.data);
+            this.hotArticleList = res.data.data.data;
+          }else{
+            this.$notify({
+              type:'error',
+              position:'top-right',
+              message:res.data.msg
+            })
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    },
+    // 点击查看文章详情
+    hotArticleInfo(hotId){
+      sessionStorage.setItem('articleId',hotId);
+      this.$router.push({name:'articleItemInfo'});
+      location.reload();
+    },
   },
   created(){
+    this.getInitArticleList(); // 初始化数据
   },
 };
 </script>
@@ -89,7 +128,8 @@ export default {
     .item-desc{
       margin-top:6px;
       span{
-        flex:1;
+        // flex:1;
+        margin:0 3px;
         i{
           margin-right: 2px;
         }

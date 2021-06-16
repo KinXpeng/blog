@@ -168,7 +168,7 @@ export default {
         window.document.documentElement.setAttribute( "data-theme", 'light' );
         this.$store.state.nightModeFlag = false;
       };
-      location.reload();
+      // location.reload();
     },
     // 退出登录
     exitLogin(){

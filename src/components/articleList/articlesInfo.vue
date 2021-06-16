@@ -32,7 +32,15 @@
         </div>
       </el-card>
     </div>
-    
+    <!-- pagination -->
+    <div class="pagination el-card">
+      <el-pagination
+        layout="total, prev, pager, next"
+        :total="total"
+        @current-change="handleCurrentChange"
+        :page-size="5">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -45,9 +53,16 @@ export default {
       articleId:'',
       articleList: [], // 返回的文章列表
       loadingFlag:false,
+      total:0,
+      page:1,
     };
   },
   methods: {
+    // 页码 
+    handleCurrentChange(page){
+      this.page = page;
+      this.getInitArticleList();
+    },
     // 数据初始化
     async getInitArticleList(){
       let queryData = {
@@ -55,18 +70,21 @@ export default {
         title:"",
         tags:"", 
         create_time:"",
-        category:""
+        category:"",
+        page:this.page,
+        rows:5,
       };
       this.loadingFlag = true;
       await this.$axios.post('/blog-api/article/list',queryData)
         .then((res)=>{
           this.loadingFlag = false;
           if(res.data.code == 0){
-            res.data.data.forEach((ele)=>{ // 返回时间处理
+            res.data.data.data.forEach((ele)=>{ // 返回时间处理
               ele.create_time = ele.create_time.split('T')[0];
             })
             // console.log(res.data.data);
-            this.articleList = res.data.data;
+            this.total = res.data.data.records;
+            this.articleList = res.data.data.data;
           }else{
             this.$notify({
               type:'error',
@@ -160,6 +178,11 @@ export default {
         }
       }
     }
+  }
+  // pagination
+  .pagination{
+    border:1px solid red;
+    text-align: center;
   }
 }
 </style>

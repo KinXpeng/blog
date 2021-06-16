@@ -7,7 +7,7 @@
     <link rel="icon" href="./favicon.ico" />
     <title>倾倾倾风——一个爱鼓捣前端的搬砖人</title>
     <style lang="scss">
-      #canvas {
+      /* #canvas {
         position: fixed;
         background: #000;
         overflow: auto;
@@ -20,12 +20,12 @@
         height: 100%;
         overflow: auto;
         z-index: 999;
-      }
+      } */
     </style>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <canvas id="canvas1" style="width: 100%;height: 100%"></canvas>
+    <!-- <canvas id="canvas"></canvas>
+    <canvas id="canvas1" style="width: 100%;height: 100%"></canvas> -->
     <noscript>
       <strong
         >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
@@ -35,7 +35,7 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script>
+    <!-- <script>
       window.requestAnimationFrame = (function() {
         return (
           window.requestAnimationFrame ||
@@ -259,116 +259,6 @@
         return colors[getRandomInt(0, colors.length)];
       };
 
-      // Particle//粒子模块
-      var Particle = (function() {
-        function Particle(system, x, y) {
-          _classCallCheck(this, Particle);
-          this.system = system;
-          this.universe = this.system.world.universe;
-          this.x = x;
-          this.y = y;
-          this.color = getRandomColor();
-          this.life = 1;
-          this.aging = getRandom(0.99, 0.999); // 0.99, 0.999 || 0.999, 0.9999
-
-          this.r = getRandomInt(12, 16); //初始粒子半径范围
-          this.speed = getRandom(30, 30); //粒子爆炸速度范围
-          this.velocity = [
-            getRandom(-this.speed, this.speed),
-            getRandom(-this.speed, this.speed),
-          ];
-        }
-        _createClass(Particle, [
-          {
-            key: "update",
-            value: function update(dt) {
-              this.life *= this.aging;
-
-              if (
-                this.r < 0.1 ||
-                this.life === 0 ||
-                this.x + this.r < 0 ||
-                this.x - this.r > this.universe.width ||
-                this.y + this.r < 0 ||
-                this.y - this.r > this.universe.height
-              ) {
-                this.system.removeObject(this);
-              }
-
-              this.r *= this.life;
-              this.x += this.velocity[0];
-              this.y += this.velocity[1];
-            },
-          },
-          {
-            key: "render",
-            value: function render(ctx) {
-              // Main circle //亮圈模块
-
-              ctx.fillStyle = this.color;
-              ctx.beginPath();
-              ctx.arc(this.x, this.y, this.r * 1.2, 0, 2 * Math.PI, false);
-              ctx.fill();
-              ctx.closePath();
-
-              var r = this.color.match(/([0-9]+)/g)[0];
-              var g = this.color.match(/([0-9]+)/g)[1];
-              var b = this.color.match(/([0-9]+)/g)[2];
-
-              // Gradient//梯度变化曲线
-
-              var spread = 1.5;
-              var gradient = ctx.createRadialGradient(
-                this.x,
-                this.y,
-                this.r,
-                this.x,
-                this.y,
-                this.r * spread
-              );
-
-              gradient.addColorStop(
-                0,
-                "rgba(" + r + ", " + g + ", " + b + ", 0.5)"
-              );
-              gradient.addColorStop(
-                1,
-                "rgba(" + r + ", " + g + ", " + b + ", 0)"
-              );
-
-              ctx.globalCompositeOperation = "lighter";
-              ctx.fillStyle = gradient;
-              ctx.beginPath();
-              ctx.arc(this.x, this.y, this.r * spread, 0, 2 * Math.PI, false);
-              ctx.fill();
-              ctx.closePath();
-              ctx.globalCompositeOperation = "source-over";
-
-              // Aberration//偏差
-
-              var offset = this.r * 0.5;
-              var color = "rgba(" + g + ", " + b + ", " + r + ", 0.5)";
-
-              ctx.globalCompositeOperation = "lighter";
-              ctx.fillStyle = color;
-              ctx.beginPath();
-              ctx.arc(
-                this.x + offset,
-                this.y + offset,
-                this.r,
-                0,
-                2 * Math.PI,
-                false
-              );
-              ctx.fill();
-              ctx.closePath();
-              ctx.globalCompositeOperation = "source-over";
-            },
-          },
-        ]);
-        return Particle;
-      })();
-
       // Crown //水波纹圈模块
       var Crown = (function() {
         function Crown(system, x, y) {
@@ -466,15 +356,15 @@
           this.y = y;
           this.objects = [];
 
-          var particles = getRandomInt(10, 30); // 10, 30 amount of particles//爆炸 粒子数量
-          var crowns = particles * getRandom(0.4, 0.5);
+          // var particles = getRandomInt(10, 30); // 10, 30 amount of particles//爆炸 粒子数量
+          var crowns = getRandomInt(10, 30) * getRandom(0.4, 0.5);
 
           while (crowns-- > 0) {
             this.addCrown();
           }
-          while (particles-- > 0) {
-            this.addParticle();
-          }
+          // while (particles-- > 0) {
+          //   this.addParticle();
+          // }
         }
         _createClass(Explosion, [
           {
@@ -501,12 +391,6 @@
             key: "addCrown",
             value: function addCrown() {
               this.objects.push(new Crown(this, this.x, this.y));
-            },
-          },
-          {
-            key: "addParticle",
-            value: function addParticle() {
-              this.objects.push(new Particle(this, this.x, this.y));
             },
           },
           {
@@ -728,6 +612,6 @@
       console.clear();
       var element = document.querySelector("#canvas1");
       window.Canvas = new Universe(element);
-    </script>
+    </script> -->
   </body>
 </html>

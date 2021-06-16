@@ -21,9 +21,9 @@ Vue.use(mavonEditor);
 // 引入axios
 import axios from "axios";
 // 服务器https
-axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
+// axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
 // 本地http
-// axios.defaults.baseURL = 'http://localhost:3000/'
+axios.defaults.baseURL = 'http://localhost:3000/'
 // 请求携带cookie
 // axios.defaults.withCredentials=true; 
 Vue.prototype.$axios = axios;

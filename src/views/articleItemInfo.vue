@@ -36,32 +36,50 @@ export default {
   components: { loadingArea },
   data() {
     return {
-      articleId:'',
+      articleId:sessionStorage.getItem('articleId'),
       articleList:[],
       loadingFlag:false,
     };
+  },
+  // computed:{
+  //   articleId(){
+  //     return sessionStorage.getItem('articleId')
+  //   }
+  // },
+  watch:{
+    articleId:{
+      handler(val){
+        console.log(val);
+        this.articleId = val;
+        this.getInitArticleList();
+      },
+      deep: true,
+      immediate: false,
+    }
   },
   methods:{
     // 数据初始化
     async getInitArticleList(){
       let queryData = {
-        article_id:sessionStorage.getItem('articleId'),
+        article_id:this.articleId,
         title:"",
         tags:"", 
         create_time:"",
-        category:""
+        category:"",
+        page:1,
+        rows:1,
       };
       this.loadingFlag = true;
       await this.$axios.post('/blog-api/article/list',queryData)
         .then((res)=>{
           this.loadingFlag = false;
           if(res.data.code == 0){
-            res.data.data.forEach((ele)=>{ // 返回时间处理
+            res.data.data.data.forEach((ele)=>{ // 返回时间处理
               let createTime = ele.create_time.split('T');
               ele.create_time = createTime[0] +' '+ createTime[1].split('.')[0];
             })
             // console.log(res.data.data);
-            this.articleList = res.data.data;
+            this.articleList = res.data.data.data;
           }else{
             this.$notify({
               type:'error',
