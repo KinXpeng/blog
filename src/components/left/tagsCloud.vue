@@ -26,7 +26,8 @@ export default {
   methods:{
     // 单个标签点击
     handleCloudItem(item){
-      console.log(item.tags);
+      this.$router.push({name:'articleList'});
+      this.resetSetItem('tagsCloud',item.tags);
     },
     // tags列表
     async initTagsList(){

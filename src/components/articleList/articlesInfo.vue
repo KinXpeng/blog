@@ -2,6 +2,7 @@
   <div class="article-item">
     <!-- loading-area -->
     <loading-area v-show="loadingFlag"></loading-area>
+    <div class="nodata" v-show="articleList.length==0">没有找到想要的结果哦</div>
     <!-- article-card -->
     <div class="article-card">
       <el-card v-for="(item, index) in articleList" :key="index">
@@ -51,31 +52,56 @@ export default {
   data() {
     return {
       articleId:'',
+      tags:'',
       articleList: [], // 返回的文章列表
       loadingFlag:false,
+      initApi:'',
+      queryData:{},
       total:0,
       page:1,
     };
+  },
+  computed:{
+    searchVal(){
+      return this.$store.state.searchValue
+    },
+  },
+  watch:{
+    searchVal:{
+      handler(newVal,oldVal){
+        this.getInitArticleList(newVal);
+      }
+    }
   },
   methods: {
     // 页码 
     handleCurrentChange(page){
       this.page = page;
-      this.getInitArticleList();
+      this.getInitArticleList(this.searchVal);
     },
     // 数据初始化
-    async getInitArticleList(){
-      let queryData = {
-        article_id:this.articleId,
-        title:"",
-        tags:"", 
-        create_time:"",
-        category:"",
-        page:this.page,
-        rows:5,
-      };
+    async getInitArticleList(searchVal){
+      if(searchVal){ // 模糊搜索时
+        this.initApi = '/blog-api/article/likeSearch';
+        this.queryData = {
+          likeValue:searchVal,
+          page:this.page,
+          rows:5
+        };
+      }else{ // 初始化查询
+        this.initApi = '/blog-api/article/list';
+        this.queryData = {
+          article_id:this.articleId,
+          title:"",
+          tags:this.tags, 
+          create_time:"",
+          category:"",
+          page:this.page,
+          rows:5,
+        };
+      }
       this.loadingFlag = true;
-      await this.$axios.post('/blog-api/article/list',queryData)
+      await this.$axios.post(this.initApi,this.queryData)
         .then((res)=>{
           this.loadingFlag = false;
           if(res.data.code == 0){
@@ -95,6 +121,11 @@ export default {
         })
         .catch((err)=>{
           this.loadingFlag = false;
+          this.$notify({
+            type:'error',
+            position:'top-right',
+            message:'网络开小差了哦，请稍后再尝试！'
+          })
           console.log(err);
         })
     },
@@ -105,7 +136,13 @@ export default {
     },
   },
   created() {
-    this.getInitArticleList(); // 数据初始化
+    this.getInitArticleList(this.searchVal); // 数据初始化
+    window.addEventListener('setItem',()=>{
+      if(this.tags != sessionStorage.getItem('tagsCloud')){
+        this.tags = sessionStorage.getItem('tagsCloud');
+        this.getInitArticleList(this.searchVal);
+      }
+    });
   },
 };
 </script>
@@ -195,6 +232,14 @@ export default {
         }
       }
     }
+  }
+
+  // nodata
+  .nodata{
+    text-align:center;
+    margin-bottom:8px;
+    color:#ccc;
+    line-height:150px;
   }
 }
 </style>

@@ -36,32 +36,16 @@ export default {
   components: { loadingArea },
   data() {
     return {
-      articleId:sessionStorage.getItem('articleId'),
       articleList:[],
       loadingFlag:false,
+      article_id:'',
     };
-  },
-  // computed:{
-  //   articleId(){
-  //     return sessionStorage.getItem('articleId')
-  //   }
-  // },
-  watch:{
-    articleId:{
-      handler(val){
-        console.log(val);
-        this.articleId = val;
-        this.getInitArticleList();
-      },
-      deep: true,
-      immediate: false,
-    }
   },
   methods:{
     // 数据初始化
     async getInitArticleList(){
       let queryData = {
-        article_id:this.articleId,
+        article_id:this.article_id,
         title:"",
         tags:"", 
         create_time:"",
@@ -90,6 +74,11 @@ export default {
         })
         .catch((err)=>{
           this.loadingFlag = false;
+          this.$notify({
+            type:'error',
+            position:'top-right',
+            message:'网络开小差了哦，请稍后再尝试！'
+          })
           console.log(err);
         })
     },
@@ -99,7 +88,14 @@ export default {
     },
   },
   created(){
+    this.article_id = sessionStorage.getItem('articleId');
     this.getInitArticleList(); // 数据初始化
+    window.addEventListener('setItem',()=>{
+      if(this.article_id != sessionStorage.getItem('articleId')){
+        this.article_id = sessionStorage.getItem('articleId');
+        this.getInitArticleList();
+      }
+    })
   },
 };
 </script>

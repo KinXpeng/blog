@@ -22,7 +22,7 @@
     <!-- search -->
     <el-col :span="6">
       <div class="header-search">
-        <el-input ref="searchInput" v-model="searchValue" clearable :class="crtlInput"></el-input>
+        <el-input ref="searchInput" @change="handleChange" v-model="searchValue" clearable :class="crtlInput"></el-input>
         <div class="search-icon" :class="crtlInput"><i class="el-icon-search" @click="handleSearch"></i></div>
       </div>
     </el-col>
@@ -149,11 +149,19 @@ export default {
       });
       this.tabList[index].class = 'active';
     },
+    handleChange(val){
+      if(val.trim()){
+        this.handleSearch();
+      }
+    },
     // 控制搜索框
     handleSearch(){
       if(this.searchValue){
-        console.log(this.searchValue);
+        this.$store.state.searchValue = this.searchValue;
       }else{
+        if(this.crtlInput ==''){
+          this.$store.state.searchValue = this.searchValue;
+        }
         this.crtlInput = this.crtlInput =='crtlInput'?'':'crtlInput';
       }
     },
