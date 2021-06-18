@@ -21,11 +21,6 @@
                 <el-input v-model="titleList.title" clearable size="mini"></el-input>
               </el-form-item>
             </el-form>
-            <!-- submit-form -->
-            <div class="submit-form" v-if="false">
-              <el-button type="primary" size="mini">确定</el-button>
-              <el-button type="warning" size="mini" @click="resetForm">重置</el-button>
-            </div>
           </div>
         </el-card>
         <div style="margin:8px 0 18px;" class="el-card">
@@ -93,7 +88,7 @@
                 label="操作"
                 min-width="30%">
                 <template slot-scope="scope">
-                  <el-button type="primary" icon="el-icon-edit" size="mini" circle></el-button>
+                  <el-button type="primary" icon="el-icon-edit" size="mini" circle @click="handleEditArticle(scope.row)"></el-button>
                   <el-button type="danger" icon="el-icon-delete" size="mini" circle @click="handleDeleteArticle(scope.row.article_id)"></el-button>
                 </template>
               </el-table-column>
@@ -122,6 +117,7 @@ export default {
     return {
       articleInfo: "",
       articleHtml: "",
+      articleEditInfo:{},
       articleList:[], // 文章列表
       categoryList:[
         {
@@ -193,13 +189,20 @@ export default {
       return this.$store.state.nightModeFlag?'#181c27':''
     },
   },
+  watch:{
+    articleInfo:{
+      handler(val1){
+        // console.log(val1);
+      }
+    }
+  },
   methods: {
     // 页码 
     handleCurrentChange(page){
       this.page = page;
       this.queryArticleList();
     },
-    // 保存
+    // 保存 && 修改
     async handleArticle(value, render) {
       this.articleHtml = render;
       await this.$refs.titleForm.validate((valid)=>{
@@ -210,40 +213,76 @@ export default {
       await this.$refs.infoForm.validate((valid) => {
         if (valid && this.titleFlag) {
           if(value){
-            let articleDesc = {
-              title:this.titleList.title,
-              tags:this.titleList.tags,
-              category:this.titleList.category,
-              content:this.articleHtml,
-              content_info:value
-            };
-            // console.log(articleDesc);
             this.loadingFlag = true;
-            this.$axios.post('/blog-api/article/add',articleDesc)
-              .then((res)=>{
-                // console.log(res);
-                if(res.data.code == 0){
-                  this.loadingFlag = false;
-                  this.$notify({
-                    type:'success',
-                    position:'top-right',
-                    message:res.data.msg
-                  })
-                  setTimeout(()=>{
-                    location.reload();
-                  },1000)
-                }else{
-                  this.loadingFlag = false;
-                  this.$notify.error({
-                    position:'top-right',
-                    message:res.data.msg
-                  })
-                }
+            // 修改
+            if(this.articleEditInfo.article_id){
+              this.$axios.post('/blog-api/article/update',{
+                article_id:this.articleEditInfo.article_id,
+                title:this.titleList.title,
+                tags:this.titleList.tags,
+                category:this.titleList.category,
+                content:this.articleHtml,
               })
-              .catch((err)=>{
-                this.loadingFlag = false;
-                console.log(err);
-              })
+                .then((res)=>{
+                  if(res.data.code == 0){
+                    this.loadingFlag = false;
+                    this.$notify({
+                      type:'success',
+                      position:'top-right',
+                      message:res.data.msg
+                    })
+                    setTimeout(()=>{
+                      location.reload();
+                    },1000)
+                  }else{
+                    this.loadingFlag = false;
+                    this.$notify({
+                      type:'error',
+                      position:'top-right',
+                      message:res.data.msg
+                    })
+                  }
+                })
+                .catch((err)=>{
+                  this.loadingFlag = false;
+                  console.log(err);
+                })
+            // 保存
+            }else{
+              let articleDesc = {
+                title:this.titleList.title,
+                tags:this.titleList.tags,
+                category:this.titleList.category,
+                content:this.articleHtml,
+                content_info:value
+              };
+              // console.log(articleDesc);
+              this.$axios.post('/blog-api/article/add',articleDesc)
+                .then((res)=>{
+                  // console.log(res);
+                  if(res.data.code == 0){
+                    this.loadingFlag = false;
+                    this.$notify({
+                      type:'success',
+                      position:'top-right',
+                      message:res.data.msg
+                    })
+                    setTimeout(()=>{
+                      location.reload();
+                    },1000)
+                  }else{
+                    this.loadingFlag = false;
+                    this.$notify.error({
+                      position:'top-right',
+                      message:res.data.msg
+                    })
+                  }
+                })
+                .catch((err)=>{
+                  this.loadingFlag = false;
+                  console.log(err);
+                })
+            }
           }else{
             this.$notify({
               message: '文章内容不能为空哦',
@@ -260,6 +299,14 @@ export default {
     resetForm() {
       this.$refs.titleForm.resetFields();
     },
+    // 修改文章
+    async handleEditArticle(row){
+      this.articleEditInfo = row;
+      this.titleList.title = row.title;
+      this.titleList.tags = row.tags;
+      this.titleList.category = row.category;
+      this.articleInfo = row.content_info;
+    },
     // 删除文章
     async handleDeleteArticle(articleId){
       await this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
@@ -273,30 +320,34 @@ export default {
           .then((res)=>{
             // console.log(res);
             if(res.data.code == 0){
-              this.$message({
-                type: 'success',
-                message: res.data.msg
-              });
+              this.$notify({
+                type:'success',
+                position:'top-right',
+                message:res.data.msg
+              })
               this.queryArticleList();
             }else{
-              this.$message({
-                type: 'error',
-                message: res.data.msg
-              });
+              this.$notify({
+                type:'error',
+                position:'top-right',
+                message:res.data.msg
+              })
             }
           })
           .catch((err)=>{
-            this.$message({
-              type: 'error',
-              message: res.data.msg
-            });
+            this.$notify({
+              type:'error',
+              position:'top-right',
+              message:'已取消删除'
+            })
             console.log(err);
           })
       }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });          
+        this.$notify({
+          type:'info',
+          position:'top-right',
+          message:'已取消删除'
+        })          
       });
     },
     // 查询已有文章列表
@@ -378,8 +429,17 @@ export default {
     /deep/ .content-input-wrapper{
       @include background_color("background_color8");
       .auto-textarea-input{
+        @include font_color("text-color");
         @include background_color("background_color8");
       }
+    }
+    /deep/ pre{
+      .hljs{
+        background: none;
+      }
+    }
+    /deep/ .v-show-content{
+      @include font_color("text-color");
     }
   }
   .article-title {

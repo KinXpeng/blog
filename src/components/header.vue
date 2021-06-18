@@ -157,6 +157,7 @@ export default {
     // 控制搜索框
     handleSearch(){
       if(this.searchValue){
+        this.$router.push({name:'articleList'});
         this.$store.state.searchValue = this.searchValue;
       }else{
         if(this.crtlInput ==''){
