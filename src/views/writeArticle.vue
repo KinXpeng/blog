@@ -6,48 +6,19 @@
     </div>
     <!-- article-edit -->
     <div class="article-edit" v-loading="loadingFlag">
-      <el-col :span="18" class="el-card">
-        <mavon-editor
-          ref="md"
-          v-model="articleInfo"
-          @save="handleArticle"
-          style="min-height:700px;"
-          :ishljs="true"
-          :boxShadow="false"
-          :toolbars="markdownOption"
-          defaultOpen="edit"
-          :toolbarsBackground="codeStyle"
-          :previewBackground="codeStyle"
-        ></mavon-editor>
-      </el-col>
-      <el-col :span="6" style="padding-left:8px">
-        <!-- article-intro -->
+      <el-col :span="16">
         <el-card class="article-title">
           <div class="title-info flex">
             <svg class="icon-svg">
-              <use xlink:href="#icon-tianjiayonghu"></use>
+              <use xlink:href="#icon-xinxi"></use>
             </svg>
-            <span class="title-desc">文章概要</span>
+            <span class="title-desc">文章标题</span>
           </div>
           <!-- title-edit -->
           <div class="title-edit">
             <el-form :model="titleList" :rules="titleRules" ref="titleForm" label-width="60px" class="demo-ruleForm">
               <el-form-item label="标题" prop="title">
                 <el-input v-model="titleList.title" clearable size="mini"></el-input>
-              </el-form-item>
-              <el-form-item label="标签" prop="tags">
-                <el-input v-model="titleList.tags" clearable size="mini"></el-input>
-              </el-form-item>
-              <el-form-item label="分类" prop="category">
-                <el-input v-model="titleList.category" clearable size="mini"></el-input>
-                <!-- <el-select v-model="titleList.category" clearable filterable placeholder="" size="mini">
-                  <el-option
-                    v-for="(item,index) in categoryList"
-                    :key="index"
-                    :label="item.categoryName"
-                    :value="item.categoryCode">
-                  </el-option>
-                </el-select> -->
               </el-form-item>
             </el-form>
             <!-- submit-form -->
@@ -57,7 +28,87 @@
             </div>
           </div>
         </el-card>
+        <div style="margin:8px 0 18px;" class="el-card">
+          <mavon-editor
+            ref="md"
+            v-model="articleInfo"
+            @save="handleArticle"
+            style="min-height:700px;"
+            :ishljs="true"
+            :boxShadow="false"
+            :toolbars="markdownOption"
+            defaultOpen="edit"
+            :toolbarsBackground="codeStyle"
+            :previewBackground="codeStyle"
+            :subfield="false"
+          ></mavon-editor>
+        </div>
+      </el-col>
+      <el-col :span="8" style="padding-left:8px">
+        <!-- article-intro -->
+        <el-card class="article-title">
+          <div class="title-info flex">
+            <svg class="icon-svg">
+              <use xlink:href="#icon-tianjiayonghu"></use>
+            </svg>
+            <span class="title-desc">文章概要</span>
+          </div>
+          <!-- info-edit -->
+          <div class="title-edit">
+            <el-form :model="titleList" :rules="infoRules" ref="infoForm" label-width="60px" class="demo-ruleForm">
+              <el-form-item label="标签" prop="tags">
+                <el-input v-model="titleList.tags" clearable size="mini"></el-input>
+              </el-form-item>
+              <el-form-item label="分类" prop="category">
+                <el-input v-model="titleList.category" clearable size="mini"></el-input>
+              </el-form-item>
+            </el-form>
+          </div>
+        </el-card>
         <!-- article-list -->
+        <el-card class="article-list">
+          <div class="list-info flex">
+            <svg class="icon-svg">
+              <use xlink:href="#icon-dingdan"></use>
+            </svg>
+            <span class="list-desc">文章列表</span>
+          </div>
+          <!-- list-expand -->
+          <div class="list-expand">
+            <el-table
+              :data="articleList"
+              stripe
+              style="width: 100%">
+              <el-table-column
+                type="index"
+                min-width="5%">
+              </el-table-column>
+              <el-table-column
+                prop="title"
+                label="标题"
+                show-overflow-tooltip
+                min-width="65%">
+              </el-table-column>
+              <el-table-column
+                label="操作"
+                min-width="30%">
+                <template slot-scope="scope">
+                  <el-button type="primary" icon="el-icon-edit" size="mini" circle></el-button>
+                  <el-button type="danger" icon="el-icon-delete" size="mini" circle @click="handleDeleteArticle(scope.row.article_id)"></el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+          <!-- pagination -->
+          <div class="pagination">
+            <el-pagination
+              layout="total, prev, pager, next"
+              :total="total"
+              @current-change="handleCurrentChange"
+              :page-size="15">
+            </el-pagination>
+          </div>
+        </el-card>
       </el-col>
     </div>
   </div>
@@ -71,6 +122,7 @@ export default {
     return {
       articleInfo: "",
       articleHtml: "",
+      articleList:[], // 文章列表
       categoryList:[
         {
           categoryName:'文章',
@@ -99,7 +151,7 @@ export default {
         table: true, // 表格
         fullscreen: true, // 全屏编辑
         readmodel: false, // 沉浸式阅读
-        htmlcode: true, // 展示html源码
+        htmlcode: false, // 展示html源码
         help: true, // 帮助
         /* 1.3.5 */
         undo: true, // 上一步
@@ -113,7 +165,7 @@ export default {
         aligncenter: true, // 居中
         alignright: true, // 右对齐
         /* 2.2.1 */
-        subfield: false, // 单双栏模式
+        // subfield: true, // 单双栏模式
         preview: true, // 预览
       },
       // codeStyle:'', // 工具栏背景色
@@ -124,9 +176,14 @@ export default {
       },
       titleRules:{
         title:{required: true, message: '请输入文章标题', trigger: 'blur' },
+      },
+      infoRules:{
         tags:{required: true, message: '请输入文章标签', trigger: 'blur' },
         category:{required: true, message: '请输入分类', trigger: 'blur' },
       },
+      page:1,
+      total:0,
+      titleFlag:false,
       loadingFlag:false,
     };
   },
@@ -137,23 +194,34 @@ export default {
     },
   },
   methods: {
+    // 页码 
+    handleCurrentChange(page){
+      this.page = page;
+      this.queryArticleList();
+    },
     // 保存
     async handleArticle(value, render) {
       this.articleHtml = render;
-      await this.$refs.titleForm.validate((valid) => {
-        if (valid) {
+      await this.$refs.titleForm.validate((valid)=>{
+        if(valid){
+          this.titleFlag = true;
+        }
+      });
+      await this.$refs.infoForm.validate((valid) => {
+        if (valid && this.titleFlag) {
           if(value){
             let articleDesc = {
               title:this.titleList.title,
               tags:this.titleList.tags,
               category:this.titleList.category,
-              content:this.articleHtml
+              content:this.articleHtml,
+              content_info:value
             };
             // console.log(articleDesc);
             this.loadingFlag = true;
             this.$axios.post('/blog-api/article/add',articleDesc)
               .then((res)=>{
-                console.log(res);
+                // console.log(res);
                 if(res.data.code == 0){
                   this.loadingFlag = false;
                   this.$notify({
@@ -192,6 +260,67 @@ export default {
     resetForm() {
       this.$refs.titleForm.resetFields();
     },
+    // 删除文章
+    async handleDeleteArticle(articleId){
+      await this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$axios.post('/blog-api/article/delete',{
+          article_id:articleId
+        })
+          .then((res)=>{
+            // console.log(res);
+            if(res.data.code == 0){
+              this.$message({
+                type: 'success',
+                message: res.data.msg
+              });
+              this.queryArticleList();
+            }else{
+              this.$message({
+                type: 'error',
+                message: res.data.msg
+              });
+            }
+          })
+          .catch((err)=>{
+            this.$message({
+              type: 'error',
+              message: res.data.msg
+            });
+            console.log(err);
+          })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });          
+      });
+    },
+    // 查询已有文章列表
+    async queryArticleList(){
+      await this.$axios.post('blog-api/article/list',{
+        article_id:"",
+        title:"",
+        tags:"", 
+        create_time:"",
+        category:"",
+        page:this.page,
+        rows:15,
+      })
+        .then((res)=>{
+          if(res.data.code == 0){
+            this.articleList = res.data.data.data;
+            this.total = res.data.data.records;
+            // console.log(this.articleList);
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    },
     // token验证
     async checkToken(){
       await this.$axios.post('/blog-api/user/checkLogin',{
@@ -214,6 +343,7 @@ export default {
   },
   created() {
     this.checkToken(); // token验证
+    this.queryArticleList(); // 文章列表
   },
   mounted(){
 
@@ -234,7 +364,7 @@ export default {
   z-index: 999;
   @include font_color("text-color");
   @include box_shadow("box_shadow");
-  @include background_color("background_color");
+  @include background_color("background_color7");
 }
 // article-edit
 .article-edit {
@@ -244,9 +374,17 @@ export default {
   transition: 0.5s;
   .v-note-wrapper {
     border: none;
+    @include background_color("background_color8");
+    /deep/ .content-input-wrapper{
+      @include background_color("background_color8");
+      .auto-textarea-input{
+        @include background_color("background_color8");
+      }
+    }
   }
   .article-title {
     font-size: 14px;
+    margin-bottom: 8px;
     .title-info {
       @include border_bottom_style("border_bottom_style");
       padding-bottom: 10px;
@@ -274,17 +412,6 @@ export default {
           }
         }
       }
-      // .el-select{
-      //   width:100%;
-      //   /deep/.el-input__inner{
-      //     width:100%;
-      //     @include background_color("background_color");
-      //     @include border_style("border_style1");
-      //     &:focus{
-      //       border:1px solid #666 !important;
-      //     }
-      //   }
-      // }
       .el-form-item{
         margin-bottom:0;
         /deep/ .el-form-item__label{
@@ -313,8 +440,91 @@ export default {
       }
     }
   }
+  // article-list
+  .article-list{
+    font-size: 14px;
+    margin-bottom: 8px;
+    .list-info {
+      @include border_bottom_style("border_bottom_style");
+      padding-bottom: 10px;
+      .icon-svg {
+        width: 18px;
+        height: 18px;
+        cursor: default;
+      }
+      .list-desc {
+        margin-left: 10px;
+        font-size: 14px;
+        line-height: 18px;
+        cursor: default;
+      }
+    }
+    // list-expand
+    .list-expand{
+      .el-table{
+        font-size: 12px;
+        &::before{
+          height:0;
+        }
+        /deep/ .el-table__header{
+          th{
+            padding:4px 0;
+            @include background_color("background_color8");
+            @include border_bottom_style("border_bottom_style");
+          }
+          tr{
+            @include background_color("background_color8");
+            @include border_bottom_style("border_bottom_style");
+          }
+        }
+        /deep/ .el-table__body{
+          .el-table__row{
+            position: relative;
+            left:0;
+            height:30px;
+            transition: .5s;
+            cursor: default;
+            &:hover{
+              left:2px;
+            }
+            td{
+              padding:4px 0;
+              @include background_color("background_color8");
+              @include border_bottom_style("border_bottom_style");
+            }
+            .el-button--mini{
+              padding:2px;
+            }
+          }
+        }
+        /deep/ .cell{
+          padding-right: 0;
+        }
+      }
+      /deep/ .el-table__expanded-cell{
+        @include background_color("background_color8");
+      }
+    }
+      // pagination
+    .pagination{
+      // border:1px solid red;
+      margin-top:5px;
+      text-align: center;
+      .el-pagination{
+        @include font_color("text-color");
+        /deep/ button{
+          @include font_color("text-color");
+          @include background_color("background_color8");
+        }
+        /deep/ .el-pager{
+          li{
+            @include background_color("background_color8");
+          }
+        }
+      }
+    }
+  }
 }
-
 @media screen and (max-width: 1040px) {
   .article-edit {
     width: 98%;

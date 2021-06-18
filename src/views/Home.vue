@@ -61,7 +61,7 @@ export default {
   width:100%;
   min-width: 800px;
   height:40px;
-  z-index: 999;
+  z-index: 1999;
   @include font_color("text-color");
   @include box_shadow("box_shadow");
   @include background_color("background_color7");

@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "8682206",
+      "name": "信息",
+      "font_class": "xinxi",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "8682247",
+      "name": "发现",
+      "font_class": "faxian",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "8682248",
+      "name": "荣誉",
+      "font_class": "rongyu",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "15723694",
+      "name": "订单",
+      "font_class": "dingdan",
+      "unicode": "e704",
+      "unicode_decimal": 59140
+    },
+    {
       "icon_id": "18165130",
       "name": "签字审核,审批,编辑,书写",
       "font_class": "sign-review",
