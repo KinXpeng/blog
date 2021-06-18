@@ -228,6 +228,7 @@ export default {
                 tags:this.titleList.tags,
                 category:this.titleList.category,
                 content:this.articleHtml,
+                content_info:value
               })
                 .then((res)=>{
                   if(res.data.code == 0){
