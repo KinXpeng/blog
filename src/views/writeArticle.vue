@@ -36,7 +36,20 @@
             :toolbarsBackground="codeStyle"
             :previewBackground="codeStyle"
             :subfield="false"
-          ></mavon-editor>
+          >
+            <!-- mavon插槽，增加新增文章图标 -->
+            <template v-slot:left-toolbar-after>
+              <button
+                type="button"
+                title="新增文章"
+                class="op-icon"
+                aria-hidden="true"
+                @click="handleAddArticle"
+              >
+                <i class="el-icon-document-add" />
+              </button>
+            </template>
+          </mavon-editor>
         </div>
       </el-col>
       <el-col :span="8" style="padding-left:8px">
@@ -189,13 +202,6 @@ export default {
       return this.$store.state.nightModeFlag?'#181c27':''
     },
   },
-  watch:{
-    articleInfo:{
-      handler(val1){
-        // console.log(val1);
-      }
-    }
-  },
   methods: {
     // 页码 
     handleCurrentChange(page){
@@ -287,7 +293,7 @@ export default {
             this.$notify({
               message: '文章内容不能为空哦',
               position:'top-right',
-              type:'warning'
+              type:'error'
             });
           }
         } else {
@@ -295,9 +301,15 @@ export default {
         }
       });
     },
+    // 新增文章按钮
+    handleAddArticle(){
+      this.articleEditInfo.article_id = '';
+      this.resetForm();
+    },
     // 文章概要重置
     resetForm() {
       this.$refs.titleForm.resetFields();
+      this.$refs.infoForm.resetFields();
     },
     // 修改文章
     async handleEditArticle(row){
@@ -326,6 +338,10 @@ export default {
                 message:res.data.msg
               })
               this.queryArticleList();
+              // 删除时，若编辑器里的文章id与该文章相同，则清空id
+              if(this.articleEditInfo.article_id == articleId){
+                this.articleEditInfo.article_id = '';
+              }
             }else{
               this.$notify({
                 type:'error',
