@@ -105,7 +105,8 @@ export default {
   user-select: none;
   // blog-duration-time
   .blog-card{
-    cursor: s-resize;
+    cursor: default;
+    // cursor: s-resize;
     margin-bottom:6px;
   }
   .time-info{
@@ -134,7 +135,8 @@ export default {
   }
   // other-duration-time
   .love-card{
-    cursor: s-resize;
+    cursor: default;
+    // cursor: s-resize;
     margin-bottom:6px;
     .love-avatar{
       justify-content: space-around;

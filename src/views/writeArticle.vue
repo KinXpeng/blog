@@ -21,6 +21,7 @@
         ></mavon-editor>
       </el-col>
       <el-col :span="6" style="padding-left:8px">
+        <!-- article-intro -->
         <el-card class="article-title">
           <div class="title-info flex">
             <svg class="icon-svg">
@@ -56,6 +57,7 @@
             </div>
           </div>
         </el-card>
+        <!-- article-list -->
       </el-col>
     </div>
   </div>
