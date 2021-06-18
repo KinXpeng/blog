@@ -2,7 +2,7 @@
   <div class="article-item">
     <!-- loading-area -->
     <loading-area v-show="loadingFlag"></loading-area>
-    <div class="nodata" v-show="articleList.length==0">没有找到想要的结果哦</div>
+    <div class="nodata" v-show="(articleList.length==0)&&!loadingFlag">没有找到想要的结果哦</div>
     <!-- article-card -->
     <div class="article-card">
       <el-card v-for="(item, index) in articleList" :key="index">
@@ -69,6 +69,7 @@ export default {
   watch:{
     searchVal:{
       handler(newVal,oldVal){
+        this.tags = '';
         this.getInitArticleList(newVal);
       }
     }
@@ -140,7 +141,7 @@ export default {
     window.addEventListener('setItem',()=>{
       if(this.tags != sessionStorage.getItem('tagsCloud')){
         this.tags = sessionStorage.getItem('tagsCloud');
-        this.getInitArticleList(this.searchVal);
+        this.getInitArticleList('');
       }
     });
   },
@@ -238,7 +239,7 @@ export default {
   .nodata{
     text-align:center;
     margin-bottom:8px;
-    color:#ccc;
+    color:#666;
     line-height:150px;
   }
 }

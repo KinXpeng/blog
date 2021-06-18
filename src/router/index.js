@@ -72,7 +72,7 @@ const routes = [
   // },
   // 后台页面路由
   {
-    path: '/login',
+    path: '/kx_login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '../views/login.vue')
   },

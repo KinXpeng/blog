@@ -67,7 +67,7 @@ export default {
         }
         if (this.loginCount === 3) {
           // 大于三次重置
-          this.$router.push({path:'/login'});
+          this.$router.push({name:'login'});
           this.startTime = nextTime;
           this.lastTime = nextTime;
           this.loginCount = 0;

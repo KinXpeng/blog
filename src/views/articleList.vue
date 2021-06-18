@@ -1,7 +1,7 @@
 <template>
   <div class="article-list">
     <div class="article-header">
-      <el-tabs v-model="activeName">
+      <el-tabs v-model="activeName" @tab-click="handleTabClick">
         <el-tab-pane label="全部" name="first">
           <articles-info></articles-info>
         </el-tab-pane>
@@ -23,6 +23,14 @@ export default {
     };
   },
   methods:{
+    // 标签切换时
+    handleTabClick(tab){
+      if(tab.index == 0){ // 点击全部tab的时候刷新数据
+        tab.$children[0].tags = '';
+        this.$store.state.searchValue = '';
+        tab.$children[0].getInitArticleList();
+      }
+    },
   },
   created(){
   },

@@ -168,7 +168,20 @@ export default {
     }
   }
 }
-// /deep/ pre::-webkit-scrollbar{
-//   display: none;
-// }
+/deep/ pre::-webkit-scrollbar {
+  width: 10px;
+  height: 0;
+}
+/deep/ .markdown-body:hover pre::-webkit-scrollbar {
+  width: 10px;
+  height: 4px;
+}
+/deep/ pre::-webkit-scrollbar-thumb { //滑块部分
+  border-radius: 5px;
+  background-color: #aaa;
+}
+/deep/ pre::-webkit-scrollbar-track { //轨道部分
+  @include background_color("background_color2");
+  border-radius: 5px;
+}
 </style>
