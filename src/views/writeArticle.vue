@@ -36,6 +36,8 @@
             :toolbarsBackground="codeStyle"
             :previewBackground="codeStyle"
             :subfield="false"
+            @imgAdd="$imgAdd"
+            @imgDel="$imgDel"
           >
             <!-- mavon插槽，增加新增文章图标 -->
             <template v-slot:left-toolbar-after>
@@ -207,6 +209,24 @@ export default {
     handleCurrentChange(page){
       this.page = page;
       this.queryArticleList();
+    },
+    // 图片上传
+    async $imgAdd(pos, $file){
+      var formdata = new FormData();
+        formdata.append('file', $file);
+        await this.$axios.post('/blog-api/upload/imgAdd',formdata,{
+          'Content-Type': 'multipart/form-data'
+        })
+          .then((res)=>{
+            console.log(res);
+          })
+          .catch((err)=>{
+            console.log(err);
+          })
+    },
+    // 图片删除
+    $imgDel(){
+      
     },
     // 保存 && 修改
     async handleArticle(value, render) {

@@ -28,8 +28,8 @@
         <!-- icon -->
         <div class="article-icon flex">
           <span><i class="el-icon-view"></i>123</span>
-          <span><i class="el-icon-price-tag"></i>{{item.tags}}</span>
-          <span><i class="el-icon-orange"></i>{{item.category}}</span>
+          <span><i class="el-icon-orange"></i>{{item.tags}}</span>
+          <span><i class="el-icon-chat-dot-round"></i>123</span>
         </div>
       </el-card>
     </div>
@@ -199,18 +199,26 @@ export default {
     .article-info{
       overflow: hidden;
       height:34px;
-      padding-bottom:4px;
-      margin-bottom:5px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      padding-bottom:8px;
+      margin-bottom:10px;
       font-size: 12px;
-      color:#999aa9;
+      @include font_color("text-color");
       line-height:16px;
     }
     // article-icon
     .article-icon{
       span{
-        padding:0 10px;
+        padding-right:40px;
         font-size: 12px;
-        color:#bfc3c8;
+        color:#b4b7b9;
+        &:hover{
+          color:#53bdf9;
+          cursor: pointer;
+        }
         i{
           margin-right: 2px;
         }

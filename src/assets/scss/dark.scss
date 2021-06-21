@@ -20,6 +20,7 @@ $themes: (
     border_style3: 1px solid #ebeef5, // 主边框色3
     border_bottom_style: 1px solid #f4f4f4, // 下边框色
     border_bottom_style1: 1px solid #f6f6f6, // 下边框色1
+    border_right_style: 1px solid #f1f1f1, // 右边框色
     box_shadow: 0 1px 3px 0 #ddd, // 主阴影
   ),
   dark: (
@@ -42,6 +43,7 @@ $themes: (
     border_style3: 1px solid #333333, // 边框色3
     border_bottom_style: 1px solid #252526, // 下边框色
     border_bottom_style1: 1px solid #1e1e1e, // 下边框色1
+    border_right_style: 1px solid #252526, // 右边框色
     box_shadow: 0 1px 3px 0 #181c27, // 主阴影
   )
 );
@@ -87,6 +89,11 @@ $themes: (
 @mixin border_bottom_style($color) {
   @include themeify {
     border-bottom: themed($color)!important;
+  }
+}
+@mixin border_right_style($color) {
+  @include themeify {
+    border-right: themed($color)!important;
   }
 }
 
