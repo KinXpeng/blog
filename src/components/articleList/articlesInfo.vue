@@ -22,7 +22,13 @@
           </div>
         </div>
         <!-- article-title -->
-        <div class="article-title" @click="lookArticleInfo(item.article_id)">{{item.title}}</div>
+        <div class="article-title flex" @click="lookArticleInfo(item.article_id)">
+          <div class="title-info">{{item.title}}</div>
+          <div class="title-brand flex">
+            <span>原</span>
+            <span>荐</span>
+          </div>
+        </div>
         <!-- article-info -->
         <div class="article-info" v-html="item.content"></div>
         <!-- icon -->
@@ -190,10 +196,30 @@ export default {
     .article-title{
       padding:10px 0 5px;
       font-size: 14px;
-      cursor: pointer;
-      &:hover{
-        @include font_color("text-color1");
+      .title-info{
+        cursor: pointer;
+        &:hover{
+          @include font_color("text-color1");
+        }
       }
+      .title-brand{
+        margin-left:10px;
+        span{
+          position: relative;
+          top:-1px;
+          background: salmon;
+          border-radius: 3px;
+          font-size: 12px;
+          color:#fff;
+          padding:2px;
+          cursor: default;
+          margin-right: 5px;
+          &:nth-child(2){
+            background: rgb(146, 189, 224);
+          }
+        }
+      }
+      
     }
     // article-info
     .article-info{

@@ -218,15 +218,61 @@ export default {
           'Content-Type': 'multipart/form-data'
         })
           .then((res)=>{
-            console.log(res);
+            if(res.data.code == 0){
+              // console.log(res.data.data);
+              this.$refs.md.$img2Url(pos,res.data.data);
+              this.$notify({
+                type:'success',
+                position:'top-right',
+                message:res.data.msg
+              })
+            }else{
+              this.$notify({
+                type:'error',
+                position:'top-right',
+                message:res.data.msg
+              })
+            }
           })
           .catch((err)=>{
+            this.$notify({
+              type:'error',
+              position:'top-right',
+              message:'网络可能出了点小问题哦'
+            })
             console.log(err);
           })
     },
     // 图片删除
-    $imgDel(){
-      
+    async $imgDel(pos){
+      await this.$axios.post('/blog-api/upload/imgDel',{
+        filePath:pos[0]
+      })
+        .then((res)=>{
+          // console.log(res);
+          if(res.data.code == 0){
+            this.$notify({
+              type:'success',
+              position:'top-right',
+              message:res.data.msg
+            })
+          }else{
+            this.$notify({
+              type:'error',
+              position:'top-right',
+              message:res.data.msg
+            })
+          }
+        })
+        .catch((err)=>{
+          this.$notify({
+            type:'error',
+            position:'top-right',
+            message:'网络可能出了点小问题哦'
+          })
+          console.log(err);
+        })
+
     },
     // 保存 && 修改
     async handleArticle(value, render) {
