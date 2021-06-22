@@ -12,9 +12,9 @@
           <li class="list-item" v-for="(item,index) in hotArticleList" :key="index" @click="hotArticleInfo(item.article_id)">
             <p class="item-title">{{item.title}}</p>
             <div class="item-desc flex">
-              <span><i class="el-icon-view"></i>123</span>
+              <span><i class="el-icon-view"></i>{{item.view_count}}</span>
               <span><i class="el-icon-time"></i>{{item.create_time}}</span>
-              <span><i class="el-icon-chat-dot-round"></i>32</span>
+              <span><i class="el-icon-chat-dot-round"></i>0</span>
             </div>
           </li>
         </ul>
@@ -38,7 +38,7 @@ export default {
         title:"",
         tags:"", 
         create_time:"",
-        category:"",
+        category:"article",
         page:1,
         rows:10,
       };
@@ -120,7 +120,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       // white-space: nowrap;
-      font-family: Georgia, 'Times New Roman', Times, serif;
+      // font-family: Georgia, 'Times New Roman', Times, serif;
       height:32px;
       line-height: 16px;
     }

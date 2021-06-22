@@ -77,6 +77,7 @@ export default {
       articleList:[],
       loadingFlag:false,
       article_id:'',
+      thumbsFlag:false,
     };
   },
   methods:{
@@ -100,8 +101,9 @@ export default {
               let createTime = ele.create_time.split('T');
               ele.create_time = createTime[0] +' '+ createTime[1].split('.')[0];
             })
-            // console.log(res.data.data);
+            // console.log(res.data.data.data[0]);
             this.articleList = res.data.data.data;
+            this.initViewCounts(this.articleList[0]); // 浏览量
           }else{
             this.$notify({
               type:'error',
@@ -127,7 +129,15 @@ export default {
     },
     // 点赞
     async handleThumbs(articleInfo){
-      if(sessionStorage.getItem('thumbs')){
+      let thumbsArray = JSON.parse(sessionStorage.getItem('thumbsArr'));
+      if(thumbsArray && thumbsArray.length>0){
+        thumbsArray.forEach((ele)=>{
+          if(ele == articleInfo.article_id){
+            this.thumbsFlag = true;
+          }
+        })
+      }
+      if(JSON.parse(sessionStorage.getItem('thumbs')) && this.thumbsFlag){
         this.$notify({
           type:'error',
           position:'top-right',
@@ -147,7 +157,14 @@ export default {
                 message:'感谢您的点赞哦'
               })
             }
-            sessionStorage.setItem('thumbs',false);
+            sessionStorage.setItem('thumbs',true);
+            if(JSON.parse(sessionStorage.getItem('thumbsArr')) == undefined || JSON.parse(sessionStorage.getItem('thumbsArr')) == null){
+              sessionStorage.setItem('thumbsArr',JSON.stringify([articleInfo.article_id]));
+            }else{
+              let thumbsArr1 = JSON.parse(sessionStorage.getItem('thumbsArr'));
+              thumbsArr1.push(articleInfo.article_id);
+              sessionStorage.setItem('thumbsArr',JSON.stringify(thumbsArr1));
+            }
           })
           .catch((err)=>{
             console.log(err);
@@ -158,6 +175,26 @@ export default {
             })
           })
       }
+    },
+    // 浏览量
+    async initViewCounts(articleInfo){
+      articleInfo.view_count++;
+      await this.$axios.post("/blog-api/article/viewCounts",{
+        article_id:articleInfo.article_id,
+        view_count:articleInfo.view_count
+      })
+        .then((res)=>{
+          if(res.data.code == 0){
+            this.$notify({
+              type:'success',
+              position:'top-right',
+              message:'感兴趣的话就点个赞哦'
+            })
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
     },
   },
   created(){

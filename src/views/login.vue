@@ -73,11 +73,11 @@ export default {
               if (res.data.code === 0) {
                 setTimeout(()=>{
                   this.loading = false;
-                  this.$message({
-                    message: "登录成功",
-                    showClose: true,
-                    type: "success",
-                  });
+                  this.$notify({
+                    type:'success',
+                    position:'top-right',
+                    message:'登录成功'
+                  })
                 },500)
                 sessionStorage.setItem('cookie',res.data.token); // 储存cookie
                 setTimeout(() => {
@@ -87,22 +87,22 @@ export default {
               } else {
                 setTimeout(() => {
                   this.loading = false;
-                  this.$message({
-                    message: "账号或密码错误",
-                    showClose: true,
-                    type: "error",
-                  });
+                  this.$notify({
+                    type:'error',
+                    position:'top-right',
+                    message:'账号或密码错误'
+                  })
                 }, 1000);
               }
             })
             .catch((err) => {
               setTimeout(()=>{
                 this.loading = false;
-                this.$message({
-                  message: "服务器开小差了哦，请稍后再尝试登录。",
-                  showClose: true,
-                  type: "error",
-                });
+                this.$notify({
+                  type:'error',
+                  position:'top-right',
+                  message:'服务器开小差了哦，请稍后再尝试登录。'
+                })
               },1000)
               console.log(err);
             });

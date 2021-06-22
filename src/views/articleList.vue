@@ -3,20 +3,25 @@
     <div class="article-header">
       <el-tabs v-model="activeName" @tab-click="handleTabClick">
         <el-tab-pane label="全部" name="first">
-          <articles-info></articles-info>
+          <whole-articles></whole-articles>
         </el-tab-pane>
-        <el-tab-pane label="文章" name="second">文章</el-tab-pane>
+        <el-tab-pane label="文章" name="second">
+          <whole-articles :category="'article'"></whole-articles>
+        </el-tab-pane>
         <el-tab-pane label="热门" name="third">热门</el-tab-pane>
-        <el-tab-pane label="说说" name="fourth">说说</el-tab-pane>
+        <el-tab-pane label="说说" name="fourth">
+          <moments-info></moments-info>
+        </el-tab-pane>
       </el-tabs>
     </div>
   </div>
 </template>
 
 <script>
-import articlesInfo from '../components/articleList/articlesInfo.vue';
+import momentsInfo from '../components/articleList/momentsInfo.vue';
+import wholeArticles from '../components/articleList/wholeArticles.vue';
 export default {
-  components: { articlesInfo },
+  components: { wholeArticles, momentsInfo },
   data() {
     return {
       activeName:'first',
@@ -24,12 +29,12 @@ export default {
   },
   methods:{
     // 标签切换时
-    handleTabClick(tab){
-      if(tab.index == 0){ // 点击全部tab的时候刷新数据
+    handleTabClick(tab){ // 点击tab的时候刷新数据
+      if(tab.$children[0]){
         tab.$children[0].tags = '';
-        this.$store.state.searchValue = '';
         tab.$children[0].getInitArticleList();
       }
+      this.$store.state.searchValue = '';
     },
   },
   created(){

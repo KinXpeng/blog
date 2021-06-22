@@ -22,21 +22,15 @@
           </div>
         </div>
         <!-- article-title -->
-        <div class="article-title flex" @click="lookArticleInfo(item.article_id)">
+        <div class="article-title flex">
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
-            <span>原</span>
-            <span>荐</span>
+            <span>新</span>
+            <!-- <span>荐</span> -->
           </div>
         </div>
         <!-- article-info -->
-        <div class="article-info" v-html="item.content"></div>
-        <!-- icon -->
-        <div class="article-icon flex">
-          <span><i class="el-icon-view"></i>123</span>
-          <span><i class="el-icon-orange"></i>{{item.tags}}</span>
-          <span><i class="el-icon-chat-dot-round"></i>123</span>
-        </div>
+        <div class="article-info markdown-body" v-html="item.content"></div>
       </el-card>
     </div>
     <!-- pagination -->
@@ -96,13 +90,13 @@ export default {
           rows:5
         };
       }else{ // 初始化查询
-        this.initApi = '/blog-api/article/list';
+        this.initApi = '/blog-api/article/listMoments';
         this.queryData = {
-          article_id:this.articleId,
+          article_id:"",
           title:"",
-          tags:this.tags, 
+          tags:"", 
           create_time:"",
-          category:"",
+          category:"moments",
           page:this.page,
           rows:5,
         };
@@ -136,20 +130,9 @@ export default {
           console.log(err);
         })
     },
-    // 查看文章明细
-    lookArticleInfo(articleId){
-      sessionStorage.setItem('articleId',articleId);
-      this.$router.push({name:'articleItemInfo'});
-    },
   },
   created() {
     this.getInitArticleList(this.searchVal); // 数据初始化
-    window.addEventListener('setItem',()=>{
-      if(this.tags != sessionStorage.getItem('tagsCloud')){
-        this.tags = sessionStorage.getItem('tagsCloud');
-        this.getInitArticleList('');
-      }
-    });
   },
 };
 </script>
@@ -196,18 +179,13 @@ export default {
     .article-title{
       padding:10px 0 5px;
       font-size: 14px;
-      .title-info{
-        cursor: pointer;
-        &:hover{
-          @include font_color("text-color1");
-        }
-      }
+      @include font_color("text-color1");
       .title-brand{
         margin-left:10px;
         span{
           position: relative;
           top:-1px;
-          background: salmon;
+          background: rgb(105, 165, 14);
           border-radius: 3px;
           font-size: 12px;
           color:#fff;
@@ -223,31 +201,19 @@ export default {
     }
     // article-info
     .article-info{
-      overflow: hidden;
-      height:34px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      text-overflow: ellipsis;
       padding-bottom:8px;
       margin-bottom:10px;
       font-size: 12px;
       @include font_color("text-color");
       line-height:16px;
     }
-    // article-icon
-    .article-icon{
-      span{
-        padding-right:40px;
+    // markdown-body
+    .markdown-body{
+      @include font_color("text-color1");
+      @include background_color("background_color");
+      /deep/ pre{
         font-size: 12px;
-        color:#b4b7b9;
-        &:hover{
-          color:#53bdf9;
-          cursor: pointer;
-        }
-        i{
-          margin-right: 2px;
-        }
+        @include background_color("background_color6");
       }
     }
   }
@@ -276,5 +242,42 @@ export default {
     color:#666;
     line-height:150px;
   }
+}
+
+// 滚动条部分
+// pre
+/deep/ pre::-webkit-scrollbar {
+  width: 10px;
+  height: 0;
+}
+/deep/ .markdown-body:hover pre::-webkit-scrollbar {
+  width: 10px;
+  height: 4px;
+}
+/deep/ pre::-webkit-scrollbar-thumb { //滑块部分
+  border-radius: 5px;
+  background-color: #aaa;
+}
+/deep/ pre::-webkit-scrollbar-track { //轨道部分
+  @include background_color("background_color2");
+  border-radius: 5px;
+}
+
+// hljs
+/deep/ pre .hljs::-webkit-scrollbar {
+  width: 10px;
+  height: 0;
+}
+/deep/ .markdown-body:hover pre .hljs::-webkit-scrollbar {
+  width: 10px;
+  height: 4px;
+}
+/deep/ pre .hljs::-webkit-scrollbar-thumb { //滑块部分
+  border-radius: 5px;
+  background-color: #aaa;
+}
+/deep/ pre .hljs::-webkit-scrollbar-track { //轨道部分
+  @include background_color("background_color2");
+  border-radius: 5px;
 }
 </style>

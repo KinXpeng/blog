@@ -83,6 +83,12 @@
             </svg>
             <span class="list-desc">文章列表</span>
           </div>
+          <!-- list-search -->
+          <div class="list-search">
+            <el-input placeholder="请输入内容" clearable size="mini" v-model="tableValue">
+              <el-button slot="append" icon="el-icon-search" @click="tableSearch"></el-button>
+            </el-input>
+          </div>
           <!-- list-expand -->
           <div class="list-expand">
             <el-table
@@ -104,7 +110,7 @@
                 min-width="30%">
                 <template slot-scope="scope">
                   <el-button type="primary" icon="el-icon-edit" size="mini" circle @click="handleEditArticle(scope.row)"></el-button>
-                  <el-button type="danger" icon="el-icon-delete" size="mini" circle @click="handleDeleteArticle(scope.row.article_id)"></el-button>
+                  <el-button type="danger" icon="el-icon-delete" size="mini" circle @click="handleDeleteArticle(scope.row)"></el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -130,8 +136,9 @@ export default {
   components: {  headerCom },
   data() {
     return {
-      articleInfo: "",
-      articleHtml: "",
+      tableValue:"", // 搜索
+      articleInfo: "", // 文章不含html格式
+      articleHtml: "", // 文章html格式
       articleEditInfo:{},
       articleList:[], // 文章列表
       categoryList:[
@@ -257,10 +264,15 @@ export default {
               message:res.data.msg
             })
           }else{
+            // this.$notify({
+            //   type:'error',
+            //   position:'top-right',
+            //   message:res.data.msg
+            // })
             this.$notify({
-              type:'error',
+              type:'warning',
               position:'top-right',
-              message:res.data.msg
+              message:'删除功能紧急开发中，敬请稍后！'
             })
           }
         })
@@ -387,14 +399,15 @@ export default {
       this.articleInfo = row.content_info;
     },
     // 删除文章
-    async handleDeleteArticle(articleId){
+    async handleDeleteArticle(articleInfo){
       await this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         this.$axios.post('/blog-api/article/delete',{
-          article_id:articleId
+          article_id:articleInfo.article_id,
+          category:articleInfo.category
         })
           .then((res)=>{
             // console.log(res);
@@ -406,7 +419,7 @@ export default {
               })
               this.queryArticleList();
               // 删除时，若编辑器里的文章id与该文章相同，则清空id
-              if(this.articleEditInfo.article_id == articleId){
+              if(this.articleEditInfo.article_id == articleInfo.article_id){
                 this.articleEditInfo.article_id = '';
               }
             }else{
@@ -432,6 +445,29 @@ export default {
           message:'已取消删除'
         })          
       });
+    },
+    // 列表模糊搜索
+    async tableSearch(){
+      if(this.tableValue.trim()){
+        // console.log(this.tableValue);
+        await this.$axios.post('/blog-api/article/likeSearch',{
+          likeValue:this.tableValue,
+          page:this.page,
+          rows:15,
+        })
+          .then((res)=>{
+            if(res.data.code == 0){
+              // console.log(res);
+              this.articleList = res.data.data.data;
+              this.total = res.data.data.records;
+            }
+          })
+          .catch((err)=>{
+            console.log(err);
+          })
+      }else{
+        this.queryArticleList();
+      }
     },
     // 查询已有文章列表
     async queryArticleList(){
@@ -587,6 +623,31 @@ export default {
   .article-list{
     font-size: 14px;
     margin-bottom: 8px;
+    // list-search
+    .list-search{
+      margin-top:8px; 
+      // el-input 
+      .el-input{
+        /deep/ .el-input__inner{
+          font-size: 12px;
+          @include background_color("background_color");
+          @include border_style("border_style1");
+          &:focus{
+            border:1px solid #666 !important;
+          }
+        }
+        /deep/ .el-input-group__append{
+          @include background_color("background_color");
+          @include border_style("border_style1");
+          .el-button{
+            transition: .5s;
+          }
+          &:hover .el-button{
+            transform: scale(1.2);
+          }
+        } 
+      }
+    }
     .list-info {
       @include border_bottom_style("border_bottom_style");
       padding-bottom: 10px;
