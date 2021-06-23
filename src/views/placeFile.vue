@@ -5,14 +5,14 @@
       <div class="location-info flex">
         <span>当前位置：</span>
         <span class="location-desc">归档</span>
-        <i class="el-icon-arrow-right"></i>
-        <span>123</span>
-        <i class="el-icon-arrow-right"></i>
-        <span class="location-title">123</span>
+          <!-- <i class="el-icon-arrow-right"></i>
+          <span>123</span>
+          <i class="el-icon-arrow-right"></i>
+          <span class="location-title">123</span> -->
       </div>
     </el-card>
     <!-- place-history -->
-    <el-card class="place-history">123</el-card>
+    <div class="place-history el-card">敬请期待。。。</div>
   </div>
 </template>
 
