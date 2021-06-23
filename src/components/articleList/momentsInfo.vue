@@ -40,17 +40,17 @@
               </svg>
               <span>点赞({{item.thumbs}})</span>
             </p>
-            <!-- <p>
-              <svg class="icon-svg">
-                <use xlink:href="#icon-qiandai"></use>
-              </svg>
-              <span>打赏</span>
-            </p> -->
             <p @click="handleComments(item)">
               <svg class="icon-svg">
                 <use xlink:href="#icon-pinglun"></use>
               </svg>
               <span>评论</span>
+            </p>
+            <p @click="handleComments(item)">
+              <svg class="icon-svg">
+                <use xlink:href="#icon-xingtuxuetang-fenxiang-"></use>
+              </svg>
+              <span>分享</span>
             </p>
           </div>
         </div>
@@ -327,6 +327,10 @@ export default {
       /deep/ pre{
         font-size: 12px;
         @include background_color("background_color6");
+      }
+      /deep/ img{
+        // width:48%;
+        margin:0 2px;
       }
     }
   }
