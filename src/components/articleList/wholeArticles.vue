@@ -26,7 +26,8 @@
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
             <span>原</span>
-            <span>荐</span>
+            <span v-show="page!=1">荐</span>
+            <span v-if="page==1">新</span>
           </div>
         </div>
         <!-- article-info -->
@@ -217,6 +218,9 @@ export default {
           margin-right: 5px;
           &:nth-child(2){
             background: rgb(146, 189, 224);
+          }
+          &:nth-child(3){
+            background: rgb(105, 165, 14);
           }
         }
       }

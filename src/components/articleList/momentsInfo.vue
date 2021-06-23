@@ -31,6 +31,29 @@
         </div>
         <!-- article-info -->
         <div class="article-info markdown-body" v-html="item.content"></div>
+        <!-- article-thumbs -->
+        <div class="article-thumbs">
+          <div v-if="item" class="thumbs-item flex">
+            <p @click="handleThumbs(item)">
+              <svg class="icon-svg">
+                <use xlink:href="#icon-dianzan"></use>
+              </svg>
+              <span>点赞({{item.thumbs}})</span>
+            </p>
+            <!-- <p>
+              <svg class="icon-svg">
+                <use xlink:href="#icon-qiandai"></use>
+              </svg>
+              <span>打赏</span>
+            </p> -->
+            <p @click="handleComments(item)">
+              <svg class="icon-svg">
+                <use xlink:href="#icon-pinglun"></use>
+              </svg>
+              <span>评论</span>
+            </p>
+          </div>
+        </div>
       </el-card>
     </div>
     <!-- pagination -->
@@ -55,6 +78,7 @@ export default {
       tags:'',
       articleList: [], // 返回的文章列表
       loadingFlag:false,
+      thumbsFlag:false, // 是否点赞
       initApi:'',
       queryData:{},
       total:0,
@@ -90,13 +114,13 @@ export default {
           rows:5
         };
       }else{ // 初始化查询
-        this.initApi = '/blog-api/article/listMoments';
+        this.initApi = '/blog-api/article/list';
         this.queryData = {
           article_id:"",
           title:"",
           tags:"", 
           create_time:"",
-          category:"moments",
+          category:"moment",
           page:this.page,
           rows:5,
         };
@@ -107,7 +131,8 @@ export default {
           this.loadingFlag = false;
           if(res.data.code == 0){
             res.data.data.data.forEach((ele)=>{ // 返回时间处理
-              ele.create_time = ele.create_time.split('T')[0];
+              let time = ele.create_time.split('T');
+              ele.create_time = time[0] +" "+time[1].split('.')[0];
             })
             // console.log(res.data.data);
             this.total = res.data.data.records;
@@ -129,6 +154,63 @@ export default {
           })
           console.log(err);
         })
+    },
+    // 点赞
+    async handleThumbs(articleInfo){
+      let thumbsArray = JSON.parse(sessionStorage.getItem('thumbsArr'));
+      if(thumbsArray && thumbsArray.length>0){
+        thumbsArray.forEach((ele)=>{
+          if(ele == articleInfo.article_id){
+            this.thumbsFlag = true;
+          }
+        })
+      }
+      if(JSON.parse(sessionStorage.getItem('thumbs')) && this.thumbsFlag){
+        this.$notify({
+          type:'error',
+          position:'top-right',
+          message:'您已经点过赞啦'
+        })
+      }else{
+        articleInfo.thumbs++;
+        await this.$axios.post("/blog-api/article/thumbs",{
+          article_id:articleInfo.article_id,
+          thumbs:articleInfo.thumbs
+        })
+          .then((res)=>{
+            if(res.data.code == 0){
+              this.$notify({
+                type:'success',
+                position:'top-right',
+                message:'感谢您的点赞哦'
+              })
+            }
+            sessionStorage.setItem('thumbs',true);
+            if(JSON.parse(sessionStorage.getItem('thumbsArr')) == undefined || JSON.parse(sessionStorage.getItem('thumbsArr')) == null){
+              sessionStorage.setItem('thumbsArr',JSON.stringify([articleInfo.article_id]));
+            }else{
+              let thumbsArr1 = JSON.parse(sessionStorage.getItem('thumbsArr'));
+              thumbsArr1.push(articleInfo.article_id);
+              sessionStorage.setItem('thumbsArr',JSON.stringify(thumbsArr1));
+            }
+          })
+          .catch((err)=>{
+            console.log(err);
+            this.$notify({
+              type:'error',
+              position:'top-right',
+              message:'可能出了一点点小差错呢'
+            })
+          })
+      }
+    },
+    // 评论
+    handleComments(articleInfo){
+      this.$notify({
+        type:'info',
+        position:'top-right',
+        message:'开发中，敬请期待。。。'
+      })
     },
   },
   created() {
@@ -177,9 +259,11 @@ export default {
     }
     // article-title
     .article-title{
-      padding:10px 0 5px;
-      font-size: 14px;
+      padding:10px 0;
       @include font_color("text-color1");
+      .title-info{
+        font-size: 18px;
+      }
       .title-brand{
         margin-left:10px;
         span{
@@ -197,7 +281,6 @@ export default {
           }
         }
       }
-      
     }
     // article-info
     .article-info{
@@ -207,10 +290,40 @@ export default {
       @include font_color("text-color");
       line-height:16px;
     }
+    // article-thumbs
+    .article-thumbs{
+      padding:4px 0;
+    }
+    .thumbs-item{
+      &>p{
+        flex:1;
+        height:20px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+        cursor: pointer;
+        @include border_right_style("border_right_style");
+        &:last-child{
+          border-right:none !important;
+        }
+        &:hover{
+          color:#53bdf9;
+        }
+        .icon-svg{
+          width:14px;
+          height:14px;
+          margin:3px;
+        }
+        span{
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+    }
     // markdown-body
     .markdown-body{
-      @include font_color("text-color1");
-      @include background_color("background_color");
+      @include font_color("text-color");
+      // @include background_color("background_color");
       /deep/ pre{
         font-size: 12px;
         @include background_color("background_color6");

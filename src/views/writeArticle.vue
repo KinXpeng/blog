@@ -407,7 +407,6 @@ export default {
       }).then(() => {
         this.$axios.post('/blog-api/article/delete',{
           article_id:articleInfo.article_id,
-          category:articleInfo.category
         })
           .then((res)=>{
             // console.log(res);

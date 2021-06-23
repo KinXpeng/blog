@@ -17,8 +17,8 @@
       <div class="avatar-detail">
         <ul>
           <li v-for="(item,index) in avatarDetailList" :key="index">
-            <span>{{item.totals}}</span>
-            <p class="detail-title">{{item.detailTitle}}</p>
+            <span>{{item.countNum}}</span>
+            <p class="detail-title">{{item.countName}}</p>
           </li>
         </ul>
       </div>
@@ -31,26 +31,14 @@ export default {
   data() {
     return {
       // avatar-detail
-      avatarDetailList:[
-        {
-          detailTitle:'文章',
-          totals:112,
-        },
-        {
-          detailTitle:'说说',
-          totals:80,
-        },
-        {
-          detailTitle:'创作',
-          totals:24,
-        },
-      ],
+      avatarDetailList:[], // 文章、点赞数量
       loginCount:0,
       startTime:0,
       lastTime:0,
     };
   },
   methods: {
+    // 进入登录页面
     enterLoginPages(){
       if(this.loginCount == 0){
         this.startTime = new Date();
@@ -75,8 +63,21 @@ export default {
       }
       this.loginCount++;
     },
+    // 文章、说说、点赞数量查询
+    async initAvatarNum(){
+      await this.$axios.post('/blog-api/article/count')
+        .then((res)=>{
+          if(res.data.code == 0){
+            this.avatarDetailList = res.data.data;
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    },
   },
   created() {
+    this.initAvatarNum(); // 初始化 文章、说说、点赞数量
   },
 };
 </script>

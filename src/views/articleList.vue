@@ -8,7 +8,7 @@
         <el-tab-pane label="文章" name="second">
           <whole-articles :category="'article'"></whole-articles>
         </el-tab-pane>
-        <el-tab-pane label="热门" name="third">热门</el-tab-pane>
+        <el-tab-pane label="热门" name="third">敬请期待。。。</el-tab-pane>
         <el-tab-pane label="说说" name="fourth">
           <moments-info></moments-info>
         </el-tab-pane>

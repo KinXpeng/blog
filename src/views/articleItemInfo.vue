@@ -56,7 +56,7 @@
             </svg>
             <span>打赏</span>
           </p>
-          <p>
+          <p @click="handleComments(articleList[0])">
             <svg class="icon-svg">
               <use xlink:href="#icon-pinglun"></use>
             </svg>
@@ -176,6 +176,14 @@ export default {
           })
       }
     },
+    // 评论
+    handleComments(articleInfo){
+      this.$notify({
+        type:'info',
+        position:'top-right',
+        message:'开发中，敬请期待。。。'
+      })
+    },
     // 浏览量
     async initViewCounts(articleInfo){
       articleInfo.view_count++;
@@ -185,11 +193,11 @@ export default {
       })
         .then((res)=>{
           if(res.data.code == 0){
-            this.$notify({
-              type:'success',
-              position:'top-right',
-              message:'感兴趣的话就点个赞哦'
-            })
+            // this.$notify({
+            //   type:'success',
+            //   position:'top-right',
+            //   message:'感兴趣的话就点个赞哦'
+            // })
           }
         })
         .catch((err)=>{
@@ -295,10 +303,13 @@ export default {
     // markdown-body
     .markdown-body{
       @include font_color("text-color1");
-      @include background_color("background_color");
+      // @include background_color("background_color");
       /deep/ pre{
         font-size: 12px;
         @include background_color("background_color6");
+        .hljs{
+          @include background_color("background_color6");
+        }
       }
     }
     // article-opertion
