@@ -328,6 +328,10 @@ export default {
         font-size: 12px;
         @include background_color("background_color6");
       }
+      /deep/ .hljs-center{
+        font-size: 13px;
+        line-height:20px;
+      }
     }
   }
   // pagination

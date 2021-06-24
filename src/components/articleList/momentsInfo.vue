@@ -328,6 +328,12 @@ export default {
         font-size: 12px;
         @include background_color("background_color6");
       }
+      /deep/ .hljs-center{
+        p{
+          font-size: 14px;
+          @include font_color("text-color1");
+        }
+      }
     }
   }
   // pagination
