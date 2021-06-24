@@ -262,7 +262,7 @@ export default {
       padding:10px 0;
       @include font_color("text-color1");
       .title-info{
-        font-size: 18px;
+        font-size: 14px;
       }
       .title-brand{
         margin-left:10px;
@@ -310,9 +310,9 @@ export default {
           color:#53bdf9;
         }
         .icon-svg{
-          width:14px;
-          height:14px;
-          margin:3px;
+          width:20px;
+          height:20px;
+          margin:0 3px;
         }
         span{
           display: inline-block;
@@ -327,10 +327,6 @@ export default {
       /deep/ pre{
         font-size: 12px;
         @include background_color("background_color6");
-      }
-      /deep/ img{
-        // width:48%;
-        margin:0 2px;
       }
     }
   }

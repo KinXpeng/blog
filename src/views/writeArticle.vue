@@ -50,6 +50,15 @@
               >
                 <i class="el-icon-document-add" />
               </button>
+              <button
+                type="button"
+                title="删除云端图片"
+                class="op-icon"
+                aria-hidden="true"
+                @click="handleDeleteImg"
+              >
+                <i class="el-icon-picture-outline" style="color:red;"/>
+              </button>
             </template>
           </mavon-editor>
         </div>
@@ -264,15 +273,10 @@ export default {
               message:res.data.msg
             })
           }else{
-            // this.$notify({
-            //   type:'error',
-            //   position:'top-right',
-            //   message:res.data.msg
-            // })
             this.$notify({
-              type:'warning',
+              type:'error',
               position:'top-right',
-              message:'删除功能紧急开发中，敬请稍后！'
+              message:res.data.msg
             })
           }
         })
@@ -285,6 +289,30 @@ export default {
           console.log(err);
         })
 
+    },
+    // 修改时删除云端图片
+    async handleDeleteImg(){
+      // 获取鼠标选中内容
+      let selectUrl = window.getSelection?window.getSelection().toString():document.selection.createRange().text;
+      // 正则校验网址
+      let reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/; 
+      if((selectUrl != null) && selectUrl.trim()){
+        if(selectUrl.match(reg) != null){
+          this.$imgDel([selectUrl]); // 删除图片
+        }else{
+          this.$notify({
+            type:'error',
+            position:'top-right',
+            message:'请确保选中的内容为图片网址'
+          })
+        }
+      }else{
+        this.$notify({
+          type:'error',
+          position:'top-right',
+          message:'请选择需要删除的图片链接'
+        })
+      }
     },
     // 保存 && 修改
     async handleArticle(value, render) {
