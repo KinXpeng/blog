@@ -8,7 +8,9 @@
         <el-tab-pane label="文章" name="second">
           <whole-articles :category="'article'"></whole-articles>
         </el-tab-pane>
-        <el-tab-pane label="热门" name="third">敬请期待。。。</el-tab-pane>
+        <el-tab-pane label="热门" name="third">
+          <hot-topics></hot-topics>
+        </el-tab-pane>
         <el-tab-pane label="说说" name="fourth">
           <moments-info></moments-info>
         </el-tab-pane>
@@ -18,10 +20,11 @@
 </template>
 
 <script>
+import HotTopics from '../components/articleList/hotTopics.vue';
 import momentsInfo from '../components/articleList/momentsInfo.vue';
 import wholeArticles from '../components/articleList/wholeArticles.vue';
 export default {
-  components: { wholeArticles, momentsInfo },
+  components: { wholeArticles, momentsInfo,  HotTopics },
   data() {
     return {
       activeName:'first',
