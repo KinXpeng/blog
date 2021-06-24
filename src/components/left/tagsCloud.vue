@@ -9,7 +9,7 @@
       </div>
       <div class="cloud-list">
         <ul class="list-box flex">
-          <li v-for="(item,index) in cloudList" :key="index" @click="handleCloudItem(item)">{{item.tags}}</li>
+          <li v-show="(item.tags) && (item.category!='moment')" v-for="(item,index) in cloudList" :key="index" @click="handleCloudItem(item)">{{item.tags}}</li>
         </ul>
       </div>
     </el-card>
@@ -34,6 +34,7 @@ export default {
       await this.$axios.post("/blog-api/article/tagsInfo")
         .then((res)=>{
           if(res.data.code == 0){
+            // console.log(res);
             this.cloudList = res.data.data;
           }
         })

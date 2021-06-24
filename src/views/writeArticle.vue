@@ -28,7 +28,7 @@
             ref="md"
             v-model="articleInfo"
             @save="handleArticle"
-            style="min-height:700px;"
+            style="min-height:700px;z-index:99;"
             :ishljs="true"
             :boxShadow="false"
             :toolbars="markdownOption"
@@ -57,7 +57,7 @@
                 aria-hidden="true"
                 @click="handleDeleteImg"
               >
-                <i class="el-icon-picture-outline" style="color:red;"/>
+                <i class="el-icon-document-delete" style="color:red;"/>
               </button>
             </template>
           </mavon-editor>
@@ -76,7 +76,7 @@
           <div class="title-edit">
             <el-form :model="titleList" :rules="infoRules" ref="infoForm" label-width="60px" class="demo-ruleForm">
               <el-form-item label="标签" prop="tags">
-                <el-input v-model="titleList.tags" clearable size="mini"></el-input>
+                <el-input v-model="titleList.tags" clearable size="mini" :disabled="tagsFlag"></el-input>
               </el-form-item>
               <el-form-item label="分类" prop="category">
                 <el-input v-model="titleList.category" clearable size="mini"></el-input>
@@ -211,6 +211,7 @@ export default {
       page:1,
       total:0,
       titleFlag:false,
+      tagsFlag:false,
       loadingFlag:false,
     };
   },
@@ -413,6 +414,17 @@ export default {
       this.articleEditInfo.article_id = '';
       this.resetForm();
     },
+    // // 分类为hot / moment时标签不必输入
+    // checkTags(val){
+    //   if(val == "hot" || val == "moment"){
+    //     this.titleList.tags = "";
+    //     this.infoRules.tags.required = false;
+    //     this.tagsFlag = true;
+    //   }else{
+    //     this.infoRules.tags.required = true;
+    //     this.tagsFlag = false;
+    //   }
+    // },
     // 文章概要重置
     resetForm() {
       this.$refs.titleForm.resetFields();

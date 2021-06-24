@@ -17,7 +17,7 @@
           </div>
           <!-- author -->
           <div class="header-desc">
-            <p class="desc-author">KinXpeng</p>
+            <p class="desc-author">倾倾倾风</p>
             <p class="desc-date">{{ item.create_time }}</p>
           </div>
         </div>

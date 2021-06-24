@@ -5,7 +5,7 @@
         <svg class="icon-svg">
           <use xlink:href="#icon-dushu"></use>
         </svg>
-        <span class="title-info">热门文章</span>
+        <span class="title-info">近期文章</span>
       </div>
       <div class="articles-list">
         <ul>

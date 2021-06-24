@@ -17,7 +17,7 @@
           </div>
           <!-- author -->
           <div class="header-desc">
-            <p class="desc-author">KinXpeng</p>
+            <p class="desc-author">倾倾倾风</p>
             <p class="desc-date">{{ item.create_time }}</p>
           </div>
         </div>
@@ -62,7 +62,7 @@
         layout="total, prev, pager, next"
         :total="total"
         @current-change="handleCurrentChange"
-        :page-size="5">
+        :page-size="1">
       </el-pagination>
     </div>
   </div>
@@ -122,7 +122,7 @@ export default {
           create_time:"",
           category:"hot",
           page:this.page,
-          rows:5,
+          rows:1,
         };
       }
       this.loadingFlag = true;

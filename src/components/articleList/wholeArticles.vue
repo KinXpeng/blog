@@ -17,7 +17,7 @@
           </div>
           <!-- author -->
           <div class="header-desc">
-            <p class="desc-author">KinXpeng</p>
+            <p class="desc-author">倾倾倾风</p>
             <p class="desc-date">{{ item.create_time }}</p>
           </div>
         </div>
@@ -25,9 +25,10 @@
         <div class="article-title flex" @click="lookArticleInfo(item.article_id)">
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
-            <span>原</span>
-            <span v-show="page!=1">荐</span>
-            <span v-if="page==1">新</span>
+            <span v-show="item.category!='hot'" title="原创">原</span>
+            <span v-show="item.category=='article'" title="推荐">荐</span>
+            <span v-show="page==1" title="最新发布">新</span>
+            <span v-show="item.category=='hot'" title="转载，侵权删">转</span>
           </div>
         </div>
         <!-- article-info -->
@@ -221,6 +222,9 @@ export default {
           }
           &:nth-child(3){
             background: rgb(105, 165, 14);
+          }
+          &:nth-child(4){
+            background: rgb(208, 88, 245);
           }
         }
       }
