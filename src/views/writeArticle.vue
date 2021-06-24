@@ -6,135 +6,154 @@
     </div>
     <!-- article-edit -->
     <div class="article-edit" v-loading="loadingFlag">
-      <el-col :span="16">
-        <el-card class="article-title">
-          <div class="title-info flex">
-            <svg class="icon-svg">
-              <use xlink:href="#icon-xinxi"></use>
-            </svg>
-            <span class="title-desc">文章标题</span>
-          </div>
-          <!-- title-edit -->
-          <div class="title-edit">
-            <el-form :model="titleList" :rules="titleRules" ref="titleForm" label-width="60px" class="demo-ruleForm">
-              <el-form-item label="标题" prop="title">
-                <el-input v-model="titleList.title" clearable size="mini"></el-input>
-              </el-form-item>
-            </el-form>
-          </div>
-        </el-card>
-        <div style="margin:8px 0 18px;" class="el-card">
-          <mavon-editor
-            ref="md"
-            v-model="articleInfo"
-            @save="handleArticle"
-            style="min-height:700px;z-index:99;"
-            :ishljs="true"
-            :boxShadow="false"
-            :toolbars="markdownOption"
-            defaultOpen="edit"
-            :toolbarsBackground="codeStyle"
-            :previewBackground="codeStyle"
-            :subfield="false"
-            @imgAdd="$imgAdd"
-            @imgDel="$imgDel"
-          >
-            <!-- mavon插槽，增加新增文章图标 -->
-            <template v-slot:left-toolbar-after>
-              <button
-                type="button"
-                title="新增文章"
-                class="op-icon"
-                aria-hidden="true"
-                @click="handleAddArticle"
-              >
-                <i class="el-icon-document-add" />
-              </button>
-              <button
-                type="button"
-                title="删除云端图片"
-                class="op-icon"
-                aria-hidden="true"
-                @click="handleDeleteImg"
-              >
-                <i class="el-icon-document-delete" style="color:red;"/>
-              </button>
-            </template>
-          </mavon-editor>
-        </div>
-      </el-col>
-      <el-col :span="8" style="padding-left:8px">
-        <!-- article-intro -->
-        <el-card class="article-title">
-          <div class="title-info flex">
-            <svg class="icon-svg">
-              <use xlink:href="#icon-tianjiayonghu"></use>
-            </svg>
-            <span class="title-desc">文章概要</span>
-          </div>
-          <!-- info-edit -->
-          <div class="title-edit">
-            <el-form :model="titleList" :rules="infoRules" ref="infoForm" label-width="60px" class="demo-ruleForm">
-              <el-form-item label="标签" prop="tags">
-                <el-input v-model="titleList.tags" clearable size="mini" :disabled="tagsFlag"></el-input>
-              </el-form-item>
-              <el-form-item label="分类" prop="category">
-                <el-input v-model="titleList.category" clearable size="mini"></el-input>
-              </el-form-item>
-            </el-form>
-          </div>
-        </el-card>
-        <!-- article-list -->
-        <el-card class="article-list">
-          <div class="list-info flex">
-            <svg class="icon-svg">
-              <use xlink:href="#icon-dingdan"></use>
-            </svg>
-            <span class="list-desc">文章列表</span>
-          </div>
-          <!-- list-search -->
-          <div class="list-search">
-            <el-input placeholder="请输入内容" clearable size="mini" v-model="tableValue">
-              <el-button slot="append" icon="el-icon-search" @click="tableSearch"></el-button>
-            </el-input>
-          </div>
-          <!-- list-expand -->
-          <div class="list-expand">
-            <el-table
-              :data="articleList"
-              stripe
-              style="width: 100%">
-              <el-table-column
-                type="index"
-                min-width="5%">
-              </el-table-column>
-              <el-table-column
-                prop="title"
-                label="标题"
-                show-overflow-tooltip
-                min-width="65%">
-              </el-table-column>
-              <el-table-column
-                label="操作"
-                min-width="30%">
-                <template slot-scope="scope">
-                  <el-button type="primary" icon="el-icon-edit" size="mini" circle @click="handleEditArticle(scope.row)"></el-button>
-                  <el-button type="danger" icon="el-icon-delete" size="mini" circle @click="handleDeleteArticle(scope.row)"></el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-          <!-- pagination -->
-          <div class="pagination">
-            <el-pagination
-              layout="total, prev, pager, next"
-              :total="total"
-              @current-change="handleCurrentChange"
-              :page-size="15">
-            </el-pagination>
-          </div>
-        </el-card>
-      </el-col>
+      <div class="article-header">
+        <el-tabs tab-position="left" v-model="activeName" @tab-click="handleTabClick">
+          <el-tab-pane label="首页" name="first">
+            <el-col :span="16">
+              <el-card class="article-title">
+                <div class="title-info flex">
+                  <svg class="icon-svg">
+                    <use xlink:href="#icon-xinxi"></use>
+                  </svg>
+                  <span class="title-desc">文章标题</span>
+                </div>
+                <!-- title-edit -->
+                <div class="title-edit">
+                  <el-form :model="titleList" :rules="titleRules" ref="titleForm" label-width="60px" class="demo-ruleForm">
+                    <el-form-item label="标题" prop="title">
+                      <el-input v-model="titleList.title" clearable size="mini"></el-input>
+                    </el-form-item>
+                  </el-form>
+                </div>
+              </el-card>
+              <div style="margin:8px 0 18px;" class="el-card">
+                <mavon-editor
+                  ref="md"
+                  v-model="articleInfo"
+                  @save="handleArticle"
+                  style="min-height:700px;z-index:99;"
+                  :ishljs="true"
+                  :boxShadow="false"
+                  :toolbars="markdownOption"
+                  defaultOpen="edit"
+                  :toolbarsBackground="codeStyle"
+                  :previewBackground="codeStyle"
+                  :subfield="false"
+                  @imgAdd="$imgAdd"
+                  @imgDel="$imgDel"
+                >
+                  <!-- mavon插槽，增加新增文章图标 -->
+                  <template v-slot:left-toolbar-after>
+                    <button
+                      type="button"
+                      title="新增文章"
+                      class="op-icon"
+                      aria-hidden="true"
+                      @click="handleAddArticle"
+                    >
+                      <i class="el-icon-document-add" />
+                    </button>
+                    <button
+                      type="button"
+                      title="删除云端图片"
+                      class="op-icon"
+                      aria-hidden="true"
+                      @click="handleDeleteImg"
+                    >
+                      <i class="el-icon-document-delete" style="color:red;"/>
+                    </button>
+                  </template>
+                </mavon-editor>
+              </div>
+            </el-col>
+            <el-col :span="8" style="padding-left:8px">
+              <!-- article-intro -->
+              <el-card class="article-title">
+                <div class="title-info flex">
+                  <svg class="icon-svg">
+                    <use xlink:href="#icon-tianjiayonghu"></use>
+                  </svg>
+                  <span class="title-desc">文章概要</span>
+                </div>
+                <!-- info-edit -->
+                <div class="title-edit">
+                  <el-form :model="titleList" :rules="infoRules" ref="infoForm" label-width="60px" class="demo-ruleForm">
+                    <el-form-item label="标签" prop="tags">
+                      <el-input v-model="titleList.tags" clearable size="mini" :disabled="tagsFlag"></el-input>
+                    </el-form-item>
+                    <el-form-item label="分类" prop="category">
+                      <el-input v-model="titleList.category" clearable size="mini"></el-input>
+                    </el-form-item>
+                  </el-form>
+                </div>
+              </el-card>
+              <!-- article-list -->
+              <el-card class="article-list">
+                <div class="list-info flex">
+                  <svg class="icon-svg">
+                    <use xlink:href="#icon-dingdan"></use>
+                  </svg>
+                  <span class="list-desc">文章列表</span>
+                </div>
+                <!-- list-search -->
+                <div class="list-search">
+                  <el-input placeholder="请输入内容" clearable size="mini" v-model="tableValue">
+                    <el-button slot="append" icon="el-icon-search" @click="tableSearch"></el-button>
+                  </el-input>
+                </div>
+                <!-- list-expand -->
+                <div class="list-expand">
+                  <el-table
+                    :data="articleList"
+                    stripe
+                    style="width: 100%">
+                    <el-table-column
+                      type="index"
+                      min-width="5%">
+                    </el-table-column>
+                    <el-table-column
+                      prop="title"
+                      label="标题"
+                      show-overflow-tooltip
+                      min-width="65%">
+                    </el-table-column>
+                    <el-table-column
+                      label="操作"
+                      min-width="30%">
+                      <template slot-scope="scope">
+                        <el-button type="primary" icon="el-icon-edit" size="mini" circle @click="handleEditArticle(scope.row)"></el-button>
+                        <el-button type="danger" icon="el-icon-delete" size="mini" circle @click="handleDeleteArticle(scope.row)"></el-button>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </div>
+                <!-- pagination -->
+                <div class="pagination">
+                  <el-pagination
+                    layout="total, prev, pager, next"
+                    :total="total"
+                    @current-change="handleCurrentChange"
+                    :page-size="15">
+                  </el-pagination>
+                </div>
+              </el-card>
+            </el-col>
+          </el-tab-pane>
+          <el-tab-pane label="归档" name="second">
+            22
+          </el-tab-pane>
+          <el-tab-pane label="创作" name="third">
+            33
+          </el-tab-pane>
+          <el-tab-pane label="友情链接" name="fourth">
+            44
+          </el-tab-pane>
+          <el-tab-pane label="关于我" name="fifth">
+            55
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -145,6 +164,7 @@ export default {
   components: {  headerCom },
   data() {
     return {
+      activeName:'first',
       tableValue:"", // 搜索
       articleInfo: "", // 文章不含html格式
       articleHtml: "", // 文章html格式
@@ -172,7 +192,7 @@ export default {
         quote: true, // 引用
         ol: true, // 有序列表
         ul: true, // 无序列表
-        link: true, // 链接
+        link: false, // 链接
         imagelink: true, // 图片链接
         code: true, // code
         table: true, // 表格
@@ -226,6 +246,13 @@ export default {
     handleCurrentChange(page){
       this.page = page;
       this.queryArticleList();
+    },
+    // 标签切换时
+    handleTabClick(tab){ // 点击tab的时候刷新数据
+      console.log(tab);
+      // if(tab.$children[0]){
+      //   tab.$children[0].tags = '';
+      // }
     },
     // 图片上传
     async $imgAdd(pos, $file){
@@ -578,7 +605,7 @@ export default {
 // article-edit
 .article-edit {
   // padding-top:55px;
-  width: 92%;
+  width: 100%;
   margin: 55px auto 0;
   transition: 0.5s;
   .v-note-wrapper {
@@ -598,6 +625,40 @@ export default {
     }
     /deep/ .v-show-content{
       @include font_color("text-color");
+    }
+  }
+  // el-tabs
+  .el-tabs{
+    /deep/ .el-tabs__header{
+      padding:3px 15px;
+      border-radius: 4px;
+      margin:8px 0 8px 8px;
+      .el-tabs__item{
+        // height:24px;
+        // line-height:24px;
+        // margin:10px 0;
+        padding:0 10px 0 0;
+        @include font_color("text-color");
+      }
+      @include background_color("background_color");
+      .el-tabs__nav-wrap::after{
+        background: none;
+      }
+      .is-top{
+        .el-tabs__item{
+          @include font_color("text-color");
+        }
+      }
+      .el-tabs__active-bar{
+        margin:0;
+      }
+    }
+    .el-tab-pane{
+      overflow: hidden;
+      @include font_color("text-color");
+      font-size: 14px;
+      padding:8px;
+      // height:300px;
     }
   }
   .article-title {
@@ -768,9 +829,14 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1040px) {
-  .article-edit {
-    width: 98%;
-  }
+// @media screen and (max-width: 1040px) {
+//   .article-edit {
+//     width: 98%;
+//   }
+// }
+</style>
+<style scoped>
+.el-tabs /deep/ .el-tabs__header{
+  box-shadow: 0 0 4px rgb(26 26 26 / 10%);
 }
 </style>

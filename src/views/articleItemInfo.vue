@@ -303,14 +303,14 @@ export default {
     // markdown-body
     .markdown-body{
       font-size: 14px;
-      @include font_color("text-color1");
+      // @include font_color("text-color1");
       // @include background_color("background_color");
       /deep/ pre{
         font-size: 12px;
-        @include background_color("background_color6");
-        .hljs{
-          @include background_color("background_color6");
-        }
+        // @include background_color("background_color6");
+        // .hljs{
+        //   @include background_color("background_color6");
+        // }
       }
     }
     // article-opertion

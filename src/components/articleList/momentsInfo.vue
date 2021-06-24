@@ -25,7 +25,7 @@
         <div class="article-title flex">
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
-            <span>新</span>
+            <span title="最新发布" v-show="page==1">新</span>
             <!-- <span>荐</span> -->
           </div>
         </div>

@@ -25,7 +25,7 @@
         <div class="hot-title flex">
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
-            <span>转</span>
+            <span title="转载，侵权删">转</span>
             <!-- <span>荐</span> -->
           </div>
         </div>
