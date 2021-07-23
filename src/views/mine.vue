@@ -1,5 +1,7 @@
 <template>
-  <div>关于我</div>
+  <div class="about-mine">
+    <div class="place-history el-card">敬请期待。。。</div>
+  </div>
 </template>
 
 <script>

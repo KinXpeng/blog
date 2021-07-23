@@ -1,5 +1,7 @@
 <template>
-  <div>友情链接</div>
+  <div class="friendly-link">
+    <div class="place-history el-card">敬请期待。。。</div>
+  </div>
 </template>
 
 <script>

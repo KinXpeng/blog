@@ -1,5 +1,7 @@
 <template>
-  <div class="create-center">创作中心</div>
+  <div class="create-center">
+    <div class="place-history el-card">敬请期待。。。</div>
+  </div>
 </template>
 
 <script>

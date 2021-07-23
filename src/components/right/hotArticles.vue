@@ -114,15 +114,15 @@ export default {
       border:none !important;
     }
     .item-title{
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      // display: -webkit-box;
+      // -webkit-box-orient: vertical;
+      // -webkit-line-clamp: 2;
       overflow: hidden;
       text-overflow: ellipsis;
-      // white-space: nowrap;
-      // font-family: Georgia, 'Times New Roman', Times, serif;
-      height:32px;
-      line-height: 16px;
+      white-space: nowrap;
+      font-family: 'Times New Roman', Times, serif;
+      height:20px;
+      line-height: 20px;
     }
     .item-desc{
       margin-top:6px;
