@@ -15,4 +15,5 @@ module.exports = {
     historyApiFallback: true,
   },
   publicPath: './',
+  outputDir:'blog', // 打包文件名
 }
