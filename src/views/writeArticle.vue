@@ -226,7 +226,7 @@ export default {
       },
       infoRules:{
         tags:{required: true, message: '请输入文章标签', trigger: 'blur' },
-        category:{required: true, message: '请输入分类', trigger: 'blur' },
+        category:{required: true, message: '请输入分类(article/hot/moment)', trigger: 'blur' },
       },
       page:1,
       total:0,
