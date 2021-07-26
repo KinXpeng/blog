@@ -100,6 +100,10 @@ export default {
     };
   },
   watch:{
+    // 监听路由变化 改变tabs状态
+    $route(val){
+      this.handleRouter(val.name);
+    }
   },
   computed:{
     isLoginFlag(){

@@ -1,5 +1,6 @@
 <template>
   <div class="place-file">
+    <loading-area  v-show="loadingFlag"></loading-area>
     <!-- location -->
     <el-card class="now-location">
       <div class="location-info flex">
@@ -17,9 +18,12 @@
 </template>
 
 <script>
+import loadingArea from '../components/articleList/loadingArea.vue';
 export default {
+  components: { loadingArea },
   data() {
     return {
+      loadingFlag:false,
     };
   },
   methods:{
