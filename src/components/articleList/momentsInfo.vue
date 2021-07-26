@@ -157,7 +157,7 @@ export default {
     },
     // 点赞
     async handleThumbs(articleInfo){
-      let thumbsArray = JSON.parse(sessionStorage.getItem('thumbsArr'));
+      let thumbsArray = JSON.parse(localStorage.getItem('thumbsArr'));
       if(thumbsArray && thumbsArray.length>0){
         thumbsArray.forEach((ele)=>{
           if(ele == articleInfo.article_id){
@@ -165,7 +165,7 @@ export default {
           }
         })
       }
-      if(JSON.parse(sessionStorage.getItem('thumbs')) && this.thumbsFlag){
+      if(JSON.parse(localStorage.getItem('thumbs')) && this.thumbsFlag){
         this.$notify({
           type:'error',
           position:'top-right',
@@ -185,13 +185,13 @@ export default {
                 message:'感谢您的点赞哦'
               })
             }
-            sessionStorage.setItem('thumbs',true);
-            if(JSON.parse(sessionStorage.getItem('thumbsArr')) == undefined || JSON.parse(sessionStorage.getItem('thumbsArr')) == null){
-              sessionStorage.setItem('thumbsArr',JSON.stringify([articleInfo.article_id]));
+            localStorage.setItem('thumbs',true);
+            if(JSON.parse(localStorage.getItem('thumbsArr')) == undefined || JSON.parse(localStorage.getItem('thumbsArr')) == null){
+              localStorage.setItem('thumbsArr',JSON.stringify([articleInfo.article_id]));
             }else{
-              let thumbsArr1 = JSON.parse(sessionStorage.getItem('thumbsArr'));
+              let thumbsArr1 = JSON.parse(localStorage.getItem('thumbsArr'));
               thumbsArr1.push(articleInfo.article_id);
-              sessionStorage.setItem('thumbsArr',JSON.stringify(thumbsArr1));
+              localStorage.setItem('thumbsArr',JSON.stringify(thumbsArr1));
             }
           })
           .catch((err)=>{

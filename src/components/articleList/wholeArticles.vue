@@ -6,27 +6,12 @@
     <!-- article-card -->
     <div class="article-card">
       <el-card v-for="(item, index) in articleList" :key="index">
-        <!-- header -->
-        <div class="article-header flex">
-          <div class="header-img shadow">
-            <el-image
-              style="width: 46px; height: 46px"
-              :src="require('../../assets/images/head_img.jpeg')"
-              fit="cover"
-            ></el-image>
-          </div>
-          <!-- author -->
-          <div class="header-desc">
-            <p class="desc-author">倾倾倾风</p>
-            <p class="desc-date">{{ item.create_time }}</p>
-          </div>
-        </div>
         <!-- article-title -->
-        <div class="article-title flex" @click="lookArticleInfo(item.article_id)">
+        <div class="article-title flex" @click="lookArticleInfo(item.article_id,Number(index)+1)">
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
             <span v-show="item.category!='hot'" title="原创">原</span>
-            <span v-show="item.category=='article'" title="推荐">荐</span>
+            <span v-show="item.tags=='Vue'" title="推荐">荐</span>
             <span v-show="page==1" title="最新发布">新</span>
             <span v-show="item.category=='hot'" title="转载，侵权删">转</span>
           </div>
@@ -35,9 +20,12 @@
         <div class="article-info" v-html="item.content"></div>
         <!-- icon -->
         <div class="article-icon flex">
-          <span><i class="el-icon-view"></i>{{item.view_count}}</span>
-          <span><i class="el-icon-orange"></i>{{item.tags}}</span>
-          <span><i class="el-icon-chat-dot-round"></i>0</span>
+          <div class="flex">
+            <span><i class="el-icon-view"></i>{{item.view_count}}</span>
+            <span><i class="el-icon-paperclip"></i>{{item.tags}}</span>
+            <span><i class="el-icon-chat-dot-round"></i>0</span>
+          </div>
+          <p class="desc-date"><i class="el-icon-time"></i> {{ item.create_time }}</p>
         </div>
       </el-card>
     </div>
@@ -47,7 +35,7 @@
         layout="total, prev, pager, next"
         :total="total"
         @current-change="handleCurrentChange"
-        :page-size="5">
+        :page-size="10">
       </el-pagination>
     </div>
   </div>
@@ -96,7 +84,7 @@ export default {
         this.queryData = {
           likeValue:searchVal,
           page:this.page,
-          rows:5
+          rows:10
         };
       }else{ // 初始化查询
         this.initApi = '/blog-api/article/list';
@@ -107,7 +95,7 @@ export default {
           create_time:"",
           category:this.category,
           page:this.page,
-          rows:5,
+          rows:10,
         };
       }
       this.loadingFlag = true;
@@ -140,9 +128,9 @@ export default {
         })
     },
     // 查看文章明细
-    lookArticleInfo(articleId){
+    lookArticleInfo(articleId,index){
       sessionStorage.setItem('articleId',articleId);
-      this.$router.push({name:'articleItemInfo'});
+      this.$router.push({path:'/articleItemInfo?'+index});
     },
   },
   created() {
@@ -165,44 +153,17 @@ export default {
     .el-card{
       margin-bottom:8px;
     }
-    // article-header
-    .article-header {
-      height: 50px;
-      // header-img
-      .header-img{
-        width:50px;
-        height:50px;
-        border-radius: 50%;
-        background: #fff;
-        text-align: center;
-        .el-image{
-          margin-top:2px;
-          border-radius: 50%;
-        }
-      }
-      // header-desc
-      .header-desc{
-        padding-left:15px;
-        line-height:25px;  
-        .desc-author{
-          font-size: 15px;
-          @include font_color("text-color1");
-        }
-        .desc-date{
-          font-size: 12px;
-          transform: scale(.8);  
-          transform-origin: 0 0;
-        }
-      }
-    }
     // article-title
     .article-title{
-      padding:10px 0 5px;
-      font-size: 14px;
+      padding:5px 0px 10px;
+      font-size: 18px;
       .title-info{
         cursor: pointer;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        @include font_color("text-color1");
         &:hover{
-          @include font_color("text-color1");
+          color:#53bdf9 !important;
         }
       }
       .title-brand{
@@ -214,7 +175,9 @@ export default {
           border-radius: 3px;
           font-size: 12px;
           color:#fff;
-          padding:2px;
+          padding:0 3px;
+          height:18px;
+          line-height: 18px;
           cursor: default;
           margin-right: 5px;
           &:nth-child(2){
@@ -233,30 +196,39 @@ export default {
     // article-info
     .article-info{
       overflow: hidden;
-      height:34px;
+      height:45px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       text-overflow: ellipsis;
       padding-bottom:8px;
       margin-bottom:10px;
       font-size: 12px;
       @include font_color("text-color");
       line-height:16px;
+      /deep/.hljs{
+        @include background_color("background_color8");
+      }
     }
     // article-icon
     .article-icon{
+      justify-content: space-between;
       span{
         padding-right:40px;
         font-size: 12px;
         color:#b4b7b9;
         &:hover{
           color:#53bdf9;
-          cursor: pointer;
+          cursor: default;
         }
         i{
           margin-right: 2px;
         }
+      }
+      .desc-date{
+        font-size: 12px;
+        transform: scale(.9);  
+        transform-origin: 0 0;
       }
     }
   }

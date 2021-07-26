@@ -26,16 +26,14 @@
           <div class="info-tags">
             <div class="tags-top flex">
               <svg class="icon-svg">
-                <use v-if="articleList[0].category=='article'" xlink:href="#icon-biaoqian1"></use>
-                <use v-else-if="articleList[0].category=='moment'" xlink:href="#icon-biaoqian2"></use>
-                <use v-else xlink:href="#icon-biaoqian3"></use>
+                <use xlink:href="#icon-liucheng"></use>
               </svg>
               <span class="tags-name">KinXpeng</span>
               <span>{{articleList[0].create_time}}</span>
             </div>
             <div class="tag-bottom flex">
-              <p class="bottom-category">分类栏目：<span class="tag-button">{{articleList[0].category}}</span></p>
-              <p class="bottom-tags">文章标签：<span class="tag-button">{{articleList[0].tags}}</span></p>
+              <p class="bottom-category">分类：<span class="tag-button">{{articleList[0].category}}</span></p>
+              <p class="bottom-tags">标签：<span class="tag-button">{{articleList[0].tags}}</span></p>
             </div>
           </div>
           <div class="markdown-body" v-html="articleList[0].content"></div>
@@ -129,7 +127,7 @@ export default {
     },
     // 点赞
     async handleThumbs(articleInfo){
-      let thumbsArray = JSON.parse(sessionStorage.getItem('thumbsArr'));
+      let thumbsArray = JSON.parse(localStorage.getItem('thumbsArr'));
       if(thumbsArray && thumbsArray.length>0){
         thumbsArray.forEach((ele)=>{
           if(ele == articleInfo.article_id){
@@ -137,7 +135,7 @@ export default {
           }
         })
       }
-      if(JSON.parse(sessionStorage.getItem('thumbs')) && this.thumbsFlag){
+      if(JSON.parse(localStorage.getItem('thumbs')) && this.thumbsFlag){
         this.$notify({
           type:'error',
           position:'top-right',
@@ -157,13 +155,13 @@ export default {
                 message:'感谢您的点赞哦'
               })
             }
-            sessionStorage.setItem('thumbs',true);
-            if(JSON.parse(sessionStorage.getItem('thumbsArr')) == undefined || JSON.parse(sessionStorage.getItem('thumbsArr')) == null){
-              sessionStorage.setItem('thumbsArr',JSON.stringify([articleInfo.article_id]));
+            localStorage.setItem('thumbs',true);
+            if(JSON.parse(localStorage.getItem('thumbsArr')) == undefined || JSON.parse(localStorage.getItem('thumbsArr')) == null){
+              localStorage.setItem('thumbsArr',JSON.stringify([articleInfo.article_id]));
             }else{
-              let thumbsArr1 = JSON.parse(sessionStorage.getItem('thumbsArr'));
+              let thumbsArr1 = JSON.parse(localStorage.getItem('thumbsArr'));
               thumbsArr1.push(articleInfo.article_id);
-              sessionStorage.setItem('thumbsArr',JSON.stringify(thumbsArr1));
+              localStorage.setItem('thumbsArr',JSON.stringify(thumbsArr1));
             }
           })
           .catch((err)=>{
@@ -308,9 +306,9 @@ export default {
       /deep/ pre{
         font-size: 12px;
         @include background_color("background_color6");
-        // .hljs{
-        //   @include background_color("background_color6");
-        // }
+        .hljs{
+          @include background_color("background_color6");
+        }
       }
     }
     // article-opertion

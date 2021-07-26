@@ -17,6 +17,9 @@ import "./assets/iconfont/iconfont"
 import  mavonEditor  from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 import "./assets/scss/markdown.min.css";
+
+import "./assets/scss/codeStyle.css"
+
 Vue.use(mavonEditor);
 // 引入axios
 import axios from "axios";

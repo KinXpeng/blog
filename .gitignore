@@ -1,7 +1,9 @@
 .DS_Store
 node_modules
-/blog
+blog
 
+# 忽略gitignore文件 
+.gitignore
 
 # local env files
 .env.local

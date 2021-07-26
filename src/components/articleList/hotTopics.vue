@@ -6,27 +6,20 @@
     <!-- hot-card -->
     <div class="hot-card">
       <el-card v-for="(item, index) in articleList" :key="index">
-        <!-- header -->
-        <div class="hot-header flex">
-          <div class="header-img shadow">
-            <el-image
-              style="width: 46px; height: 46px"
-              :src="require('../../assets/images/head_img.jpeg')"
-              fit="cover"
-            ></el-image>
-          </div>
-          <!-- author -->
-          <div class="header-desc">
-            <p class="desc-author">倾倾倾风</p>
-            <p class="desc-date">{{ item.create_time }}</p>
-          </div>
-        </div>
         <!-- hot-title -->
         <div class="hot-title flex">
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
             <span title="转载，侵权删">转</span>
             <!-- <span>荐</span> -->
+          </div>
+        </div>
+        <!-- header -->
+        <div class="hot-header flex">
+          <!-- author -->
+          <div class="header-desc flex">
+            <p class="desc-date"><i class="el-icon-time"></i> {{ item.create_time }}</p>
+            <p class="desc-date"><i class="el-icon-view"></i> {{ item.view_count }}</p>
           </div>
         </div>
         <!-- hot-info -->
@@ -157,7 +150,7 @@ export default {
     },
     // 点赞
     async handleThumbs(articleInfo){
-      let thumbsArray = JSON.parse(sessionStorage.getItem('thumbsArr'));
+      let thumbsArray = JSON.parse(localStorage.getItem('thumbsArr'));
       if(thumbsArray && thumbsArray.length>0){
         thumbsArray.forEach((ele)=>{
           if(ele == articleInfo.article_id){
@@ -165,7 +158,7 @@ export default {
           }
         })
       }
-      if(JSON.parse(sessionStorage.getItem('thumbs')) && this.thumbsFlag){
+      if(JSON.parse(localStorage.getItem('thumbs')) && this.thumbsFlag){
         this.$notify({
           type:'error',
           position:'top-right',
@@ -185,13 +178,13 @@ export default {
                 message:'感谢您的点赞哦'
               })
             }
-            sessionStorage.setItem('thumbs',true);
-            if(JSON.parse(sessionStorage.getItem('thumbsArr')) == undefined || JSON.parse(sessionStorage.getItem('thumbsArr')) == null){
-              sessionStorage.setItem('thumbsArr',JSON.stringify([articleInfo.article_id]));
+            localStorage.setItem('thumbs',true);
+            if(JSON.parse(localStorage.getItem('thumbsArr')) == undefined || JSON.parse(localStorage.getItem('thumbsArr')) == null){
+              localStorage.setItem('thumbsArr',JSON.stringify([articleInfo.article_id]));
             }else{
-              let thumbsArr1 = JSON.parse(sessionStorage.getItem('thumbsArr'));
+              let thumbsArr1 = JSON.parse(localStorage.getItem('thumbsArr'));
               thumbsArr1.push(articleInfo.article_id);
-              sessionStorage.setItem('thumbsArr',JSON.stringify(thumbsArr1));
+              localStorage.setItem('thumbsArr',JSON.stringify(thumbsArr1));
             }
           })
           .catch((err)=>{
@@ -230,29 +223,13 @@ export default {
     // hot-header
     .hot-header {
       height: 50px;
-      // header-img
-      .header-img{
-        width:50px;
-        height:50px;
-        border-radius: 50%;
-        background: #fff;
-        text-align: center;
-        .el-image{
-          margin-top:2px;
-          border-radius: 50%;
-        }
-      }
       // header-desc
       .header-desc{
-        padding-left:15px;
-        line-height:25px;  
-        .desc-author{
-          font-size: 15px;
-          @include font_color("text-color1");
-        }
+        // padding-left:15px;
+        line-height:20px;  
         .desc-date{
           font-size: 12px;
-          transform: scale(.8);  
+          transform: scale(.9);  
           transform-origin: 0 0;
         }
       }
@@ -262,7 +239,8 @@ export default {
       padding:10px 0;
       @include font_color("text-color1");
       .title-info{
-        font-size: 14px;
+        font-size: 20px;
+        font-weight: 600;
       }
       .title-brand{
         margin-left:10px;
@@ -273,7 +251,9 @@ export default {
           border-radius: 3px;
           font-size: 12px;
           color:#fff;
-          padding:2px;
+          padding:0 4px;
+          height:20px;
+          line-height: 20px;
           cursor: default;
           margin-right: 5px;
           &:nth-child(2){

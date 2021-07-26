@@ -41,6 +41,7 @@
                   :subfield="false"
                   @imgAdd="$imgAdd"
                   @imgDel="$imgDel"
+                  :codeStyle="mavonStyle"
                 >
                   <!-- mavon插槽，增加新增文章图标 -->
                   <template v-slot:left-toolbar-after>
@@ -215,7 +216,7 @@ export default {
         // subfield: true, // 单双栏模式
         preview: true, // 预览
       },
-      // codeStyle:'', // 工具栏背景色
+      mavonStyle:'Solarized Dark', // 主题
       titleList:{
         title:'',
         tags:'',

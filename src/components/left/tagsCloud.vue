@@ -73,7 +73,7 @@ export default {
       flex-wrap: wrap;
       li{
         @include border_style("border_style1");
-        padding:2px 3px;
+        padding:3px 4px;
         margin:3px 3px;
         font-size: 12px;
         color:#333;
