@@ -1,19 +1,21 @@
 <template>
   <div class="place-file">
     <loading-area  v-show="loadingFlag"></loading-area>
-    <!-- location -->
-    <el-card class="now-location">
-      <div class="location-info flex">
-        <span>当前位置：</span>
-        <span class="location-desc">归档</span>
-          <!-- <i class="el-icon-arrow-right"></i>
-          <span>123</span>
-          <i class="el-icon-arrow-right"></i>
-          <span class="location-title">123</span> -->
-      </div>
-    </el-card>
-    <!-- place-history -->
-    <div class="place-history el-card">敬请期待。。。</div>
+    <div class="location">
+      <!-- location -->
+      <el-card class="now-location">
+        <div class="location-info flex">
+          <span>当前位置：</span>
+          <span class="location-desc">归档</span>
+            <!-- <i class="el-icon-arrow-right"></i>
+            <span>123</span>
+            <i class="el-icon-arrow-right"></i>
+            <span class="location-title">123</span> -->
+        </div>
+      </el-card>
+      <!-- place-history -->
+      <div class="place-history el-card">敬请期待。。。</div>
+    </div>
   </div>
 </template>
 

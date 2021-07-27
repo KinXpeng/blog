@@ -24,6 +24,7 @@
               :type="flag ? 'text' : 'password'"
               v-model="loginForm.password"
               autocomplete="off"
+              @keyup.enter.native="submitForm('ruleForm')"
             >
               <i
                 slot="suffix"
@@ -116,14 +117,7 @@ export default {
     },
   },
   mounted(){
-    let This = this;
-    this.$refs.usernameInput.focus();
-    this.$refs.login.onkeydown = function(){
-      let key = window.event.keyCode;
-      if(key == 13){
-        This.submitForm('ruleForm');
-      }
-    };
+    
   },
 };
 </script>
