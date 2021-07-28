@@ -48,6 +48,7 @@
   </div>
 </template>
 <script>
+import crypt from '../assets/js/encrypt'
 export default {
   data() {
     return {
@@ -67,9 +68,15 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          // 需要对密码进行加密处理
+          let encryptPass = crypt.Encrypt(JSON.parse(JSON.stringify(this.loginForm.password)));
+          let loginObj = {
+            username:this.loginForm.username,
+            password:encryptPass
+          };
           this.loading = true;
           this.$axios
-            .post("/blog-api/user/login", this.loginForm)
+            .post("/blog-api/user/login", loginObj)
             .then((res) => {
               if (res.data.code === 0) {
                 setTimeout(()=>{
@@ -126,7 +133,6 @@ export default {
   width:100vw;
   height:100vh;
   border:1px solid transparent;
-  
 }
 .login {
   width: 400px;
