@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4520154",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
       "icon_id": "11957189",
       "name": "星途学堂-分享/转发",
       "font_class": "xingtuxuetang-fenxiang-",
@@ -32,27 +39,6 @@
       "font_class": "pinglun",
       "unicode": "f491",
       "unicode_decimal": 62609
-    },
-    {
-      "icon_id": "3872039",
-      "name": "标签",
-      "font_class": "biaoqian1",
-      "unicode": "e656",
-      "unicode_decimal": 58966
-    },
-    {
-      "icon_id": "3872988",
-      "name": "标签",
-      "font_class": "biaoqian2",
-      "unicode": "e65e",
-      "unicode_decimal": 58974
-    },
-    {
-      "icon_id": "4163425",
-      "name": "标签",
-      "font_class": "biaoqian3",
-      "unicode": "e668",
-      "unicode_decimal": 58984
     },
     {
       "icon_id": "8682206",
@@ -95,13 +81,6 @@
       "font_class": "fsux_banyuanhuantu",
       "unicode": "e600",
       "unicode_decimal": 58880
-    },
-    {
-      "icon_id": "17224269",
-      "name": "加载",
-      "font_class": "jiazai",
-      "unicode": "e62e",
-      "unicode_decimal": 58926
     },
     {
       "icon_id": "8682254",

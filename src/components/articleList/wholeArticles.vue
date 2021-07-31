@@ -7,7 +7,7 @@
     <div class="article-card">
       <el-card v-for="(item, index) in articleList" :key="index">
         <!-- article-title -->
-        <div class="article-title flex" @click="lookArticleInfo(item.article_id,Number(index)+1)">
+        <div class="article-title flex" @click="lookArticleInfo(item.article_id)">
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
             <span v-show="item.category!='hot'" title="原创">原</span>
@@ -128,9 +128,9 @@ export default {
         })
     },
     // 查看文章明细
-    lookArticleInfo(articleId,index){
+    lookArticleInfo(articleId){
       sessionStorage.setItem('articleId',articleId);
-      this.$router.push({path:'/articleItemInfo?'+index});
+      this.$router.push({path:'/articleItemInfo/'+articleId});
     },
   },
   created() {

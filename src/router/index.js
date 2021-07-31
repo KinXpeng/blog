@@ -50,7 +50,7 @@ const routes = [
       },
       // 文章详情
       {
-        path: '/articleItemInfo',
+        path: '/articleItemInfo/:articleId', // 路由参数配置
         name: 'articleItemInfo',
         component: () => import( '@/views/articleItemInfo.vue'),
         // redirect:''

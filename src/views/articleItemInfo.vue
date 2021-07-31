@@ -26,7 +26,7 @@
           <div class="info-tags">
             <div class="tags-top flex">
               <svg class="icon-svg">
-                <use xlink:href="#icon-liucheng"></use>
+                <use xlink:href="#icon-bianji"></use>
               </svg>
               <span class="tags-name">KinXpeng</span>
               <span>{{articleList[0].create_time}}</span>
@@ -204,7 +204,8 @@ export default {
     },
   },
   created(){
-    this.article_id = sessionStorage.getItem('articleId');
+    // this.article_id = sessionStorage.getItem('articleId');
+    this.article_id = this.$route.params.articleId; // 文章id
     this.getInitArticleList(); // 数据初始化
     window.addEventListener('setItem',()=>{
       if(this.article_id != sessionStorage.getItem('articleId')){
@@ -248,6 +249,7 @@ export default {
         line-height:22px;
       }
     }
+    // 返回
     .info-back{
       width:25px;
       height:25px;
@@ -258,7 +260,8 @@ export default {
       &:hover{
         @include background_color("background_color3");
       }
-    }// info-tags
+    }
+    // info-tags
     .info-tags{
       height:50px;
       line-height: 25px;
@@ -269,8 +272,8 @@ export default {
       @include background_color("background_color6");
       .tags-top{
         .icon-svg{
-          width:20px;
-          height:20px;
+          width:16px;
+          height:16px;
           margin:4px 4px 0 0;
         }
         .tags-name{
