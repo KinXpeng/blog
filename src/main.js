@@ -17,9 +17,19 @@ import "./assets/iconfont/iconfont"
 import  mavonEditor  from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 import "./assets/scss/markdown.min.css";
+// 导入代码高亮文件
+import 'highlight.js/styles/googlecode.css'
+import hljs from './assets/js/highlight';
+import "./assets/scss/codeStyle.css";
 
-import "./assets/scss/codeStyle.css"
-
+Vue.directive('highlight',function (el) {
+  let highlight = el.querySelectorAll('code,pre');
+  highlight.forEach((block)=>{
+      if(block){
+          hljs.highlightBlock(block);
+      }
+  })
+})
 Vue.use(mavonEditor);
 // 引入axios
 import axios from "axios";

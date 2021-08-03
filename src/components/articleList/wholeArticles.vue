@@ -43,6 +43,7 @@
 
 <script>
 import loadingArea from './loadingArea.vue';
+import hljs from '@/assets/js/highlight.js'
 export default {
   props:['category'],
   components: { loadingArea },
@@ -132,6 +133,14 @@ export default {
       sessionStorage.setItem('articleId',articleId);
       this.$router.push({path:'/articleItemInfo/'+articleId});
     },
+    // 高亮代码
+    async highlighthandle(){
+      await hljs;
+      let highlight = document.querySelectorAll('code,pre');
+      highlight.forEach((block)=>{
+        hljs.highlightBlock(block);
+      })
+    },
   },
   created() {
     this.getInitArticleList(this.searchVal); // 数据初始化
@@ -141,6 +150,9 @@ export default {
         this.getInitArticleList('');
       }
     });
+  },
+  mounted(){
+    this.highlighthandle();
   },
 };
 </script>

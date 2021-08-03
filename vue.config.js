@@ -1,3 +1,4 @@
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   devServer:{
     port:'8000',

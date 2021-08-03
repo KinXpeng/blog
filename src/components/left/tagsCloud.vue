@@ -9,7 +9,7 @@
       </div>
       <div class="cloud-list">
         <ul class="list-box flex">
-          <li v-show="(item.tags) && (item.category!='moment')" v-for="(item,index) in cloudList" :key="index" @click="handleCloudItem(item)">{{item.tags}}</li>
+          <li :style="'background:'+changeTagsStyle()" v-show="(item.tags) && (item.category!='moment')" v-for="(item,index) in cloudList" :key="index" @click="handleCloudItem(item)">{{item.tags}}</li>
         </ul>
       </div>
     </el-card>
@@ -42,9 +42,18 @@ export default {
           console.log(err);
         })
     },
+    // tags背景色
+    changeTagsStyle(){
+      let r = Math.round(Math.random()*255);
+      let g = Math.round(Math.random()*255);
+      let b = Math.round(Math.random()*255);
+      let a = JSON.parse((Math.random()*0.8).toFixed(1))+0.2;
+      return 'rgba('+r+','+g+','+b+','+a+')';
+    },
   },
   created(){
     this.initTagsList(); // 初始化标签云
+    // this.changeTagsStyle(); // 初始化标签背景色
   },
 };
 </script>
@@ -72,17 +81,19 @@ export default {
     .list-box{
       flex-wrap: wrap;
       li{
-        @include border_style("border_style1");
+        // @include border_style("border_style1");
         padding:3px 4px;
         margin:3px 3px;
         font-size: 12px;
-        color:#333;
-        @include font_color("text-color");
+        color:#fff;
+        border-radius: 2px;
+        // @include font_color("text-color");
         cursor: default;
         transition: .5s;
         &:hover{
           // border:1px solid skyblue;
-          @include border_style("border_style2");
+          // @include border_style("border_style2");
+          box-shadow: 1px 1px 2px #ccc;
         }
       }
     }
