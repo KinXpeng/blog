@@ -214,6 +214,8 @@ export default {
       }
     })
   },
+  mounted(){
+  },
 };
 </script>
 
