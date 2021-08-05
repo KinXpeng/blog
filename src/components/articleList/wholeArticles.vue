@@ -25,7 +25,7 @@
             <span><i class="el-icon-paperclip"></i>{{item.tags}}</span>
             <span><i class="el-icon-chat-dot-round"></i>0</span>
           </div>
-          <p class="desc-date"><i class="el-icon-time"></i> {{ item.create_time }}</p>
+          <p class="desc-date"><i class="el-icon-time"></i> {{ item.modify_time }}</p>
         </div>
       </el-card>
     </div>
@@ -106,6 +106,7 @@ export default {
           if(res.data.code == 0){
             res.data.data.data.forEach((ele)=>{ // 返回时间处理
               ele.create_time = ele.create_time.split('T')[0];
+              ele.modify_time = ele.modify_time.split('T')[0];
             })
             // console.log(res.data.data);
             this.total = res.data.data.records;

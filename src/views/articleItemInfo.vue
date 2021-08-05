@@ -29,7 +29,8 @@
                 <use xlink:href="#icon-bianji"></use>
               </svg>
               <span class="tags-name">KinXpeng</span>
-              <span>{{articleList[0].create_time}}</span>
+              <span>发布：{{articleList[0].create_time}}</span>
+              <span>更新：{{articleList[0].modify_time}}</span>
             </div>
             <div class="tag-bottom flex">
               <p class="bottom-category">分类：<span class="tag-button">{{articleList[0].category}}</span></p>
@@ -103,7 +104,9 @@ export default {
           if(res.data.code == 0){
             res.data.data.data.forEach((ele)=>{ // 返回时间处理
               let createTime = ele.create_time.split('T');
+              let modifyTime = ele.modify_time.split('T');
               ele.create_time = createTime[0] +' '+ createTime[1].split('.')[0];
+              ele.modify_time = modifyTime[0] +' '+ modifyTime[1].split('.')[0];
             })
             // console.log(res.data.data.data[0]);
             this.articleList = res.data.data.data;
@@ -277,8 +280,10 @@ export default {
           height:16px;
           margin:4px 4px 0 0;
         }
-        .tags-name{
+        &>span{
           margin:0 10px 0 0;
+        }
+        .tags-name{
           color:#b59551;
         }
       }
