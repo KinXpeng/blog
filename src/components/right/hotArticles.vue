@@ -64,8 +64,7 @@ export default {
     },
     // 点击查看文章详情
     hotArticleInfo(hotId){
-      this.resetSetItem('articleId',hotId);
-      this.$router.push({name:'articleItemInfo'});
+      this.$router.push({path:'/articleItemInfo/'+hotId});
     },
   },
   created(){

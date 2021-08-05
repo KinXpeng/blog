@@ -78,6 +78,12 @@ export default {
       thumbsFlag:false,
     };
   },
+  watch:{
+    '$route.params.articleId':function(val){
+      this.article_id = val;
+      this.getInitArticleList();
+    }
+  },
   methods:{
     // 数据初始化
     async getInitArticleList(){
@@ -204,15 +210,8 @@ export default {
     },
   },
   created(){
-    // this.article_id = sessionStorage.getItem('articleId');
     this.article_id = this.$route.params.articleId; // 文章id
     this.getInitArticleList(); // 数据初始化
-    window.addEventListener('setItem',()=>{
-      if(this.article_id != sessionStorage.getItem('articleId')){
-        this.article_id = sessionStorage.getItem('articleId');
-        this.getInitArticleList();
-      }
-    })
   },
   mounted(){
   },
