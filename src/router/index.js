@@ -19,49 +19,49 @@ const routes = [
       {
         path: '/',
         name: 'articleList',
-        component: () => import( '@/views/articleList.vue'),
+        component: () => import(/* webpackChunkName: "articleList" */ '@/views/articleList.vue'),
       },
       // 归档
       {
         path: '/placeFile',
         name: 'placeFile',
-        component: () => import( '@/views/placeFile.vue'),
+        component: () => import(/* webpackChunkName: "placeFile" */ '@/views/placeFile.vue'),
       },
-      // 归档
+      // 创作中心
       {
         path: '/createCenter',
         name: 'createCenter',
-        component: () => import( '@/views/createCenter.vue'),
+        component: () => import(/* webpackChunkName: "createCenter" */ '@/views/createCenter.vue'),
         // redirect:''
       },
       // 友情链接
       {
         path: '/friendlyLink',
         name: 'friendlyLink',
-        component: () => import( '@/views/friendlyLink.vue'),
+        component: () => import(/* webpackChunkName: "friendlyLink" */ '@/views/friendlyLink.vue'),
         // redirect:''
       },
       // 关于我
       {
         path: '/mine',
         name: 'mine',
-        component: () => import( '@/views/mine.vue'),
+        component: () => import(/* webpackChunkName: "mine" */ '@/views/mine.vue'),
         // redirect:''
       },
       // 文章详情
       {
         path: '/articleItemInfo/:articleId', // 路由参数配置
         name: 'articleItemInfo',
-        component: () => import( '@/views/articleItemInfo.vue'),
+        component: () => import(/* webpackChunkName: "articleItemInfo" */ '@/views/articleItemInfo.vue'),
         // redirect:''
       },
     ]
   },
-  // 创作
+  // 文章
   {
     path: '/writeArticle',
     name: 'writeArticle',
-    component: () => import( '@/views/writeArticle.vue'),
+    component: () => import(/* webpackChunkName: "writeArticle" */ '@/views/writeArticle.vue'),
     meta:{
       requireAuth:true, // 需要登录权限
     },

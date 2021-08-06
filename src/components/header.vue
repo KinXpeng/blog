@@ -144,6 +144,8 @@ export default {
         case 'mine':
           this.changeActive(5);
           break;
+        default:
+          this.changeActive(0);
       };
     },
     // active状态
