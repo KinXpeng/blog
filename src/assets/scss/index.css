@@ -1,7 +1,8 @@
 /* el-card */
 .el-card{
-  -webkit-box-shadow: 0 0 4px rgb(26 26 26 / 10%) !important;
-  box-shadow: 0 0 4px rgb(26 26 26 / 10%) !important;
+  -webkit-box-shadow: 0 0 4px rgb(26 26 26 / 15%) !important;
+  box-shadow: 0 0 4px rgb(26 26 26 / 15%) !important;
+  border:none;
 }
 .el-card__body{
   padding:15px !important;

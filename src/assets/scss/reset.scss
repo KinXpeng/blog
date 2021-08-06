@@ -85,7 +85,7 @@ html, body {
 .el-card{
   @include background_color("background_color");
   @include font_color("text-color");
-  @include border_style("border_style");
+  // @include border_style("border_style");
 }
 
 

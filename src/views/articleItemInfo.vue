@@ -322,6 +322,9 @@ export default {
           // @include background_color("background_color6");
         }
       }
+      /deep/blockquote{
+        border-color:deepskyblue;
+      }
     }
     // article-opertion
     .article-opertion{
