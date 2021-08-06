@@ -29,8 +29,8 @@
                 <use xlink:href="#icon-bianji"></use>
               </svg>
               <span class="tags-name">KinXpeng</span>
-              <span>发布：{{articleList[0].create_time}}</span>
-              <span>更新：{{articleList[0].modify_time}}</span>
+              <span><i class="el-icon-position"></i> {{articleList[0].create_time}}</span>
+              <span v-if="articleList[0].modify_time"><i class="el-icon-refresh"></i> {{articleList[0].modify_time}}</span>
             </div>
             <div class="tag-bottom flex">
               <p class="bottom-category">分类：<span class="tag-button">{{articleList[0].category}}</span></p>
@@ -107,6 +107,7 @@ export default {
               let modifyTime = ele.modify_time.split('T');
               ele.create_time = createTime[0] +' '+ createTime[1].split('.')[0];
               ele.modify_time = modifyTime[0] +' '+ modifyTime[1].split('.')[0];
+              if(ele.create_time == ele.modify_time) ele.modify_time = '';
             })
             // console.log(res.data.data.data[0]);
             this.articleList = res.data.data.data;
