@@ -13,7 +13,7 @@
             <p class="item-title">{{item.title}}</p>
             <div class="item-desc flex">
               <span><i class="el-icon-view"></i>{{item.view_count}}</span>
-              <span><i class="el-icon-time"></i>{{item.create_time}}</span>
+              <span><i class="el-icon-time"></i>{{item.modify_time}}</span>
               <span><i class="el-icon-chat-dot-round"></i>0</span>
             </div>
           </li>
@@ -47,6 +47,7 @@ export default {
           if(res.data.code == 0){
             res.data.data.data.forEach((ele)=>{ // 返回时间处理
               ele.create_time = ele.create_time.split('T')[0];
+              ele.modify_time = ele.modify_time.split('T')[0];
             })
             // console.log(res.data.data);
             this.hotArticleList = res.data.data.data;

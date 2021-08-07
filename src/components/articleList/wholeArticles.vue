@@ -7,10 +7,10 @@
     <div class="article-card">
       <el-card v-for="(item, index) in articleList" :key="index">
         <!-- article-title -->
-        <div class="article-title flex" @click="lookArticleInfo(item.article_id)">
+        <div class="article-title flex" @click="lookArticleInfo(item)">
           <div class="title-info">{{item.title}}</div>
           <div class="title-brand flex">
-            <span v-show="item.category!='hot'" title="原创">原</span>
+            <!-- <span v-show="item.category!='hot'" title="原创">原</span> -->
             <span v-show="item.tags=='Vue'" title="推荐">荐</span>
             <span v-show="page==1" title="最新发布">新</span>
             <span v-show="item.category=='hot'" title="转载，侵权删">转</span>
@@ -130,9 +130,15 @@ export default {
         })
     },
     // 查看文章明细
-    lookArticleInfo(articleId){
-      sessionStorage.setItem('articleId',articleId);
-      this.$router.push({path:'/articleItemInfo/'+articleId});
+    lookArticleInfo(data){
+      if(data.category == 'article'){
+        this.$router.push({path:'/articleItemInfo/'+data.article_id});
+      }else if(data.category == 'hot'){
+        this.bus.$emit('switchTab','hot');
+      }else{
+        this.bus.$emit('switchTab','moment');
+      }
+      
     },
     // 高亮代码
     async highlighthandle(){
@@ -193,13 +199,13 @@ export default {
           line-height: 18px;
           cursor: default;
           margin-right: 5px;
+          // &:nth-child(2){
+          //   background: rgb(146, 189, 224);
+          // }
           &:nth-child(2){
-            background: rgb(146, 189, 224);
+            background: rgb(59, 228, 17);
           }
           &:nth-child(3){
-            background: rgb(105, 165, 14);
-          }
-          &:nth-child(4){
             background: rgb(208, 88, 245);
           }
         }

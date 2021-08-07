@@ -30,7 +30,9 @@ axios.defaults.baseURL = 'https://api.kinxpeng.com:3000/'
 // 请求携带cookie
 // axios.defaults.withCredentials=true; 
 Vue.prototype.$axios = axios;
-
+// 组件传值bus文件,全局挂载
+import bus from './assets/js/bus';
+Vue.prototype.bus = bus;
 Vue.config.productionTip = false;
 
 // 路由守卫

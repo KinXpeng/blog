@@ -41,6 +41,13 @@ export default {
     },
   },
   created(){
+    this.bus.$on('switchTab',(data)=>{
+      if(data == 'moment'){
+        this.activeName = 'fourth'; // 跳转到说说
+      }else{
+        this.activeName = 'third'; // 跳转到热门
+      }
+    })
   },
 };
 </script>
