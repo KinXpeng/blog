@@ -110,7 +110,7 @@ export default {
   .el-tabs{
     /deep/ .el-tabs__header{
       padding:3px 15px;
-      border-radius: 4px;
+      // border-radius: 4px;
       margin:8px 0 8px 8px;
       .el-tabs__item{
         // height:24px;

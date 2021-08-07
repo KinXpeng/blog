@@ -60,7 +60,7 @@ export default {
   .el-tabs{
     /deep/ .el-tabs__header{
       padding:3px 15px 0;
-      border-radius: 4px;
+      // border-radius: 4px;
       margin:0 8px;
       @include background_color("background_color");
       .el-tabs__nav-wrap::after{
