@@ -4,8 +4,6 @@
     <avatar-info></avatar-info>
     <!-- navList -->
     <nav-list></nav-list>
-    <nav-list></nav-list>
-    <nav-list></nav-list>
     <!-- tagsCloud -->
     <tags-cloud></tags-cloud>
     <!-- 计算高度 -->

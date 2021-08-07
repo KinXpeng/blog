@@ -12,17 +12,17 @@
           <container-left></container-left>
         </el-col> 
         <!-- main -->
-        <el-col class="main" :span="14">
+        <el-col class="main" :span="mainSpan">
           <router-view></router-view>
         </el-col>
         <!-- right -->
-        <el-col :span="5">
+        <el-col v-show="rightSpan>0" :span="rightSpan">
           <container-right></container-right>
         </el-col>
       </el-row>
     </div>
     <!-- footer -->
-    <el-row class="footer" v-if="true">
+    <el-row class="footer">
       <copy-right></copy-right>
     </el-row>
   </div>
@@ -42,11 +42,28 @@ export default {
   },
   data() {
     return {
+      mainSpan:14,
+      rightSpan:5,
     };
   },
+  watch:{
+    $route(val){
+      this.handleRouter(val.name);
+    },
+  },
   methods:{
+    handleRouter(value){
+      if(value == 'placeFile'){ // 归档隐藏右侧栏目
+        this.mainSpan = 19;
+        this.rightSpan = 0;
+      }else{
+        this.mainSpan = 14;
+        this.rightSpan = 5;
+      }
+    },
   },
   created(){
+    this.handleRouter(this.$route.name);
   },
 };
 </script>
