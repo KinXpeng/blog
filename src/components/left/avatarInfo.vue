@@ -151,7 +151,7 @@ export default {
           padding-top:30px;
           span{
             font-size: 14px;
-            color: deepskyblue;
+            color: #317adf;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
           }

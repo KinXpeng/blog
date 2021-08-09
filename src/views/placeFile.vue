@@ -5,24 +5,20 @@
       <!-- location -->
       <el-card class="now-location">
         <div class="location-info flex">
-          <span>当前位置：</span>
-          <span class="location-desc">归档</span>
-            <!-- <i class="el-icon-arrow-right"></i>
-            <span>123</span>
-            <i class="el-icon-arrow-right"></i>
-            <span class="location-title">123</span> -->
+          <span># 归档</span>
         </div>
       </el-card>
-      <!-- place-history -->
-      <div class="place-history el-card">敬请期待。。。</div>
+      <!-- place-title -->
+      <place-title></place-title>
     </div>
   </div>
 </template>
 
 <script>
 import loadingArea from '../components/articleList/loadingArea.vue';
+import PlaceTitle from '../components/placeFile/placeTitle.vue';
 export default {
-  components: { loadingArea },
+  components: { loadingArea, PlaceTitle },
   data() {
     return {
       loadingFlag:false,
@@ -44,18 +40,11 @@ export default {
     .location-info{
       height:22px;
       line-height:22px;
-      .location-title{
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        width: 300px;
-      }
-      .location-desc{
-        &:hover{
-          color:#53bdf9;
-        }
-        cursor: pointer;
-      }
+      font-size: 20px;
+      font-family: Georgia, Times, 'Times New Roman', serif;
+      // @include font_color("text-color1");
+      color: #317adf;
+      cursor: default;
     }
     i{
       height:22px;

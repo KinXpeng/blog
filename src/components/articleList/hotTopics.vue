@@ -9,10 +9,10 @@
         <!-- hot-title -->
         <div class="hot-title flex">
           <div class="title-info">{{item.title}}</div>
-          <div class="title-brand flex">
+          <!-- <div class="title-brand flex">
             <span title="转载，侵权删">转</span>
-            <!-- <span>荐</span> -->
-          </div>
+            <span>荐</span>
+          </div> -->
         </div>
         <!-- header -->
         <div class="hot-header flex">

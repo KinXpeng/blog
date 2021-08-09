@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <!-- header -->
-    <el-row class="header">
+    <el-row class="header flex">
+      <div class="header-sign">
+        <i :class="expandFlag?'el-icon-close':'el-icon-menu'" @click="handleMenu"></i>
+      </div>
       <header-com></header-com>
     </el-row>
     <div class="container">
@@ -44,6 +47,7 @@ export default {
     return {
       mainSpan:14,
       rightSpan:5,
+      expandFlag:false,
     };
   },
   watch:{
@@ -52,6 +56,7 @@ export default {
     },
   },
   methods:{
+    // 归档路由处理
     handleRouter(value){
       if(value == 'placeFile'){ // 归档隐藏右侧栏目
         this.mainSpan = 19;
@@ -60,6 +65,10 @@ export default {
         this.mainSpan = 14;
         this.rightSpan = 5;
       }
+    },
+    // 菜单按钮
+    handleMenu(){
+      this.expandFlag = !this.expandFlag;
     },
   },
   created(){
@@ -82,6 +91,21 @@ export default {
   @include font_color("text-color");
   @include box_shadow("box_shadow");
   @include background_color("background_color7");
+  .header-sign{
+    width:4%;
+    min-width: 50px;
+    line-height:40px;
+    text-align:center;
+    &>i{
+      color:#317adf;
+      padding:6px;
+      border-radius: 50%;
+      cursor: pointer;
+      &:hover{
+        background-color: rgba(0,120,231,.1);
+      }
+    }
+  }
 }
 // container
 .container{

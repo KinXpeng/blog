@@ -24,10 +24,10 @@
         <!-- article-title -->
         <div class="article-title flex">
           <div class="title-info">{{item.title}}</div>
-          <div class="title-brand flex">
+          <!-- <div class="title-brand flex">
             <span title="最新发布" v-show="page==1">新</span>
-            <!-- <span>荐</span> -->
-          </div>
+            <span>荐</span>
+          </div> -->
         </div>
         <!-- article-info -->
         <div class="article-info markdown-body" v-html="item.content"></div>

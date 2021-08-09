@@ -1,13 +1,13 @@
 <template>
   <div class="header-group">
     <!-- title -->
-    <el-col :span="3">
+    <el-col :span="4">
       <div class="header-title">
         <p>倾倾倾风</p>
       </div>
     </el-col>
     <!-- navbar -->
-    <el-col :span="13">
+    <el-col :span="12">
       <div class="header-navbar">
         <ul>
           <li v-show="!((item.name=='writeArticle')&&!isLoginFlag)" :class="item.class" v-for="(item,index) in tabList" :key="index" @click="toggleTab(item,index)">
@@ -251,7 +251,7 @@ export default {
         text-align: center;
         cursor: pointer;
         &:hover{
-          @include background_color("background_color3");
+          background-color: rgba(0,120,231,.1);
         }
         .icon-svg{
           width:16px;
@@ -260,9 +260,9 @@ export default {
         }
       }
       .active{
-        @include background_color("background_color2");
+        background-color: rgba(114, 168, 219, 0.1);
         &:hover{
-          @include background_color("background_color2");
+          background-color: rgba(114, 168, 219, 0.1);
         }
       }
     }
@@ -291,18 +291,25 @@ export default {
       text-align: center;
       cursor: pointer;
       .el-icon-search{
-        color:#666;
+        padding:6px;
+        border-radius: 50%;
+        color:#317adf;
         &:hover{
-          @include font_color("text-color1");
+          background-color: rgba(0,120,231,.1);
         }
       }
     }
   }
   // night
   .header-night{
-    color:#666;
-    &:hover{
-      @include font_color("text-color1");
+    text-align: center;
+    &>i{
+      border-radius: 50%;
+      padding:6px;
+      @include font_color("text-color-hover");
+      &:hover{
+        background-color: rgba(0,120,231,.1);
+      }
     }
   }
   // login

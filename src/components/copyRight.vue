@@ -27,10 +27,10 @@ export default {
     font-weight: 300;
     a{
       margin:0 auto;
-      color:#666;
+      color: #317adf;
     }
     a:hover{
-      color:#000;
+      color:#e4524a;
     }
   }
   .right-info{

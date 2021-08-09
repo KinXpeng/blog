@@ -98,5 +98,6 @@ export default {
   max-width: 300px;
   min-width: 200px;
   transition: .5s;
+  margin-bottom: 10px;
 }
 </style>

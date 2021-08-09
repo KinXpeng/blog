@@ -159,9 +159,7 @@ export default {
   height:100vh;
   opacity: 0.8;
   background: linear-gradient(to right, #cbb4d8 0%, #97db97 0%, #b465da 0%, #e4a7e0 33%, #d8779f 66%, #e980ac 100%);
-  // background: -webkit-linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
-  // background: linear-gradient(to bottom right,#50a3a2,#53e3a6);
-  // background: -webkit-linear-gradient(to bottom right,#50a3a2,#53e3a6);
+  background: -webkit-linear-gradient(to right, #cbb4d8 0%, #97db97 0%, #b465da 0%, #e4a7e0 33%, #d8779f 66%, #e980ac 100%);
 }
 // 登录
 .login {

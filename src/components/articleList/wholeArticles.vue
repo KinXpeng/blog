@@ -9,7 +9,7 @@
         <!-- article-title -->
         <div class="article-title flex" @click="lookArticleInfo(item)">
           <div class="title-info">{{item.title}}</div>
-          <div class="title-brand flex">
+          <div class="title-brand flex" v-if="false">
             <!-- <span v-show="item.category!='hot'" title="原创">原</span> -->
             <span v-show="item.tags=='Vue'" title="推荐">荐</span>
             <span v-show="page==1" title="最新发布">新</span>
@@ -182,7 +182,7 @@ export default {
         font-family: 'Times New Roman', Times, serif;
         @include font_color("text-color1");
         &:hover{
-          color:#53bdf9 !important;
+          color:#317adf !important;
         }
       }
       .title-brand{

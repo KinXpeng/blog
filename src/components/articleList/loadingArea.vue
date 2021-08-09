@@ -9,7 +9,7 @@
       </svg>
     </div> -->
     <div class="loading-animate">
-      <p class="loading-title">LOADING</p>
+      <!-- <p class="loading-title">LOADING</p> -->
       <div class="loading-dot flex">
         <span></span>
         <span></span>
@@ -38,8 +38,9 @@ export default {
 
 <style lang='scss' scoped>
 .loading-area{
-  height:40px;
-  line-height: 40px;
+  // height:40px;
+  // line-height: 40px;
+  height:20px;
   margin-bottom: 8px;
   text-align: center;
   // loading图标
@@ -66,20 +67,22 @@ export default {
   }
   // loading-animate
   .loading-animate{
-    height:40px;
+    // height:40px;
+    height:20px;
     line-height: 20px;
     .loading-title{
       font-family: verdana;
       animation: loadingText 1s linear infinite alternate;
     }
     .loading-dot{
+      // width:94px;
       width:100px;
       height:20px;
       margin:0 auto;
       &>span{
-        width:10px;
-        height:10px;
-        margin:2px 2px;
+        width:8px;
+        height:8px;
+        margin:6px 3px;
         border-radius: 50%;
         animation: loadingFalsh 1s linear infinite alternate;
         &:nth-child(1){
@@ -127,6 +130,6 @@ export default {
   to{color: #eee;}
 }
 @keyframes loadingFalsh {
-  to{background: transparent;}
+  to{background: #fff;transform: scale(1.5);}
 }
 </style>

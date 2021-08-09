@@ -16,13 +16,11 @@
       </el-card>
       <!-- desc -->
       <el-card>
-        <!-- back -->
-        <div v-if="false" class="info-back" @click="backArticleList">
-          <i class="el-icon-arrow-left back"></i>
-        </div>
         <!-- info -->
         <div class="info-desc" v-if="articleList.length>0">
-          <div class="info-title">{{articleList[0].title}}</div>
+          <div class="info-title">
+            <span>{{articleList[0].title}}</span>
+          </div>
           <div class="info-tags">
             <div class="tags-top flex">
               <svg class="icon-svg">
@@ -254,24 +252,11 @@ export default {
         line-height:22px;
       }
     }
-    // 返回
-    .info-back{
-      width:25px;
-      height:25px;
-      line-height: 25px;
-      text-align: center;
-      transition: .5s;
-      cursor: pointer;
-      &:hover{
-        @include background_color("background_color3");
-      }
-    }
     // info-tags
     .info-tags{
       height:50px;
       line-height: 25px;
       font-size: 12px;
-      border-radius: 4px;
       margin:10px 0;
       padding:0 10px;
       @include background_color("background_color6");
@@ -306,7 +291,15 @@ export default {
       text-align:center;
       line-height:30px;
       font-weight: bold;
-      @include font_color("text-color1");
+      font-family: Georgia, Times, 'Times New Roman', serif;
+      // @include font_color("text-color1");
+      color: #317adf;
+      span{
+        &:hover{
+          color:#e4524a !important;
+          cursor: default;
+        }
+      }
     }
     // markdown-body
     .markdown-body{
@@ -323,7 +316,8 @@ export default {
         }
       }
       /deep/blockquote{
-        border-color:deepskyblue;
+        border-color:#317adf;
+        @include background_color("background_color6");
       }
     }
     // article-opertion
