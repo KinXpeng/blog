@@ -9,12 +9,6 @@
         <!-- article-title -->
         <div class="article-title flex" @click="lookArticleInfo(item)">
           <div class="title-info">{{item.title}}</div>
-          <div class="title-brand flex" v-if="false">
-            <!-- <span v-show="item.category!='hot'" title="原创">原</span> -->
-            <span v-show="item.tags=='Vue'" title="推荐">荐</span>
-            <span v-show="page==1" title="最新发布">新</span>
-            <span v-show="item.category=='hot'" title="转载，侵权删">转</span>
-          </div>
         </div>
         <!-- article-info -->
         <div class="article-info" v-html="item.content"></div>
@@ -22,8 +16,8 @@
         <div class="article-icon flex">
           <div class="flex">
             <span><i class="el-icon-view"></i>{{item.view_count}}</span>
-            <span><i class="el-icon-paperclip"></i>{{item.tags}}</span>
-            <span><i class="el-icon-chat-dot-round"></i>0</span>
+            <span><i class="el-icon-position"></i>{{item.tags}}</span>
+            <span><i class="el-icon-chat-line-round"></i>0</span>
           </div>
           <p class="desc-date"><i class="el-icon-time"></i> {{ item.modify_time }}</p>
         </div>
@@ -183,31 +177,6 @@ export default {
         @include font_color("text-color1");
         &:hover{
           color:#317adf !important;
-        }
-      }
-      .title-brand{
-        margin-left:10px;
-        span{
-          position: relative;
-          top:-1px;
-          background: salmon;
-          border-radius: 3px;
-          font-size: 12px;
-          color:#fff;
-          padding:0 3px;
-          height:18px;
-          line-height: 18px;
-          cursor: default;
-          margin-right: 5px;
-          // &:nth-child(2){
-          //   background: rgb(146, 189, 224);
-          // }
-          &:nth-child(2){
-            background: rgb(59, 228, 17);
-          }
-          &:nth-child(3){
-            background: rgb(208, 88, 245);
-          }
         }
       }
       

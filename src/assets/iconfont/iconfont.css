@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2587165 */
-  src: url('iconfont.woff2?t=1628487679697') format('woff2'),
-       url('iconfont.woff?t=1628487679697') format('woff'),
-       url('iconfont.ttf?t=1628487679697') format('truetype');
+  src: url('iconfont.woff2?t=1628503670300') format('woff2'),
+       url('iconfont.woff?t=1628503670300') format('woff'),
+       url('iconfont.ttf?t=1628503670300') format('truetype');
 }
 
 .iconfont {
@@ -13,8 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-liebiao:before {
-  content: "\e610";
+.icon-biaoqian_huaban1:before {
+  content: "\e605";
 }
 
 .icon-bianji:before {
@@ -35,6 +35,10 @@
 
 .icon-pinglun:before {
   content: "\f491";
+}
+
+.icon-pinglun1:before {
+  content: "\f4bb";
 }
 
 .icon-xinxi:before {

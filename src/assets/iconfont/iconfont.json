@@ -6,11 +6,11 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "16243289",
-      "name": "列表",
-      "font_class": "liebiao",
-      "unicode": "e610",
-      "unicode_decimal": 58896
+      "icon_id": "19689704",
+      "name": "标 签",
+      "font_class": "biaoqian_huaban1",
+      "unicode": "e605",
+      "unicode_decimal": 58885
     },
     {
       "icon_id": "4520154",
@@ -46,6 +46,13 @@
       "font_class": "pinglun",
       "unicode": "f491",
       "unicode_decimal": 62609
+    },
+    {
+      "icon_id": "21233177",
+      "name": "评论",
+      "font_class": "pinglun1",
+      "unicode": "f4bb",
+      "unicode_decimal": 62651
     },
     {
       "icon_id": "8682206",

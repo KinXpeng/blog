@@ -2,7 +2,7 @@
   <div class="home">
     <!-- header -->
     <el-row class="header flex">
-      <div class="header-sign">
+      <div class="header-sign" v-show="false">
         <i :class="expandFlag?'el-icon-close':'el-icon-menu'" @click="handleMenu"></i>
       </div>
       <header-com></header-com>
