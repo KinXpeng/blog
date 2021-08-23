@@ -30,9 +30,12 @@ export default {
       let rightNode = this.$refs.rightCom.$el;
       let scrollT = document.documentElement.scrollTop;
       this.scrollFunc();
-      if(scrollT >= 167){
+      if(scrollT >= 159){
         rightNode.style.position = "absolute";
         rightNode.style.top = scrollT + "px";
+      }else if(scrollT > 159 && scrollT <= 167){
+        leftNode.style.position = "relative";
+        leftNode.style.top = scrollT + 8 + "px";
       }else{
         rightNode.style.position = "relative";
         rightNode.style.top = 0;
