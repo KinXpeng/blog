@@ -43,7 +43,7 @@ export default {
       font-size: 20px;
       font-family: Georgia, Times, 'Times New Roman', serif;
       // @include font_color("text-color1");
-      color: #317adf;
+      // color: #317adf;
       cursor: default;
     }
     i{
