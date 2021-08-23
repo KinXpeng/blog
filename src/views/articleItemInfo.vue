@@ -259,7 +259,7 @@ export default {
       font-size: 12px;
       margin:10px 0;
       padding:0 10px;
-      @include background_color("background_color6");
+      // @include background_color("background_color6");
       .tags-top{
         .icon-svg{
           width:16px;
@@ -304,6 +304,7 @@ export default {
     // markdown-body
     .markdown-body{
       font-size: 14px;
+      font-family: Georgia, Times, 'Times New Roman', serif;
       @include font_color("text-color1");
       // @include background_color("background_color");
       /deep/ pre{

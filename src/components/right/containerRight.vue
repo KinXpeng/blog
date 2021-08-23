@@ -1,13 +1,11 @@
 <template>
-  <div class="container-right" :style="'top:'+ topNum +'px'">
+  <div class="container-right">
     <!-- duration-time -->
     <duration-time></duration-time>
     <!-- music -->
     <music></music>
     <!-- hot-articles -->
-    <hot-articles></hot-articles>
-    <!-- 计算高度 -->
-    <div class="calcHeight" ref="leftCom"></div>
+    <hot-articles ref="rightCom"></hot-articles>
   </div>
 </template>
 
@@ -19,10 +17,6 @@ export default {
   components: { durationTime, Music, HotArticles },
   data() {
     return {
-      totalHeight:null, // 页面总高度
-      topNum:0, // 相对定位值
-      scrollNum:0,
-      scrollNum1:0,
       scrollAction:{
         x: 'undefined',
         y: 'undefined'
@@ -33,24 +27,15 @@ export default {
   methods:{
     // 处理滚动
     handleScroll(){
-      let top = this.$refs.leftCom.getBoundingClientRect().bottom;
+      let rightNode = this.$refs.rightCom.$el;
       let scrollT = document.documentElement.scrollTop;
       this.scrollFunc();
-      if(this.scrollDirection == 'down'){ // 向下
-        if(top < this.totalHeight){
-          this.topNum = scrollT - this.scrollNum;
-          this.scrollNum1 =  JSON.parse(JSON.stringify(scrollT));
-        }else{
-          this.scrollNum = JSON.parse(JSON.stringify(scrollT));
-        }
-      }
-      else if(this.scrollDirection == 'up'){ // 向上
-        if(top < this.totalHeight){
-          this.scrollNum =  JSON.parse(JSON.stringify(scrollT));
-        }else{
-          this.scrollNum1 = JSON.parse(JSON.stringify(scrollT));
-          this.topNum = this.scrollNum1 - scrollT;
-        }
+      if(scrollT >= 167){
+        rightNode.style.position = "absolute";
+        rightNode.style.top = scrollT + "px";
+      }else{
+        rightNode.style.position = "relative";
+        rightNode.style.top = 0;
       }
     },
     scrollFunc() {
@@ -82,8 +67,7 @@ export default {
   created(){
   },
   mounted(){
-    this.totalHeight = window.innerHeight - 55;
-    // window.addEventListener("scroll",this.handleScroll); 
+    window.addEventListener("scroll",this.handleScroll); 
   },
   destroyed() {
     document.removeEventListener('scroll', this.handleScroll);
@@ -96,6 +80,6 @@ export default {
   position: relative;
   max-width: 300px;
   min-width: 200px;
-  transition: .5s;
+  margin-bottom: 10px;
 }
 </style>

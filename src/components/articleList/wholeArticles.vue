@@ -184,14 +184,15 @@ export default {
     // article-info
     .article-info{
       overflow: hidden;
-      height:45px;
+      height:40px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       text-overflow: ellipsis;
       padding-bottom:8px;
       margin-bottom:10px;
       font-size: 12px;
+      font-style: italic;
       @include font_color("text-color");
       line-height:16px;
       /deep/.hljs{

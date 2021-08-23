@@ -61,6 +61,8 @@ export default {
 <style lang='scss' scoped>
 @import '@/assets/scss/dark.scss';
 .tags-cloud{
+  width:100%;
+  font-family: Georgia, Times, 'Times New Roman', serif;
   .cloud-title{
     font-size: 15px;
     border-bottom:1px solid #f2f2f2;
@@ -88,7 +90,7 @@ export default {
         color:#fff;
         border-radius: 2px;
         // @include font_color("text-color");
-        cursor: default;
+        cursor: pointer;
         transition: .5s;
         &:hover{
           // border:1px solid skyblue;

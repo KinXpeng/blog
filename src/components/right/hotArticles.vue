@@ -77,7 +77,7 @@ export default {
 <style lang='scss' scoped>
 @import '@/assets/scss/dark.scss';
 .hot-articles{
-  margin-bottom: 8px;
+  width:100%;
   // title
   .article-title{
     @include border_bottom_style("border_bottom_style");
@@ -120,7 +120,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-family: 'Times New Roman', Times, serif;
+      // font-family: 'Times New Roman', Times, serif;
       height:20px;
       line-height: 20px;
     }

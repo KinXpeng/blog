@@ -2,7 +2,7 @@
   <div class="place-title el-card">
     <!-- 背景部分 -->
     <div class="title-bg">
-
+      
     </div>
   </div>
 </template>

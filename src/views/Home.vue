@@ -110,7 +110,7 @@ export default {
 // container
 .container{
   position: relative;
-  padding-top:55px;
+  padding-top:48px;
   width:92%;
   margin:0 auto 20px;
   transition: .5s;
