@@ -6,11 +6,81 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "19689704",
-      "name": "标 签",
-      "font_class": "biaoqian_huaban1",
-      "unicode": "e605",
-      "unicode_decimal": 58885
+      "icon_id": "22321913",
+      "name": "网易云音乐",
+      "font_class": "wangyiyunyinle1",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "12295401",
+      "name": "贴吧",
+      "font_class": "tieba",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "281069",
+      "name": "QQ",
+      "font_class": "qq-line",
+      "unicode": "e70e",
+      "unicode_decimal": 59150
+    },
+    {
+      "icon_id": "2405900",
+      "name": "CSDN",
+      "font_class": "csdn",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "8242497",
+      "name": "bilibili",
+      "font_class": "bilibili",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "8625836",
+      "name": "知乎 (1)",
+      "font_class": "zhihu",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "17458463",
+      "name": "微信",
+      "font_class": "weixin1",
+      "unicode": "e723",
+      "unicode_decimal": 59171
+    },
+    {
+      "icon_id": "17502152",
+      "name": "邮件",
+      "font_class": "youjian1",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "18012092",
+      "name": "推特、小鸟",
+      "font_class": "tuitexiaoniao",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    },
+    {
+      "icon_id": "18972169",
+      "name": "github",
+      "font_class": "github1",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "19306410",
+      "name": "微博",
+      "font_class": "weibo1",
+      "unicode": "e633",
+      "unicode_decimal": 58931
     },
     {
       "icon_id": "4520154",
@@ -137,69 +207,6 @@
       "font_class": "xianshi",
       "unicode": "e707",
       "unicode_decimal": 59143
-    },
-    {
-      "icon_id": "8682175",
-      "name": "邮件",
-      "font_class": "youjian",
-      "unicode": "e679",
-      "unicode_decimal": 59001
-    },
-    {
-      "icon_id": "8682238",
-      "name": "图片",
-      "font_class": "tupian",
-      "unicode": "e680",
-      "unicode_decimal": 59008
-    },
-    {
-      "icon_id": "8682255",
-      "name": "地图",
-      "font_class": "ditu",
-      "unicode": "e681",
-      "unicode_decimal": 59009
-    },
-    {
-      "icon_id": "8759836",
-      "name": "QQ",
-      "font_class": "QQ",
-      "unicode": "e698",
-      "unicode_decimal": 59032
-    },
-    {
-      "icon_id": "8759844",
-      "name": "weixin",
-      "font_class": "weixin",
-      "unicode": "e699",
-      "unicode_decimal": 59033
-    },
-    {
-      "icon_id": "9917257",
-      "name": "微博",
-      "font_class": "weibo",
-      "unicode": "e6a4",
-      "unicode_decimal": 59044
-    },
-    {
-      "icon_id": "10047528",
-      "name": "更多",
-      "font_class": "gengduo",
-      "unicode": "e6a7",
-      "unicode_decimal": 59047
-    },
-    {
-      "icon_id": "21213031",
-      "name": "钉钉",
-      "font_class": "dingding",
-      "unicode": "e721",
-      "unicode_decimal": 59169
-    },
-    {
-      "icon_id": "21213246",
-      "name": "github",
-      "font_class": "github",
-      "unicode": "e722",
-      "unicode_decimal": 59170
     },
     {
       "icon_id": "21229947",

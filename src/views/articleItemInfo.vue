@@ -4,7 +4,7 @@
     <!-- article-info -->
     <div class="article-info" v-show="!loadingFlag">
       <!-- location -->
-      <el-card class="now-location">
+      <el-card class="now-location" v-show="false">
         <div v-if="articleList[0]" class="location-info flex">
           <span>当前位置：</span>
           <span class="location-desc" @click="backArticleList">首页</span>

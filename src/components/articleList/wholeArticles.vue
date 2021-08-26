@@ -223,7 +223,6 @@ export default {
   }
   // pagination
   .pagination{
-    // border:1px solid red;
     text-align: center;
     .el-pagination{
       @include font_color("text-color");

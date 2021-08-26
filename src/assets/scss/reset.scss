@@ -47,12 +47,34 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-html, body {
-  // width: 100%;
-  // height: 100%;
-  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', 'Arial', 'sans-serif','PingFangSC-Light';
-  font-family: Georgia, Times, 'Times New Roman', serif;
+// 鱼阳体
+@font-face {
+  font-family:'Fish_Sun';
+  src: url('../font/fishSun.ttf');
 }
+// 追光体
+@font-face { 
+  font-family:'Chasing-Light';
+  src: url('../font/Chasinglight.otf');
+}
+// 狮尾四季春
+@font-face {
+  font-family:'SweiSpringSugar';
+  src: url('../font/SweiSpringSugarCJKtc-Light.ttf');
+}
+// 英文 Comfortaa
+@font-face {
+  font-family:'Comfortaa';
+  src: url('../font/Comfortaa-VariableFont_wght.ttf');
+}
+// 英文 Zero-G
+@font-face {
+  font-family:'Zero-G';
+  src: url('../font/Zero-G\ Regular.otf');
+}
+html, body {
+  font-family:'SweiSpringSugar','PingFangSC-Light','Fish_Sun','Helvetica-Light','STHeitiSC-Light','Arial', 'sans-serif','PingFangSC-Light';
+ }
 
 // 公共样式
 .fl{

@@ -9,9 +9,9 @@
     </el-row>
     <div class="container">
       <!-- container -->
-      <el-row :gutter="8">
+      <el-row :gutter="8" justify="center" type="flex">
         <!-- left -->
-        <el-col :span="5">
+        <el-col :span="otherSpan">
           <container-left></container-left>
         </el-col> 
         <!-- main -->
@@ -19,7 +19,7 @@
           <router-view></router-view>
         </el-col>
         <!-- right -->
-        <el-col v-show="rightSpan>0" :span="rightSpan">
+        <el-col :span="otherSpan">
           <container-right></container-right>
         </el-col>
       </el-row>
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       mainSpan:14,
-      rightSpan:5,
+      otherSpan:5,
       expandFlag:false,
     };
   },
@@ -58,12 +58,12 @@ export default {
   methods:{
     // 归档路由处理
     handleRouter(value){
-      if(value == 'placeFile'){ // 归档隐藏右侧栏目
-        this.mainSpan = 19;
-        this.rightSpan = 0;
-      }else{
+      if(value == 'articleList'){ 
         this.mainSpan = 14;
-        this.rightSpan = 5;
+        this.otherSpan = 5;
+      }else{
+        this.mainSpan = 18;
+        this.otherSpan = 0;
       }
     },
     // 菜单按钮
@@ -114,9 +114,6 @@ export default {
   width:92%;
   margin:0 auto 20px;
   transition: .5s;
-  // .main{
-  //   margin:0 auto;
-  // }
 }
 @media screen and (max-width: 1100px) {
   .container {

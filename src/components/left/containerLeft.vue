@@ -3,7 +3,6 @@
     <!-- avatarInfo -->
     <avatar-info></avatar-info>
     <!-- navList -->
-    <nav-list></nav-list>
     <!-- tagsCloud -->
     <tags-cloud ref="leftCom"></tags-cloud>
   </div>
@@ -11,10 +10,9 @@
 
 <script>
 import avatarInfo from './avatarInfo.vue';
-import NavList from './navList.vue';
 import TagsCloud from './tagsCloud.vue';
 export default {
-  components: { avatarInfo, NavList, TagsCloud },
+  components: { avatarInfo, TagsCloud },
   data() {
     return {
       scrollAction:{

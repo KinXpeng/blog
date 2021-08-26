@@ -233,8 +233,8 @@ export default {
     font-size: 20px;
     p{
       width: 100%;
-      font-weight: 600;
-      font-family: Georgia, Times, 'Times New Roman', serif;
+      font-family:'Chasing-Light',Georgia, Times, 'Times New Roman', serif;
+      color:#317adf;
       letter-spacing:2px;
     }
   }
