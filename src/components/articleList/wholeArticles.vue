@@ -10,14 +10,15 @@
         <div class="article-title flex" @click="lookArticleInfo(item)">
           <div class="title-info">{{item.title}}</div>
         </div>
+        <p class="title-line"></p>
         <!-- article-info -->
         <div class="article-info" v-html="item.content"></div>
         <!-- icon -->
         <div class="article-icon flex">
           <div class="flex">
             <span><i class="el-icon-view"></i>{{item.view_count}}</span>
-            <span><i class="el-icon-position"></i>{{item.tags}}</span>
-            <span><i class="el-icon-chat-line-round"></i>0</span>
+            <!-- <span><i class="el-icon-position"></i>{{item.tags}}</span> -->
+            <!-- <span><i class="el-icon-chat-line-round"></i>0</span> -->
           </div>
           <p class="desc-date"><i class="el-icon-time"></i> {{ item.modify_time }}</p>
         </div>
@@ -179,15 +180,21 @@ export default {
           color:#317adf !important;
         }
       }
-      
+    }
+    // title-line
+    .title-line{
+      width:10%;
+      height:2px;
+      margin:5px 0 10px;
+      border-bottom:3px solid rgba(0, 120, 231, 0.1);
     }
     // article-info
     .article-info{
       overflow: hidden;
-      height:46px;
+      height:128px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+      // -webkit-line-clamp: 3;
       text-overflow: ellipsis;
       padding-bottom:8px;
       margin-bottom:10px;
@@ -205,9 +212,9 @@ export default {
       span{
         padding-right:40px;
         font-size: 12px;
-        color:#b4b7b9;
+        color:#7e8081;
         &:hover{
-          color:#53bdf9;
+          color:#317adf;
           cursor: default;
         }
         i{

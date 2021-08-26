@@ -307,7 +307,7 @@ export default {
           border-right:none !important;
         }
         &:hover{
-          color:#53bdf9;
+          color:#317adf;
         }
         .icon-svg{
           width:20px;

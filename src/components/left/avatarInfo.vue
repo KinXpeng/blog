@@ -33,7 +33,7 @@
     <div class="nav-list">
       <ul class="flex">
         <li v-for="(item,index) in navList" :key="index">
-          <span class="list-item" @click="handleLink(item)">
+          <span class="list-item" @click="handleLink(item)" :title="item.title">
             <svg class="icon-svg">
               <use :xlink:href="item.icon"></use>
             </svg>
@@ -53,50 +53,61 @@ export default {
       loginCount:0,
       startTime:0,
       lastTime:0,
-      navList:[
+      navList:[ // 图标列表
         {
           icon:'#icon-github1',
           url:'https://github.com/KinXpeng',
+          title:'GitHub'
         },
         {
           icon:'#icon-qq-line',
           url:'#',
+          title:'QQ'
         },
         {
           icon:'#icon-weibo1',
           url:'https://weibo.com/u/5123434857/home',
+          title:'微博'
         },
         {
           icon:'#icon-wangyiyunyinle1',
           url:'https://music.163.com/#/user/home?id=116809620',
+          title:'网易云音乐'
         },
         {
           icon:'#icon-youjian1',
           url:'#',
+          title:'Email地址'
         },
         {
           icon:'#icon-weixin1',
           url:'#',
+          title:'WeChat'
         },
         {
           icon:'#icon-zhihu',
           url:'https://www.zhihu.com/people/mu-yu-cheng-feng-15-61',
+          title:'知乎'
         },
         {
           icon:'#icon-bilibili',
           url:'https://space.bilibili.com/19802757',
+          title:'Bilibili'
         },
         {
           icon:'#icon-tieba',
           url:'https://tieba.baidu.com/home/main?id=tb.1.bf5eac07.j7T__u0AaxYN00ol1uCSDg&fr=userbar',
+          title:'百度贴吧'
         },
         {
           icon:'#icon-tuitexiaoniao',
           url:'https://twitter.com/?request_context=signup',
+          title:'Twitter'
         },
         {
           icon:'#icon-csdn',
           url:'https://blog.csdn.net/kinxpeng?spm=1001.2101.3001.5343',
+          title:'CSDN博客'
         },
       ],
     };
@@ -167,7 +178,6 @@ export default {
   .avatar-desc {
     user-select: none;
     width: 100%;
-    height: 180px;
     .avatar-head {
       display: flex;
       height: 60px;
@@ -210,7 +220,6 @@ export default {
       }
     }
     .avatar-word{
-      height:50px;
       padding:10px 20px;
       font-size: 12px;
       line-height:20px;
@@ -224,8 +233,6 @@ export default {
     }
     // avatar-detail
     .avatar-detail {
-      height: 60px;
-      margin-top:10px;
       ul{
         display: flex;
         padding:0 10px;
@@ -234,7 +241,7 @@ export default {
           flex: 1;
           font-size: 12px;
           text-align: center;
-          padding-top:10px;
+          // padding-top:10px;
           span{
             font-size: 14px;
             color: #317adf;

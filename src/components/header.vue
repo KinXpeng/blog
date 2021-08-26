@@ -28,7 +28,7 @@
     </el-col>
     <!-- night -->
     <el-col class="header-night" :span="1">
-      <i :class="nightModeFlag?'el-icon-moon-night':'el-icon-sunrise-1'" @click="changeNight"></i>
+      <i :class="nightModeFlag?'el-icon-sunrise-1':'el-icon-moon-night'" @click="changeNight"></i>
     </el-col>
     <!-- login -->
     <el-col v-if="isLoginFlag" class="header-login" :span="1">

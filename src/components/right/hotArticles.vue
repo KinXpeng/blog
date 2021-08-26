@@ -7,7 +7,7 @@
         </svg>
         <span class="title-info">近期文章</span>
       </div>
-      <div class="articles-list">
+      <div class="articles-list" v-loading="hotArticleList.length==0" element-loading-spinner="el-icon-loading">
         <ul>
           <li class="list-item" v-for="(item,index) in hotArticleList" :key="index" @click="hotArticleInfo(item.article_id)">
             <p class="item-title">{{item.title}}</p>
@@ -27,7 +27,7 @@
 export default {
   data() {
     return {
-      hotArticleList:[],
+      hotArticleList:[], // background-color: rgba(0,120,231,.1);
     };
   },
   methods:{
@@ -98,16 +98,18 @@ export default {
   .articles-list{
     padding-top:10px;
     font-size: 12px;
+    min-height:300px;
     .list-item{
       position: relative;
       left:0;
       cursor: pointer;
       padding: 3px;
       transition: .5s;
-      @include border_bottom_style("border_bottom_style1");
+      // @include border_bottom_style("border_bottom_style1");
+      border-bottom:1px solid rgba(0,120,231,.05);
       &:hover{
         left:3px;
-        @include box_shadow("box_shadow");
+        // @include box_shadow("box_shadow");
       }
     }
     .list-item:last-child{

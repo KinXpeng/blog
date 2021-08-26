@@ -2,7 +2,8 @@
   <div class="container-left">
     <!-- avatarInfo -->
     <avatar-info></avatar-info>
-    <!-- navList -->
+    <!-- foreverLove -->
+    <forever-love></forever-love>
     <!-- tagsCloud -->
     <tags-cloud ref="leftCom"></tags-cloud>
   </div>
@@ -10,9 +11,10 @@
 
 <script>
 import avatarInfo from './avatarInfo.vue';
+import ForeverLove from './foreverLove.vue';
 import TagsCloud from './tagsCloud.vue';
 export default {
-  components: { avatarInfo, TagsCloud },
+  components: { avatarInfo, TagsCloud, ForeverLove },
   data() {
     return {
       scrollAction:{
@@ -28,10 +30,10 @@ export default {
       let leftNode = this.$refs.leftCom.$el;
       let scrollT = document.documentElement.scrollTop;
       this.scrollFunc();
-      if(scrollT >= 468){
+      if(scrollT >= 476){
         leftNode.style.position = "absolute";
         leftNode.style.top = scrollT + "px";
-      }else if(scrollT > 468 && scrollT <= 476){
+      }else if(scrollT > 476 && scrollT <= 484){
         leftNode.style.position = "relative";
         leftNode.style.top = scrollT + 8 + "px";
       }else{

@@ -38,7 +38,7 @@ export default {
     height:20px;
     text-align: center;
     line-height: 20px;
-    color:#333;
+    color:#ccc;
   }
 }
 </style>

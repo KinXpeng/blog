@@ -7,7 +7,7 @@
         </svg>
         <span>标签云</span>
       </div>
-      <div class="cloud-list">
+      <div class="cloud-list" v-loading="cloudList.length==0" element-loading-spinner="el-icon-loading">
         <ul class="list-box flex">
           <li :style="'background:'+changeTagsStyle()" v-show="(item.tags) && (item.category!='moment')" v-for="(item,index) in cloudList" :key="index" @click="handleCloudItem(item)">{{item.tags}}</li>
         </ul>

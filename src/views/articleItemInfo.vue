@@ -31,7 +31,7 @@
               <span v-if="articleList[0].modify_time"><i class="el-icon-refresh"></i> {{articleList[0].modify_time}}</span>
             </div>
             <div class="tag-bottom flex">
-              <p class="bottom-category">分类：<span class="tag-button">{{articleList[0].category}}</span></p>
+              <p class="bottom-category">分类：<span class="tag-button category">{{articleList[0].category}}</span></p>
               <p class="bottom-tags">标签：<span class="tag-button">{{articleList[0].tags}}</span></p>
             </div>
           </div>
@@ -276,12 +276,21 @@ export default {
       .tag-bottom{
         p{
           padding:0 5px;
+          height:24px;
           .tag-button{
-            @include border_style("border_style3");
-            border-radius: 2px;
-            padding:0 3px;
-            color:#75c1ea;
-            @include background_color("background_color");
+            display: inline-block;
+            height:20px;
+            line-height:19px;
+            // @include border_style("border_style3");
+            border-radius: 12px;
+            padding:0 10px;
+            // color:#75c1ea;
+            color:#fff;
+            // @include background_color("background_color");
+            background-color: #f19c38;
+          }
+          .category{
+            background-color: #79a4e9;
           }
         }
       }
@@ -337,7 +346,7 @@ export default {
             border-right:none !important;
           }
           &:hover{
-            color:#53bdf9;
+            color:#317adf;
           }
           .icon-svg{
             width:20px;
