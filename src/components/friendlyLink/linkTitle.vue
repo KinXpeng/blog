@@ -9,13 +9,29 @@
       <p class="link-line-border"></p>
     </div>
     <!-- link-card -->
+    <!-- 博客链接 -->
     <div class="link-card">
       <p class="card-title">万千博友们！</p>
       <ul>
-        <li class="link-item" v-for="(item,index) in linkCardList" :key="index">
+        <li class="link-item" v-show="item.category=='blog'" v-for="(item,index) in linkCardList" :key="index" :style="'border:2px solid '+CardStyle()">
           <div class="item-desc">
             <p class="item-name">{{item.name}}</p>
-            <span class="item-info">这里是描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述</span>
+            <span class="item-info">{{item.desc}}</span>
+          </div>
+          <div class="item-avatar">
+            <img :src="item.avatarImg" alt="">
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- 达人推荐 -->
+    <div class="link-card">
+      <p class="card-title">达人推荐</p>
+      <ul>
+        <li class="link-item" v-show="item.category=='recommend'" v-for="(item,index) in linkCardList" :key="index" :style="'border:2px solid '+CardStyle()">
+          <div class="item-desc">
+            <p class="item-name">{{item.name}}</p>
+            <span class="item-info">{{item.desc}}</span>
           </div>
           <div class="item-avatar">
             <img :src="item.avatarImg" alt="">
@@ -35,66 +51,119 @@ export default {
           name:'测试测试',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'纵有疾风起，人生不言弃！',
+          category:'blog'
         },
         {
           name:'AngelNI’s Blog',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'做事有始有终值得开始的事就值得完成。',
+          category:'blog'
         },
         {
           name:'Dreamy.WJY',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'青，取之于蓝而青于蓝;冰，水为之而寒于水。',
+          category:'blog'
         },
         {
           name:'测试测试',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'业精于勤而荒于嬉，行成于思而毁于随。',
+          category:'blog'
         },
         {
           name:'测试测试',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'困难像弹簧，你弱它就强，你强它就弱。',
+          category:'blog'
         },
         {
           name:'测试测试',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'把意念深潜得下，何理不可得，把志气奋发起，何事不可做！',
+          category:'blog'
         },
         {
           name:'测试测试',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'要想成为强者，决不能绕过挡道的荆棘，也不能回避风雨的冲刷。',
+          category:'blog'
         },
         {
           name:'测试测试',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'接到你的新消息,振动的不是手机,而是心。',
+          category:'blog'
         },
         {
           name:'测试测试',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'不怕在自己的梦想里跌倒,只怕在别人的奇迹中迷路。',
+          category:'blog'
         },
         {
           name:'测试测试',
           url:'https://www.kinxpeng.com',
           avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
-          desc:'纵有疾风起，人生不言弃！'
+          desc:'早成者未必有成,晚达者未必不达。不可以年少而自恃,不可以年老而自弃。',
+          category:'recommend'
+        },
+        {
+          name:'测试测试',
+          url:'https://www.kinxpeng.com',
+          avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
+          desc:'早成者未必有成,晚达者未必不达。不可以年少而自恃,不可以年老而自弃。',
+          category:'recommend'
+        },
+        {
+          name:'测试测试',
+          url:'https://www.kinxpeng.com',
+          avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
+          desc:'早成者未必有成,晚达者未必不达。不可以年少而自恃,不可以年老而自弃。',
+          category:'recommend'
+        },
+        {
+          name:'测试测试',
+          url:'https://www.kinxpeng.com',
+          avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
+          desc:'早成者未必有成,晚达者未必不达。不可以年少而自恃,不可以年老而自弃。',
+          category:'recommend'
+        },
+        {
+          name:'测试测试',
+          url:'https://www.kinxpeng.com',
+          avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
+          desc:'早成者未必有成,晚达者未必不达。不可以年少而自恃,不可以年老而自弃。',
+          category:'recommend'
+        },
+        {
+          name:'测试测试',
+          url:'https://www.kinxpeng.com',
+          avatarImg:'https://www.kinxpeng.com/demo/logo.jpeg',
+          desc:'早成者未必有成,晚达者未必不达。不可以年少而自恃,不可以年老而自弃。',
+          category:'recommend'
         },
       ],
     };
   },
   methods:{
+    // card随机色
+    CardStyle(){
+      let r = Math.round(Math.random()*255);
+      let g = Math.round(Math.random()*255);
+      let b = Math.round(Math.random()*255);
+      let a = JSON.parse((Math.random()*0.8).toFixed(1))+0.2;
+      return 'rgba('+r+','+g+','+b+','+a+')';
+    },
   },
   created(){
   },
@@ -121,6 +190,8 @@ export default {
     text-align: center;
     font-family: unset;
     font-size: 14px;
+    font-style: italic;
+    color:#666;
     text-overflow: hidden;
     justify-content: center;
     span{
@@ -156,7 +227,10 @@ export default {
       width:31%;
       height:100px;
       margin:1%;
-      border:1px solid red;
+      &:hover{
+        box-shadow: 0 0px 4px 0 #ccc;
+        border-width: 3px !important;
+      }
       // 描述
       .item-desc{
         width:70%;
@@ -168,6 +242,7 @@ export default {
           line-height:40px;
           color:#317adf;
           font-style: italic;
+          cursor: pointer;
         }
         .item-info{
           overflow: hidden;
@@ -190,12 +265,16 @@ export default {
           border-radius: 50%;
           margin:20px 4px 20px -4px;
           border:2px solid #ccc;
+          transition: .5s;
+          &:hover{
+            transform: scale(1.1);
+            border-color:#317adf;
+          }
         }
       }
     }
   }
 }
-
 
 @keyframes textShow {
   from {width:0;}
