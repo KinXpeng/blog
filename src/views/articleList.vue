@@ -48,6 +48,7 @@ export default {
         this.activeName = 'third'; // 跳转到热门
       }
     })
+    document.title = '染指阳光，向日葵永不落！';
   },
 };
 </script>

@@ -110,6 +110,7 @@ export default {
             // console.log(res.data.data.data[0]);
             this.articleList = res.data.data.data;
             this.initViewCounts(this.articleList[0]); // 浏览量
+            document.title = this.articleList[0].title;
           }else{
             this.$notify({
               type:'error',
@@ -216,6 +217,7 @@ export default {
     this.getInitArticleList(); // 数据初始化
   },
   mounted(){
+    
   },
 };
 </script>

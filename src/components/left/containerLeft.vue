@@ -3,7 +3,7 @@
     <!-- avatarInfo -->
     <avatar-info></avatar-info>
     <!-- foreverLove -->
-    <forever-love v-show="false"></forever-love>
+    <forever-love></forever-love>
     <!-- tagsCloud -->
     <tags-cloud ref="leftCom"></tags-cloud>
   </div>

@@ -234,8 +234,10 @@ export default {
     p{
       width: 100%;
       font-family:'Chasing-Light',Georgia, Times, 'Times New Roman', serif;
-      color:#317adf;
       letter-spacing:2px;
+      color:transparent;
+      background-clip: text;
+      background-image:  linear-gradient(to right, #091c85, #152ae0,#67b1f7,#3502f0,#11076e);
     }
   }
   // navbar

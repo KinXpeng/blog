@@ -1,31 +1,29 @@
 <template>
   <div class="duration-time">
-    <div>
-      <el-card class="love-card">
-        <div class="love-avatar flex">
-          <div class="avatar-info">
-            <el-image
-              style="width: 65px; height: 65px"
-              :src="require('../../assets/images/likp.jpg')"
-              fit="cover">
-            </el-image>
-          </div>
-          <span class="avatar-icon">
-            <svg class="icon-svg">
-              <use xlink:href="#icon-aixin"></use>
-            </svg>
-          </span>
-          <div class="avatar-info">
-            <el-image
-              style="width: 65px; height: 65px"
-              :src="require('../../assets/images/suna.jpg')"
-              fit="cover">
-            </el-image>
-          </div>
+    <el-card class="love-card">
+      <div class="love-avatar flex">
+        <div class="avatar-info">
+          <el-image
+            style="width: 65px; height: 65px"
+            :src="require('../../assets/images/likp.jpg')"
+            fit="cover">
+          </el-image>
         </div>
-        <p class="love-time" ref="loveDate">{{loveTime}}</p>
-      </el-card>
-    </div>
+        <span class="avatar-icon">
+          <svg class="icon-svg">
+            <use xlink:href="#icon-aixin"></use>
+          </svg>
+        </span>
+        <div class="avatar-info">
+          <el-image
+            style="width: 65px; height: 65px"
+            :src="require('../../assets/images/suna.jpg')"
+            fit="cover">
+          </el-image>
+        </div>
+      </div>
+      <p class="love-time" ref="loveDate">{{loveTime}}</p>
+    </el-card>
   </div>
 </template>
 
@@ -113,7 +111,7 @@ export default {
   }
 }
 @keyframes face{
-  from{top:0px;transform: scale(1);}
-  to{top:3px;transform: scale(1.2);}
+  from{transform: scale(1);}
+  to{transform: scale(1.2);}
 }
 </style>

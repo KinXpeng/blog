@@ -1,11 +1,14 @@
 <template>
   <div class="friendly-link">
-    <div class="place-history el-card">敬请期待。。。</div>
+    <!-- link-title -->
+    <link-title></link-title>
   </div>
 </template>
 
 <script>
+import linkTitle from '../components/friendlyLink/linkTitle.vue';
 export default {
+  components: { linkTitle },
   data() {
     return {
     };
