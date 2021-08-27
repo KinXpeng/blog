@@ -22,7 +22,7 @@
           ref="md"
           v-model="articleInfo"
           @save="handleArticle"
-          style="min-height:684px;z-index:99;"
+          style="height:684px;z-index:99;"
           :ishljs="true"
           :boxShadow="false"
           :toolbars="markdownOption"
@@ -96,6 +96,8 @@
         <!-- list-expand -->
         <div class="list-expand">
           <el-table
+            v-loading="articleList.length==0"
+            element-loading-spinner="el-icon-loading"
             :data="articleList"
             stripe
             style="width: 100%">
@@ -216,13 +218,6 @@ export default {
     handleCurrentChange(page){
       this.page = page;
       this.queryArticleList();
-    },
-    // 标签切换时
-    handleTabClick(tab){ // 点击tab的时候刷新数据
-      console.log(tab);
-      // if(tab.$children[0]){
-      //   tab.$children[0].tags = '';
-      // }
     },
     // 图片上传
     async $imgAdd(pos, $file){
@@ -574,6 +569,7 @@ export default {
     /deep/ .v-show-content{
       @include font_color("text-color");
     }
+
   }
   // article-title
   .article-title {

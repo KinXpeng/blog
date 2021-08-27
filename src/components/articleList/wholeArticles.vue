@@ -8,7 +8,7 @@
       <el-card v-for="(item, index) in articleList" :key="index">
         <!-- article-title -->
         <div class="article-title flex" @click="lookArticleInfo(item)">
-          <div class="title-info">{{item.title}}</div>
+          <div class="title-info"><span class="title-sigh"># </span>{{item.title}}</div>
         </div>
         <p class="title-line"></p>
         <!-- article-info -->
@@ -175,9 +175,18 @@ export default {
         cursor: pointer;
         font-weight: bold;
         font-family: 'Times New Roman', Times, serif;
-        @include font_color("text-color1");
+        // @include font_color("text-color1");
+        color:#317adf;
+        transition: .5s;
         &:hover{
-          color:#317adf !important;
+          // color:#e4524a !important;
+          font-size:19px;
+        }
+        .title-sigh{
+          display: inline-block;
+          font-family:unset;
+          transform: scale(1.2);
+          margin-right:5px;
         }
       }
     }
@@ -200,6 +209,7 @@ export default {
       margin-bottom:10px;
       font-size: 12px;
       font-style: italic;
+      // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       @include font_color("text-color");
       line-height:16px;
       /deep/.hljs{
