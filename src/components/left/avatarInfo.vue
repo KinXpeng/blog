@@ -169,6 +169,7 @@ export default {
 @import "@/assets/scss/dark.scss";
 .avatar-info {
   margin-bottom: 6px;
+  height:336px;
   .avatar-back {
     // border:1px solid red;
     width: 100%;
@@ -220,7 +221,7 @@ export default {
       }
     }
     .avatar-word{
-      padding:10px 20px;
+      padding:13px 20px;
       font-size: 12px;
       line-height:20px;
       text-align: center;
@@ -261,7 +262,7 @@ export default {
   .nav-list{
     ul{
       flex-wrap: wrap;
-      padding:0 10px 8px;
+      padding:0 10px 10px;
       justify-content: center;
     }
     li{
